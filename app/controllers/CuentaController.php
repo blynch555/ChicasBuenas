@@ -26,6 +26,7 @@ class CuentaController extends Controller{
 	}
 
 	public function postRegistro(){
+		echo "aki01<br>";
 		$rules = [
 			'type' 		=> 'required|in:user,escort,agency',
 			'name' 		=> 'required',
@@ -33,6 +34,8 @@ class CuentaController extends Controller{
 			'username' 	=> 'required|unique:users',
 			'password' 	=> 'required|confirmed'
 		];
+
+		echo "aki02<br>";
 
 		$messages = [
 			'type.required' 	=> 'selecciona un tipo de cuenta',
