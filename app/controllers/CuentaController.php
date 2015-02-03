@@ -5,7 +5,6 @@ class CuentaController extends Controller{
 		
 	}
 
-
 	public function getEntrar(){
 		return View::make('account.login');
 	}

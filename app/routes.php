@@ -20,3 +20,4 @@ Route::get('{city}', function($city){
 });
 
 Route::controller('cuenta', 'CuentaController');
+Route::controller('admin', 'AdminController');
