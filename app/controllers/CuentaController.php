@@ -47,12 +47,12 @@ class CuentaController extends Controller{
 			'password.confirmed' => 'debes confirmar tu contraseña'
 		];
 
-		$validation = Validator::make(Input::all(), $rules, $messages);
+		/*$validation = Validator::make(Input::all(), $rules, $messages);
 		if($validation->fails())
 			return Redirect::back()
 				->withInput()
 				->withErrors($validation)
-				->with('register_fail', true);
+				->with('register_fail', true);*/
 
 		$profile = 'Usuario';
 		$profile = (Input::get('type') == 'escort') ? 'Escort' : $profile;
