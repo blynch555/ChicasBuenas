@@ -79,7 +79,7 @@ class CuentaController extends Controller{
 	}
 
 	public function getActivar($code){
-		$user = User::whereValidationAndStatus($code, 'Activación')->first();
+		$user = User::whereValidationAndStatus($code, 'Validación')->first();
 		if($user):
 			$user->status = 'Activo';
 			$user->save();
