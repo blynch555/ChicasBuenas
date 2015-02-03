@@ -1,27 +1,33 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
 Route::get('/', function(){
 	return View::make('hello');
 });
 
-Route::get('{city}', function($city){
+Route::controller('cuenta', 		'CuentaController');
 
+Route::group(['prefix' => 'admin', 'before' => 'admin'], function(){
+	Route::controller('/', 			'Admin\HomeController');
 });
 
-Route::controller('cuenta', 'CuentaController');
-Route::controller('admin', 'AdminController');
+Route::group(['prefix' => 'api', 'before' => 'api'], function(){
+	Route::resource('users', 		'Api\UserController');	
+	Route::resource('escorts', 		'Api\EscortController');	
+});
 
-Route::group(['prefix' => 'api'], function(){
-	Route::resource('users', 'Api\UserController');	
+Route::group(['prefix' => 'mi/escort', 'before' => 'escort'], function(){
+	Route::controller('/', 			'Escort\HomeController');
+	Route::controller('perfil', 	'Escort\PerfilController');
+	Route::controller('creditos', 	'Escort\CreditosController');
+});
+
+Route::group(['prefix' => 'mi/usuario', 'before' => 'usuario'], function(){
+	Route::controller('/', 			'Usuario\HomeController');
+	Route::controller('perfil', 	'Usuario\PerfilController');
+});
+
+Route::group(['prefix' => 'mi/agencia', 'before' => 'agencia'], function(){
+	Route::controller('/', 			'Agencia\HomeController');
+	Route::controller('chicas', 	'Agencia\ChicasController');
+	Route::controller('pagos', 		'Agencia\PagosController');
 });

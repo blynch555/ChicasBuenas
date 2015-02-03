@@ -2,7 +2,9 @@
 class CuentaController extends Controller{
 	
 	public function getIndex(){
-		
+		$user = Auth::user();
+
+		return View::make('account.index', ['user' => $user]);
 	}
 
 	public function getEntrar(){
@@ -72,6 +74,37 @@ class CuentaController extends Controller{
 		$user->sendActivationMail();
 
 		return Redirect::action('CuentaController@getRegistrado');
+	}
+
+	public function postActualizar(){
+		$rules = ['name' 		=> 'required'];
+
+		$messages = [
+			'name.required' 	=> 'ingresa tu nombre (no sera visible)'
+		];
+
+		if(Input::get('password') != ''):
+			$rules['password'] 	= 'confirmed';
+			$messages['password.required'] = 'ingresa una contraseña';
+			$messages['password.confirmed'] = 'debes confirmar tu contraseña';
+		endif;
+
+		$validation = Validator::make(Input::all(), $rules, $messages);
+		if($validation->fails())
+			return Redirect::back()
+				->withInput()
+				->withErrors($validation)
+				->with('update_fail', true);
+
+		$user = Auth::user();
+		$user->name = Input::get('name');
+		if(Input::get('password') != ''):
+			$user->password = Hash::make(Input::get('password'));
+		endif;
+		$user->save();
+
+		return Redirect::action('CuentaController@getIndex')
+			->with('update_success', true);
 	}
 
 	public function getRegistrado(){

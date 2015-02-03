@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('cuenta/entrar');
 		}
 	}
 });
@@ -68,6 +68,37 @@ Route::filter('auth.basic', function()
 Route::filter('guest', function()
 {
 	if (Auth::check()) return Redirect::to('/');
+});
+
+
+Route::filter('admin', function()
+{
+	if (Auth::guest() or !Auth::user()->isAdmin())
+		return Redirect::to('/');
+});
+
+Route::filter('usuario', function()
+{
+	if (Auth::guest() or !Auth::user()->isUser())
+		return Redirect::to('/');
+});
+
+Route::filter('escort', function()
+{
+	if (Auth::guest() or !Auth::user()->isEscort())
+		return Redirect::to('/');
+});
+
+Route::filter('agencia', function()
+{
+	if (Auth::guest() or !Auth::user()->isAgency())
+		return Redirect::to('/');
+});
+
+Route::filter('api', function()
+{
+	if (Auth::guest() or !Auth::user()->isAdmin())
+		return Response::make('Unauthorized', 401);
 });
 
 /*

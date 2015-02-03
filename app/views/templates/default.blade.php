@@ -73,6 +73,10 @@
 									<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-thumbsup"></i> Me Gusta</a></li>
 									<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-card"></i> Crédito</a></li>
 									@endif
+
+									@if(Auth::user()->isAdmin())
+									<li><a href="{{ url('admin') }}"><i class="ion-ios-cog-outline"></i> Administración</a></li>
+									@endif
 									<li><a href="{{ url('cuenta') }}"><i class="ion-gear-a"></i> Mi cuenta</a></li>
 
 									<li><a href="{{ url('cuenta/salir') }}"><i class="ion-log-out"></i> Salir</a></li>

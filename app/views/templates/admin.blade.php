@@ -21,7 +21,7 @@
 					<a href="{{ url('/') }}"><h1>ChicasBuenas.cl</h1></a>
 				</div>
 				<div class="col-sm-6 headerButtons">
-					
+					<p class="lead text-center" style="margin-top: 7px; font-weight: normal; color: #fff; font-size: 32px;">ADMINISTRACIÓN</p>
 				</div>
 				<div class="col-sm-3 headerUserActions">
 					<div class="btn-group pull-right" role="group" aria-label="...">
@@ -78,7 +78,8 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="#"><i class="ion-star"></i> Dashboard</a></li>
-						<li><a href="{{ action('AdminController@getUsers') }}">Usuarios</a></li>
+						<li><a href="{{ action('Admin\HomeController@getUsers') }}">Usuarios</a></li>
+						<li><a href="{{ action('Admin\HomeController@getEscorts') }}">Escorts</a></li>
 					</ul>
 				</div>
 			</nav>		
