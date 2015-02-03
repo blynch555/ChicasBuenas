@@ -85,7 +85,7 @@ class CuentaController extends Controller{
 			$user->status = 'Activo';
 			$user->save();
 
-			return 'cuenta activada';
+			return View::make('account.validated');
 		else:
 			return 'código no válido';
 		endif;
