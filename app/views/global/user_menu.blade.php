@@ -27,6 +27,12 @@
 				@if(Auth::user()->isAdmin())
 				<li><a href="{{ url('admin') }}"><i class="ion-ios-cog-outline"></i> Administración</a></li>
 				@endif
+
+				@if(Auth::user()->profile == 'Agencia')
+				<li><a href="{{ url('admin') }}"><i class="ion-person"></i> Mis Chicas</a></li>
+				<li><a href="{{ url('admin') }}"><i class="ion-card"></i> Mis Pagos</a></li>
+				@endif
+
 				<li><a href="{{ url('cuenta') }}"><i class="ion-gear-a"></i> Mi cuenta</a></li>
 
 				<li><a href="{{ url('cuenta/salir') }}"><i class="ion-log-out"></i> Salir</a></li>
