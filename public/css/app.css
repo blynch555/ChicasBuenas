@@ -194,3 +194,7 @@ footer a:hover{
 .panelEscorts .panel-body{
 	padding: 2px;
 }
+
+.panel-heading .lead{
+	margin: 0;
+}

@@ -62,7 +62,7 @@ class CuentaController extends Controller{
 		$user->name = Input::get('name');
 		$user->username = Input::get('username');
 		$user->email = Input::get('email');
-		$user->password = Input::get('password');
+		$user->password = Hash::make(Input::get('password'));
 		$user->validation = md5(date('YmdHis'));
 		$user->profile = $profile;
 		$user->status = 'Validación';
@@ -79,7 +79,7 @@ class CuentaController extends Controller{
 	}
 
 	public function getActivar($code){
-		$user = User::whereActivation($code)->first();
+		$user = User::whereValidation($code)->first();
 		if($user):
 			$user->status = 'Activo';
 			$user->save();
