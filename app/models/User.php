@@ -31,10 +31,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			'code' => $this->validation
 		];
 
-		Mail::queue('emails.validation', $data, function($message) use ($user){
+
+		/*Mail::queue('emails.validation', $data, function($message) use ($user){
 			$message
 				->to($user->email, $user->name)
 				->subject('Bienvenido a ChicasBuena.cl!');
-		});
+		});*/
+
+		
 	}
 }
