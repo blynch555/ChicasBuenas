@@ -24,14 +24,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
 	public function sendActivationMail(){
+		$user = $this;
+
 		$data = [
 			'name' => $this->name,
 			'code' => $this->validation
 		];
 
-		Mail::queue('emails.validation', $data, function($message){
+		Mail::queue('emails.validation', $data, function($message) use ($user){
 			$message
-				->to($this->email, $this->name)
+				->to($user->email, $user->name)
 				->subject('Bienvenido a ChicasBuena.cl!');
 		});
 	}
