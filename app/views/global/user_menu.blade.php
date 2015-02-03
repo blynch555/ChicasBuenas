@@ -12,7 +12,7 @@
 
 		<div class="btn-group" style="margin-top: 8px;" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				{{ HTML::image('img/283216786_small.jpg') }}
+				{{ HTML::image('img/283216786_small.jpg', '', ['class'=>'img-thumbnail']) }}
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu dropdown-menu-right" role="menu">
