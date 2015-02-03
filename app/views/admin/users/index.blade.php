@@ -31,6 +31,9 @@
 							<td>
 								<button class="btn btn-default btn-xs"><i class="ion-edit"></i></button>
 								<button class="btn btn-danger btn-xs btnDelete" data-user-id="{{ $user->id }}"><i class="ion-trash-a"></i></button>
+								@if($user->status != 'Activo')
+								<a class="btn btn-primary btn-xs" target="_blank" href="{{ action('CuentaController@getActivar', [$user->validation]) }}"><i class="ion-checkmark-circled"></i></a>
+								@endif
 							</td>
 						</tr>
 						@endforeach
