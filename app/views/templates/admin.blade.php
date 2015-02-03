@@ -61,20 +61,6 @@
 				</div>
 			</div>
 
-			<section class="row">
-				<div class="col-sm-12">
-					<div id="headerListSection">
-						@for($i=0;$i<20;$i++)
-						<div>
-							<a href="{{ url('chicas/milena,123') }}"  data-escort-id="{{ $i }}" class="img-rounded linkShowEscortProfile">
-								{{ HTML::image('img/photo_top.png') }}
-							</a>
-						</div>
-						@endfor
-					</div>
-				</div>
-			</section>
-
 			<nav class="navbar navbar-inverse">
 				<div class="container-fluid">
 
