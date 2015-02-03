@@ -13,6 +13,10 @@
 						la dirección correcta o pincha directamente en el enlace que
 						te hemos enviado a tu email.
 					</p>
+					<p class="lead">
+						Recuerda que el código de activación solo se puede usar una
+						vez por lo tanto si ya se activo no volverá a funcionar.
+					</p>
 					<p>
 						<a href="{{ url('/') }}" class="btn btn-primary"><i class="ion-home"></i> Ir a la Portada</a>
 						<a href="{{ action('CuentaController@getEntrar') }}" class="btn btn-primary"><i class="ion-person"></i> Ir a mi Cuenta</a>
