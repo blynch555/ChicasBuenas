@@ -48,12 +48,12 @@ class CuentaController extends Controller{
 			'password.confirmed' => 'debes confirmar tu contraseña'
 		];
 
-		/*$validation = Validator::make(Input::all(), $rules, $messages);
+		$validation = Validator::make(Input::all(), $rules, $messages);
 		if($validation->fails())
 			return Redirect::back()
 				->withInput()
 				->withErrors($validation)
-				->with('register_fail', true);*/
+				->with('register_fail', true);
 
 
 		$profile = 'Usuario';
@@ -80,7 +80,7 @@ class CuentaController extends Controller{
 	}
 
 	public function getActivar($code){
-		$user = User::whereValidation($code)->first();
+		$user = User::whereValidationAndStatus($code, 'Activación')->first();
 		if($user):
 			$user->status = 'Activo';
 			$user->save();
