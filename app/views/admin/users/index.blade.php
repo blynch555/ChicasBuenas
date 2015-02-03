@@ -29,6 +29,7 @@
 							<td>{{ $user->profile }}</td>
 							<td>{{ $user->status }}</td>
 							<td>
+								<button class="btn btn-default btn-xs"><i class="ion-edit"></i></button>
 								<button class="btn btn-danger btn-xs"><i class="ion-trash-a"></i></button>
 							</td>
 						</tr>
