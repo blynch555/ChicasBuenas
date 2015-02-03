@@ -87,7 +87,7 @@ class CuentaController extends Controller{
 
 			return View::make('account.validated');
 		else:
-			return 'código no válido';
+			return View::make('account.notvalidated');
 		endif;
 	}
 
