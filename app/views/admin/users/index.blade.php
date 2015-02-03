@@ -2,10 +2,10 @@
 @section('content')
 	
 	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
+		<div class="col-sm-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<p class="lead">Usuarios Registrados</p>
+					<p class="lead"><i class="ion-person-stalker"></i> Usuarios Registrados</p>
 				</div>
 				<table class="table  table-bordered">
 					<thead>
