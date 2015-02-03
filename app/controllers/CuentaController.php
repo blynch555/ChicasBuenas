@@ -70,8 +70,6 @@ class CuentaController extends Controller{
 		$user->status = 'Validación';
 		$user->save();
 
-		return "aki3<br>";
-
 		$user->sendActivationMail();
 		return "aki4<br>";
 
