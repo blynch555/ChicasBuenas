@@ -77,7 +77,7 @@
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#"><i class="ion-star"></i> Dashboard</a></li>
+						<li><a href="#"><i class="ion-star"></i> Dashboard</a></li>
 						<li><a href="{{ action('AdminController@getUsers') }}">Usuarios</a></li>
 					</ul>
 				</div>
