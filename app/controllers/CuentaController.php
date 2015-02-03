@@ -54,9 +54,12 @@ class CuentaController extends Controller{
 				->withErrors($validation)
 				->with('register_fail', true);*/
 
+		echo "aki1<br>";
+
 		$profile = 'Usuario';
 		$profile = (Input::get('type') == 'escort') ? 'Escort' : $profile;
 		$profile = (Input::get('type') == 'agency') ? 'Agencia' : $profile;
+		echo "aki2<br>";
 
 		$user = new User;
 		$user->name = Input::get('name');
@@ -68,7 +71,10 @@ class CuentaController extends Controller{
 		$user->status = 'Validación';
 		$user->save();
 
+		echo "aki3<br>";
+
 		$user->sendActivationMail();
+		echo "aki4<br>";
 
 		return Redirect::action('CuentaController@getRegistrado');
 
