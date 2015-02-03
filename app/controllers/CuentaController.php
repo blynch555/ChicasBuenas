@@ -78,6 +78,18 @@ class CuentaController extends Controller{
 		return View::make('account.registered');
 	}
 
+	public function getActivar($code){
+		$user = User::whereActivation($code)->first();
+		if($user):
+			$user->status = 'Activo';
+			$user->save();
+
+			return 'cuenta activada';
+		else:
+			return 'código no válido';
+		endif;
+	}
+
 	public function getSalir(){
 		Auth::logout();
 
