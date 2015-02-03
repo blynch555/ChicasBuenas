@@ -8,6 +8,7 @@
 	{{ HTML::style('vendor/bootstrap/css/bootstrap-theme.min.css') }}
 	{{ HTML::style('vendor/ionicons/css/ionicons.min.css') }}
 	{{ HTML::style('vendor/font-awesome/css/font-awesome.min.css') }}
+	{{ HTML::style('css/app.css') }}
 </head>
 <body>
 	<div class="container wraper">
