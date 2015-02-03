@@ -11,7 +11,7 @@
 					<p class="lead">
 						No hemos podido realizar la activación, asegurate que tienes
 						la dirección correcta o pincha directamente en el enlace que
-						te hemos enviado.
+						te hemos enviado a tu email.
 					</p>
 					<p>
 						<a href="{{ url('/') }}" class="btn btn-primary"><i class="ion-home"></i> Ir a la Portada</a>
