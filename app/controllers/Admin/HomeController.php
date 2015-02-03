@@ -5,11 +5,6 @@ use \Escort, \User;
 
 class HomeController extends Controller{
 	
-	public function __construct(){
-		$this->beforeFilter('auth');
-		$this->beforeFilter('admin');
-	}
-
 	public function getIndex(){
 		return View::make('admin.index');
 	}

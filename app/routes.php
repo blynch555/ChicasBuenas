@@ -6,7 +6,7 @@ Route::get('/', function(){
 
 Route::controller('cuenta', 		'CuentaController');
 
-Route::group(['prefix' => 'admin', 'before' => 'admin'], function(){
+Route::group(['prefix' => 'admin'], function(){
 	Route::controller('/', 			'Admin\HomeController');
 });
 
