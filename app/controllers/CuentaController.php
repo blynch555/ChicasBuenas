@@ -26,7 +26,7 @@ class CuentaController extends Controller{
 	}
 
 	public function postRegistro(){
-		return "aki01<br>";
+		
 		$rules = [
 			'type' 		=> 'required|in:user,escort,agency',
 			'name' 		=> 'required',
@@ -34,8 +34,6 @@ class CuentaController extends Controller{
 			'username' 	=> 'required|unique:users',
 			'password' 	=> 'required|confirmed'
 		];
-
-		return "aki02<br>";
 
 		$messages = [
 			'type.required' 	=> 'selecciona un tipo de cuenta',
@@ -57,7 +55,6 @@ class CuentaController extends Controller{
 				->withErrors($validation)
 				->with('register_fail', true);*/
 
-		return "aki1<br>";
 
 		$profile = 'Usuario';
 		$profile = (Input::get('type') == 'escort') ? 'Escort' : $profile;
