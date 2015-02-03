@@ -4,5 +4,5 @@
 que actives tu cuenta entrando al siguiente enlace:</p>
 
 <p>
-	<a href="{{ route('CuentaController@getActivar', [$code]) }}">{{ route('CuentaController@getActivar', [$code]) }}</a>
+	<a href="{{ action('CuentaController@getActivar', [$code]) }}">{{ route('CuentaController@getActivar', [$code]) }}</a>
 </p>
