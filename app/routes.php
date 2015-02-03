@@ -21,3 +21,7 @@ Route::get('{city}', function($city){
 
 Route::controller('cuenta', 'CuentaController');
 Route::controller('admin', 'AdminController');
+
+Route::group(['prefix' => 'api'], function(){
+	Route::resource('users', 'Api\UserController');	
+});

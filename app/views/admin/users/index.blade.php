@@ -21,7 +21,7 @@
 					</thead>
 					<tbody>
 						@foreach($users as $user)
-						<tr>
+						<tr id="tr_user_{{ $user->id }}">
 							<td>{{ $user->id }}</td>
 							<td>{{ $user->name }}</td>
 							<td>{{ $user->username }}</td>
@@ -30,7 +30,7 @@
 							<td>{{ $user->status }}</td>
 							<td>
 								<button class="btn btn-default btn-xs"><i class="ion-edit"></i></button>
-								<button class="btn btn-danger btn-xs"><i class="ion-trash-a"></i></button>
+								<button class="btn btn-danger btn-xs btnDelete" data-user-id="{{ $user->id }}"><i class="ion-trash-a"></i></button>
 							</td>
 						</tr>
 						@endforeach
@@ -39,4 +39,7 @@
 			</div>
 		</div>
 	</div>
+@stop
+@section('scripts')
+	{{ HTML::script('js/admin/users.js') }}
 @stop

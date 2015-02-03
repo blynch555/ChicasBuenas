@@ -9,6 +9,8 @@
 	{{ HTML::style('vendor/ionicons/css/ionicons.min.css') }}
 	{{ HTML::style('vendor/font-awesome/css/font-awesome.min.css') }}
 	{{ HTML::style('css/app.css') }}
+
+	@yield('styles')
 </head>
 <body>
 	<div class="container wraper">
@@ -114,6 +116,9 @@
 	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
 	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
 	{{ HTML::script('vendor/slick/slick.min.js') }}
-	{{ HTML::script('js/app.js') }}
+	<script>
+		var HOME = '{{ url('/') }}';
+	</script>
+	@yield('scripts')
 </body>
 </html>
