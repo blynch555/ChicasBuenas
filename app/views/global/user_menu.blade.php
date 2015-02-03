@@ -10,7 +10,7 @@
 		</a>
 		@endif
 
-		<div class="btn-group" role="group">
+		<div class="btn-group" style="margin-top: 8px;" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				{{ HTML::image('img/283216786_small.jpg') }}
 				<span class="caret"></span>
