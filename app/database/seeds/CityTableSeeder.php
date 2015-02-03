@@ -6,14 +6,14 @@ class CityTableSeeder extends Seeder {
         DB::table('cities')->truncate();
 
         $cities = [
-            'Región Metropolitana',
+            'Santiago',
             'Arica',
             'Tarapacá',
             'Antofagasta',
             'Atacama',
             'Coquimbo',
             'Valparaíso',
-            'Lib. Gral. Bernardo OHiggins',
+            'L.G. Bernardo OHiggins',
             'Maule',
             'Biobio',
             'Araucanía',
@@ -23,8 +23,13 @@ class CityTableSeeder extends Seeder {
             'Magallanes'
         ];
 
+        $i=1;
         foreach($cities as $city):
-            City::create(['name' => $city, 'slug' => Str::slug($city)]);
+            City::create([
+                'name' => $city,
+                'slug' => Str::slug($city),
+                'position' => $i
+            ]);
         endforeach;
     }
 
