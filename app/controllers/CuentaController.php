@@ -59,7 +59,6 @@ class CuentaController extends Controller{
 		$profile = 'Usuario';
 		$profile = (Input::get('type') == 'escort') ? 'Escort' : $profile;
 		$profile = (Input::get('type') == 'agency') ? 'Agencia' : $profile;
-		return "aki2<br>";
 
 		$user = new User;
 		$user->name = Input::get('name');
