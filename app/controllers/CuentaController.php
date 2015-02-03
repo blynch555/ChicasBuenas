@@ -71,10 +71,8 @@ class CuentaController extends Controller{
 		$user->save();
 
 		$user->sendActivationMail();
-		return "aki4<br>";
 
 		return Redirect::action('CuentaController@getRegistrado');
-
 	}
 
 	public function getRegistrado(){
