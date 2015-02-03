@@ -1,4 +1,4 @@
-@extends('templates.default')
+@extends('templates.admin')
 @section('content')
 	
 	<div class="row">
