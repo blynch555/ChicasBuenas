@@ -40,6 +40,18 @@ class UserTableSeeder extends Seeder {
             'profile' => 'Usuario',
             'status' => 'Activo'
         ]);
+
+        // Agencia
+        User::create([
+            'name' => 'Agencia Hot',
+            'username' => 'agencia',
+            'email' => 'agencia@gmail.com',
+            'password' => Hash::make('Passw0rd'),
+            'validation' => '',
+            'phone' => '56987144166',
+            'profile' => 'Agencia',
+            'status' => 'Activo'
+        ]);
     }
 
 }
