@@ -16,6 +16,7 @@
 							<th>Email</th>
 							<th>Perfil</th>
 							<th>Estado</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -27,6 +28,9 @@
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->profile }}</td>
 							<td>{{ $user->status }}</td>
+							<td>
+								<button class="btn btn-danger btn-xs"><i class="ion-trash-a"></i></button>
+							</td>
 						</tr>
 						@endforeach
 					</tbody>
