@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'chicasbuenasv2',
+			'database'  => 'forge',
 			'username'  => 'forge',
-			'password'  => 'secret',
+			'password'  => 'aL66CYJ0SHDuxDEHQdsS',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
