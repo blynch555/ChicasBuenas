@@ -10,7 +10,7 @@
 				<div class="panel-body">
 					<p class="lead">
 						Ya puedes acceder a todas las opciones que te ofrecemos y ser 
-						participe de nuestra comunidad.
+						parte de nuestra exclusiva comunidad.
 					</p>
 					<p class="lead">
 						Bienvenid@!!
