@@ -6,8 +6,8 @@ Route::get('/', function(){
 
 Route::get('test', function(){
 
-	$pathLocal = 'img/photo.png';
-	$pathAws = 'photos/photo2.png';
+	$pathLocal = 'img/photo_big.png';
+	$pathAws = 'photos/photo_big.png';
 
 	Queue::push(function($job) use ($pathLocal, $pathAws){
 	    $s3 = AWS::get('s3');
