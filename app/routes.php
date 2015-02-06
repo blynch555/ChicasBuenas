@@ -10,7 +10,7 @@ Route::get('test', function(){
 
 	$result = $s3->putObject(array(
 	    'Bucket'     => $bucket,
-	    'Key'        => 'photo.png',
+	    'Key'        => 'photos/photo.png',
 	    'SourceFile' => 'img/photo.png'
 	));
 
@@ -20,7 +20,7 @@ Route::get('test', function(){
 	));
 
 	foreach ($iterator as $object) {
-	    echo $object['Key'] . "\n";
+	    echo $object['Key'] . "<br>";
 	}
 });
 
