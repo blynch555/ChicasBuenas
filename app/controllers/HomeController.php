@@ -2,21 +2,39 @@
 
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+	public function getIndex($city){
+		return View::make('hello');
+	}
 
-	public function showWelcome()
-	{
+	public function getVip($city){
+		return View::make('hello');
+	}
+
+	public function getPremium($city){
+		return View::make('hello');
+	}
+
+	public function getGold($city){
+		return View::make('hello');
+	}
+
+	public function getFantasias($city){
+		return View::make('hello');
+	}
+
+	public function getMasajistas($city){
+		return View::make('hello');
+	}
+
+	public function getMaduritas($city){
+		return View::make('hello');
+	}
+
+	public function getTravestis($city){
+		return View::make('hello');
+	}
+
+	public function getSilver($city){
 		return View::make('hello');
 	}
 
