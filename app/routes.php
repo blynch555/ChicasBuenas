@@ -5,24 +5,22 @@ Route::get('/', function(){
 });
 
 Route::get('test', function(){
-	$s3 = AWS::get('s3');
-	$bucket = 'media.chicasbuenas.cl';
-	$path = 'photos/photo.png';
 
-	$result = $s3->putObject(array(
-	    'Bucket'     => $bucket,
-	    'Key'        => 'photos/photo.png',
-	    'SourceFile' => 'img/photo.png'
-	));
+	$pathLocal = 'img/photo.png';
+	$pathAws = 'photos/photo2.png';
 
+	Queue::push(function($job) use ($pathLocal, $pathAws){
+	    $s3 = AWS::get('s3');
+		$bucket = 'media.chicasbuenas.cl';
 
-	$iterator = $s3->getIterator('ListObjects', array(
-	    'Bucket' => $bucket
-	));
+		$result = $s3->putObject(array(
+		    'Bucket'     => $bucket,
+		    'Key'        => $pathAws,
+		    'SourceFile' => $pathLocal
+		));
 
-	foreach ($iterator as $object) {
-	    echo $object['Key'] . "<br>";
-	}
+	    $job->delete();
+	});
 
 	echo Media::image($path);
 });
