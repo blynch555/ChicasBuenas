@@ -5,8 +5,23 @@ Route::get('/', function(){
 });
 
 Route::get('test', function(){
-	$s3 = Aws::get('s3');
-	
+	$s3 = AWS::get('s3');
+	$bucket = 'media.chicasbuenas.cl';
+
+	$result = $s3->putObject(array(
+	    'Bucket'     => $bucket,
+	    'Key'        => 'photo.png',
+	    'SourceFile' => 'img/photo.png'
+	));
+
+
+	$iterator = $s3->getIterator('ListObjects', array(
+	    'Bucket' => $bucket
+	));
+
+	foreach ($iterator as $object) {
+	    echo $object['Key'] . "\n";
+	}
 });
 
 Route::controller('cuenta', 		'CuentaController');

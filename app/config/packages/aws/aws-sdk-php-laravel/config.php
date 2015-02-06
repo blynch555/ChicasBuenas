@@ -30,8 +30,8 @@ return array(
     | http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
     |
     */
-    'key'    => null, // Your AWS Access Key ID
-    'secret' => null, // Your AWS Secret Access Key
+    'key'    => 'AKIAIX2G7JLSMACX47YQ', // Your AWS Access Key ID
+    'secret' => 'lY+I8DkjT6r9lyUUJk3kSnF3OaEcbZx5x4VnWEx0', // Your AWS Secret Access Key
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return array(
     | eu-west-1, sa-east-1, ap-northeast-1, ap-southeast-1, ap-southeast-2
     |
     */
-    'region' => 'us-east-1',
+    'region' => 'sa-east-1',
 
     /*
     |--------------------------------------------------------------------------

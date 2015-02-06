@@ -122,7 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		"Aws\Laravel\AwsServiceProvider",
+		'Aws\Laravel\AwsServiceProvider',
 
 	),
 
@@ -191,7 +191,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 
-		"Aws"			    => 'Aws\Laravel\AwsFacade',
+		'AWS' 				=> 'Aws\Laravel\AwsFacade',
 
 	),
 
