@@ -22,7 +22,7 @@ Route::get('test', function(){
 	    $job->delete();
 	});
 
-	echo Media::image($path);
+	echo Media::image($pathAws);
 });
 
 Route::controller('cuenta', 		'CuentaController');
