@@ -4,6 +4,11 @@ Route::get('/', function(){
 	return View::make('hello');
 });
 
+Route::get('test', function(){
+	$s3 = Aws::get('s3');
+	
+});
+
 Route::controller('cuenta', 		'CuentaController');
 
 Route::group(['prefix' => 'admin', 'before' => 'admin'], function(){
