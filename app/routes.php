@@ -28,7 +28,7 @@ Route::get('test', function(){
 	echo Media::image($pathAws);
 });
 
-Route::get('ipn/notificador', function(){
+Route::any('ipn/notificador', function(){
 
 	File::put('post.txt', print_r($_POST, 1));
 	File::put('get.txt', print_r($_GET, 1));
