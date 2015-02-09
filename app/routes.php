@@ -8,17 +8,17 @@ Route::get('/', function(){
 });
 
 Route::any('kpf/fracaso', function(){
-	$flowAPI = new kpf\flowAPI;
+	/*$flowAPI = new kpf\flowAPI;
 	try {
 		echo "try<br>";
 		$flowAPI->read_confirm();
 	} catch (Exception $e) {
 		echo "catch<br>";
 
-		/*return $e;
+		/ *return $e;
 		echo $flowAPI->build_response(false);
-		return;*/
-	}
+		return;* /
+	}*/
 
 	/*$FLOW_STATUS 	= $flowAPI->getStatus();
 	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
