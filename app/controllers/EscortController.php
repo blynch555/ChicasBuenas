@@ -184,6 +184,18 @@ class EscortController extends Controller{
 	}
 
 	public function getCreditos(){
+
+		if(Session::has('recargaExitosa')):
+			$credits = Auth::user()->escort->credits->lists('transaction_id');
+			$transactions = Auth::user()->escort->transactions()->whereStatus('Pagada');
+			$transactions = (count($credits) > 0) ? $transactions->whereNotIn('id', $credits) : $transactions;
+			$transactions = $transactions->get();
+
+			foreach($transactions as $transaction):
+				$transaction->traspaseToCredit();
+			endforeach;
+		endif;
+
 		return View::make('escort.creditos');
 	}
 

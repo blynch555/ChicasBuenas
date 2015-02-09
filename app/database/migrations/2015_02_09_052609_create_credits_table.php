@@ -17,6 +17,7 @@ class CreateCreditsTable extends Migration {
 		    $table->increments('id');
 		    $table->timestamps();
 		    $table->integer('escort_id');
+		    $table->integer('transaction_id');
 		    $table->datetime('purchase_date');
 		    $table->string('type');
 		    $table->integer('amount');
