@@ -43,7 +43,8 @@ return [
 	 * 
 	 * @var string
 	 */
-	'url_pago' => 'http://www.flow.cl/app/kpf/pago.php',
+	//'url_pago' => 'http://www.flow.cl/app/kpf/pago.php',
+	'url_pago' => 'http://flow.tuxpan.com/app/kpf/pago.php',
 
 	# Commerce specific config
  
