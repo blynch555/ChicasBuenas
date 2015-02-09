@@ -79,7 +79,7 @@ Route::any('kpf/confirma', function(){
 			$transaction->email = $PAGADOR;
 			$transaction->flow_number = $ORDEN_FLOW;
 			$transaction->purchase_date = DB::raw('now()');
-			$transaction->status = 'Pagado';
+			$transaction->status = 'Pagada';
 			$transaction->save();
 
 			$transaction->traspaseToCredit();
