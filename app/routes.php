@@ -80,6 +80,8 @@ Route::any('kpf/confirma', function(){
 			$transaction->status = 'Pagado';
 			$transaction->save();
 
+			$transaction->traspaseToCredit();
+
 			echo $flowAPI->build_response(true);
 		else:
 			$transaction->status = 'Error';
