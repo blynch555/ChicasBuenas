@@ -2,7 +2,7 @@ $(function(){
 	$('#headerListSection').slick({
 		slidesToShow: 10,
 		slidesToScroll: 2,
-		autoplay: true,
+		autoplay: false,
 		responsive: [
 			{
 				breakpoint: 1101,
@@ -19,5 +19,19 @@ $(function(){
 				}
 			}
 		]
+	});
+
+	$('[data-toggle="tooltip"]').tooltip({
+		html: true
+	});
+
+	$("#linkPublicaMe").click(function(e){
+		e.preventDefault();
+
+		
+	});
+
+	$("#linkPublicaMe").hover(function(){
+		
 	});
 });

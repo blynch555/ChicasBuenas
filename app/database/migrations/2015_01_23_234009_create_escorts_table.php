@@ -23,8 +23,11 @@ class CreateEscortsTable extends Migration {
 		    $table->string('category');
 		    $table->text('description');
 		    $table->string('phone');
+		    $table->integer('city_id');
 		    $table->integer('district_id');
 		    $table->string('hourly');
+		    $table->string('hourly_time_begin');
+		    $table->string('hourly_time_end');
 		    $table->float('heigth');
 		    $table->integer('weight');
 		    $table->integer('busts');
@@ -41,6 +44,9 @@ class CreateEscortsTable extends Migration {
 		    $table->float('promotion_price');
 		    $table->string('promotion_time');
 		    $table->integer('nationality_id');
+		    $table->string('featured', 2);
+		    $table->date('featured_begin');
+		    $table->date('featured_end');
 		    $table->string('status')->default('Pendiente Certificación');
 		});
 	}

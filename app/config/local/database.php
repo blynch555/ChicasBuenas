@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'chicasbuenasv2',
+			'database'  => 'chicasbuenas',
 			'username'  => 'homestead',
 			'password'  => 'secret',
 			'charset'   => 'utf8',

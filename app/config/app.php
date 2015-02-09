@@ -192,6 +192,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 
 		'AWS' 				=> 'Aws\Laravel\AwsFacade',
+		'Carbon'			=> 'Carbon\Carbon'
 
 	),
 

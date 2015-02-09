@@ -8,10 +8,10 @@ class NationalityTableSeeder extends Seeder {
         $nationalities = [
             'Argentina',
             'Brasileña',
-            'Caribeñas',
-            'Chilenas',
-            'Colombianas',
-            'Latinas',
+            'Caribeña',
+            'Chilena',
+            'Colombiana',
+            'Latina',
             'Paraguaya',
             'Uruguaya',
             'Venezolana'

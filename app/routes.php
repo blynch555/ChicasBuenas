@@ -1,6 +1,9 @@
 <?php
 
 Route::get('/', function(){
+	if(App::environment('production'))
+		return View::make('register');
+
 	return Redirect::to('santiago/destacadas');
 });
 
@@ -25,45 +28,24 @@ Route::get('test', function(){
 	echo Media::image($pathAws);
 });
 
-Route::get('{city}/destacadas', 	'HomeController@getIndex');
-Route::get('{city}/vip', 			'HomeController@getVip');
-Route::get('{city}/premium', 		'HomeController@getPremium');
-Route::get('{city}/gold', 			'HomeController@getGold');
-Route::get('{city}/fantasias', 		'HomeController@getFantasias');
-Route::get('{city}/masajistas', 	'HomeController@getMasajistas');
-Route::get('{city}/maduritas', 		'HomeController@getMaduritas');
-Route::get('{city}/travestis', 		'HomeController@getTravestis');
-Route::get('{city}/listado-silver', 'HomeController@getSilver');
+Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);
+Route::get('{city}/vip', 			['uses' => 'HomeController@getVip', 		'as' => 'home_vip']);
+Route::get('{city}/premium', 		['uses' => 'HomeController@getPremium', 	'as' => 'home_premium']);
+Route::get('{city}/gold', 			['uses' => 'HomeController@getGold', 		'as' => 'home_gold']);
+Route::get('{city}/fantasias', 		['uses' => 'HomeController@getFantasias', 	'as' => 'home_fantasias']);
+Route::get('{city}/masajistas', 	['uses' => 'HomeController@getMasajistas', 	'as' => 'home_masajistas']);
+Route::get('{city}/maduritas', 		['uses' => 'HomeController@getMaduritas', 	'as' => 'home_maduritas']);
+Route::get('{city}/travestis', 		['uses' => 'HomeController@getTravestis', 	'as' => 'home_travestis']);
+Route::get('{city}/listado-silver', ['uses' => 'HomeController@getSilver', 		'as' => 'home_silver']);
+
+Route::get('{city}/chica/{slug},{id}', ['uses' => 'ChicaController@getView', 'as' => 'escortView']);
 
 
-
-// Administrar Cuenta
 Route::controller('cuenta', 		'CuentaController');
-
-/* Escort */
-Route::group(['prefix' => 'mi/escort', 'before' => 'escort'], function(){
-	Route::controller('/', 			'Escort\HomeController');
-	Route::controller('perfil', 	'Escort\PerfilController');
-	Route::controller('creditos', 	'Escort\CreditosController');
-});
-
-/* Usuario */
-Route::group(['prefix' => 'mi/usuario', 'before' => 'usuario'], function(){
-	Route::controller('/', 			'Usuario\HomeController');
-	Route::controller('perfil', 	'Usuario\PerfilController');
-});
-
-/* Agencia */
-Route::group(['prefix' => 'mi/agencia', 'before' => 'agencia'], function(){
-	Route::controller('/', 			'Agencia\HomeController');
-	Route::controller('chicas', 	'Agencia\ChicasController');
-	Route::controller('pagos', 		'Agencia\PagosController');
-});
-
-/* Silver */
-Route::group(['prefix' => 'mi/silver', 'before' => 'agencia'], function(){
-	Route::controller('/', 			'Silver\HomeController');
-});
+Route::controller('escort', 		'EscortController');
+Route::controller('agencia', 		'AgenciaController');
+Route::controller('usuario', 		'UsuarioController');
+Route::controller('silver', 		'SilverController');
 
 
 

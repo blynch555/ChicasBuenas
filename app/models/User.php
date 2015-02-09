@@ -9,6 +9,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
+
+
+	public function escort(){return $this->hasOne('Escort');}
+
+
+	public function photo(){
+		if($this->isEscort()) return $this->escort->photo();
+	}
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * The database table used by the model.
 	 *

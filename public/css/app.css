@@ -75,6 +75,10 @@ header{
 	color: #666;
 }
 
+header .navbar{
+	margin-bottom: 0px;
+}
+
 header .navbar-inverse {
 	background-image: linear-gradient(to bottom, #D700D7 0, #ff26ff 100%);
 	border-color: #3e1865;
@@ -156,7 +160,6 @@ header .navbar-inverse .navbar-nav>li>a:hover{
 }
 
 footer{
-	margin-top: 50px;
 	margin-bottom: 2px;
 	background-image: linear-gradient(to bottom, #D700D7 0, #ff26ff 100%);
 	color: #fff;
@@ -198,3 +201,12 @@ footer a:hover{
 .panel-heading .lead{
 	margin: 0;
 }
+
+[data-toggle="tooltip"]{
+	cursor: pointer;
+}
+
+.well{
+	margin-bottom: 0;
+}
+

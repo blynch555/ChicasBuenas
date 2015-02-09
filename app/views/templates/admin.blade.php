@@ -61,12 +61,13 @@
 
 	</div>
 
-	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
-	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
-	{{ HTML::script('vendor/slick/slick.min.js') }}
 	<script>
 		var HOME = '{{ url('/') }}';
 	</script>
+	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
+	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
+	{{ HTML::script('vendor/slick/slick.min.js') }}
+	
 	@yield('scripts')
 </body>
 </html>

@@ -12,16 +12,18 @@
 
 		<div class="btn-group" style="margin-top: 4px;" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				{{ HTML::image('img/283216786_small.jpg', '', ['class'=>'img-thumbnail']) }}
+				{{ HTML::image(Auth::user()->photo(), '', ['class'=>'img-thumbnail', 'style'=>'width: 48px; padding: 2px !important;']) }}
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu dropdown-menu-right" role="menu">
 				@if(Auth::user()->profile == 'Escort')
-				<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-person"></i> Perfil</a></li>
-				<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-chatbubbles"></i> Comentarios</a></li>
-				<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-checkmark-circled"></i> Evaluaciones</a></li>
-				<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-thumbsup"></i> Me Gusta</a></li>
-				<li><a href="{{ url('cuenta/creditos') }}"><i class="ion-card"></i> Crédito</a></li>
+				<li><a href="{{ action('EscortController@getPerfil') }}"><i class="ion-person"></i> Perfil</a></li>
+				<!--
+				<li><a href="{{ action('EscortController@getComentarios') }}"><i class="ion-chatbubbles"></i> Comentarios</a></li>
+				<li><a href="{{ action('EscortController@getEvaluaciones') }}"><i class="ion-checkmark-circled"></i> Evaluaciones</a></li>
+				<li><a href="{{ action('EscortController@getMeGusta') }}"><i class="ion-thumbsup"></i> Me Gusta</a></li>
+				-->
+				<li><a href="{{ action('EscortController@getCreditos') }}"><i class="ion-card"></i> Créditos</a></li>
 				@endif
 
 				@if(Auth::user()->isAdmin())

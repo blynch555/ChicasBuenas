@@ -18,6 +18,7 @@ class CreateEscortsPhotosTable extends Migration {
 		    $table->timestamps();
 		    $table->integer('escort_id');
 		    $table->string('filename');
+		    $table->string('in_aws')->default('No');
 		});
 	}
 

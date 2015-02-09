@@ -10,6 +10,13 @@
 	{{ HTML::style('vendor/font-awesome/css/font-awesome.min.css') }}
 	{{ HTML::style('vendor/slick/slick.css') }}
 	{{ HTML::style('css/app.css') }}
+
+	@yield('styles')
+	<style>
+		@if(Auth::check() and Auth::user()->isEscort())
+			.slick-prev{display: none !important;}
+		@endif
+	</style>
 </head>
 <body>
 	<div class="container wraper">
@@ -54,7 +61,16 @@
 			</div>
 
 			<section class="row">
-				<div class="col-sm-12">
+				@if(Auth::check() and Auth::user()->isEscort())
+				<div class="col-sm-1">
+					<div id="dvPublicaMe">
+						<a href="javascript:;" id="linkPublicaMe" class="img-rounded linkShowEscortProfile">
+							{{ HTML::image('img/publicame.png') }}
+						</a>
+					</div>
+				</div>
+				@endif
+				<div class="@if(Auth::check() and Auth::user()->isEscort()) col-sm-11 @else col-sm-12 @endif">
 					<div id="headerListSection">
 						@for($i=0;$i<20;$i++)
 						<div>
@@ -81,15 +97,15 @@
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#"><i class="ion-star"></i> Destacadas</a></li>
-						<li><a href="{{ url('chicas-vip') }}">VIP</a></li>
-						<li><a href="{{ url('chicas-premium') }}">Premium</a></li>
-						<li><a href="{{ url('chicas-gold') }}">Gold</a></li>
-						<li><a href="{{ url('fantasias') }}">Fantasías</a></li>
-						<li><a href="{{ url('masajistas') }}">Masajistas</a></li>
-						<li><a href="{{ url('maduritas') }}">Maduritas</a></li>
-						<li><a href="{{ url('travestis') }}">Travestis</a></li>
-						<li><a href="{{ url('publicaciones-silver') }}">Silver</a></li>
+						<li @if(Route::is('home')) class="active" @endif><a href="{{ route('home', Request::segment(1)) }}"><i class="ion-star"></i> Destacadas</a></li>
+						<li @if(Route::is('home_vip')) class="active" @endif><a href="{{ route('home_vip', Request::segment(1)) }}">VIP</a></li>
+						<li @if(Route::is('home_premium')) class="active" @endif><a href="{{ route('home_premium', Request::segment(1)) }}">Premium</a></li>
+						<li @if(Route::is('home_gold')) class="active" @endif><a href="{{ route('home_gold', Request::segment(1)) }}">Gold</a></li>
+						<li @if(Route::is('home_fantasias')) class="active" @endif><a href="{{ route('home_fantasias', Request::segment(1)) }}">Fantasías</a></li>
+						<li @if(Route::is('home_masajistas')) class="active" @endif><a href="{{ route('home_masajistas', Request::segment(1)) }}">Masajistas</a></li>
+						<li @if(Route::is('home_maduritas')) class="active" @endif><a href="{{ route('home_maduritas', Request::segment(1)) }}">Maduritas</a></li>
+						<li @if(Route::is('home_travestis')) class="active" @endif><a href="{{ route('home_travestis', Request::segment(1)) }}">Travestis</a></li>
+						<li @if(Route::is('home_silver')) class="active" @endif><a href="{{ route('home_silver', Request::segment(1)) }}">Silver</a></li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">
 						<li class="hidden-lg"><a href="{{ url('buscar') }}"><i class="ion-search"></i></a></li>
@@ -106,9 +122,15 @@
 
 	</div>
 
+	<script>
+		var HOME = '{{ url('/') }}';
+	</script>
+
 	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
 	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
 	{{ HTML::script('vendor/slick/slick.min.js') }}
 	{{ HTML::script('js/app.js') }}
+
+	@yield('scripts')
 </body>
 </html>
