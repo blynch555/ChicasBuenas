@@ -9,11 +9,13 @@ Route::get('/', function(){
 
 Route::any('kpf/fracaso', function(){
 	File::put('fracaso.txt', print_r(Input::all(), 1));
+	return Input::all();
 });
 
 Route::any('kpf/exito', function(){
 
 	File::put('exito.txt', print_r(Input::all(), 1));
+	return Input::all();
 });
 
 Route::any('kpf/confirma', function(){
@@ -22,7 +24,7 @@ Route::any('kpf/confirma', function(){
 	try {
 		$flowAPI ->read_confirm();
 	} catch (Exception $e) {
-		echo $flowAPI ->build_response(false);
+		echo $flowAPI->build_response(false);
 		return;
 	}
 
