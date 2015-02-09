@@ -1091,6 +1091,8 @@ class UploadHandler
                     fopen('php://input', 'r'),
                     $append_file ? FILE_APPEND : 0
                 );
+
+                chmod($file_path, 0777);
             }
             $file_size = $this->get_file_size($file_path, $append_file);
             if ($file_size === $file->size) {
