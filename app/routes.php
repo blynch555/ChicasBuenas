@@ -65,7 +65,28 @@ Route::any('kpf/exito', function(){
 	File::put('exito.txt', print_r(Input::all(), 1));
 });
 Route::any('kpf/confirma', function(){
-	File::put('confirma.txt', print_r(Input::all(), 1));
+	$flowAPI = new kpf\flowAPI;
+
+	try {
+		$flowAPI ->read_confirm();
+	} catch (Exception $e) {
+		echo $flowAPI ->build_response(false);
+		return;
+	}
+
+	//Recupera Los valores de la Orden
+	$FLOW_STATUS 	= $flowAPI->getStatus();  //El resultado de la transacción (EXITO o FRACASO)
+	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber(); // N° Orden del Comercio
+	$MONTO 			= $flowAPI->getAmount(); // Monto de la transacción
+	$ORDEN_FLOW 	= $flowAPI->getFlowNumber(); // Si $FLOW_STATUS = "EXITO" el N° de Orden de Flow
+	$PAGADOR 		= $flowAPI->getPayer(); // El email del pagador
+
+	if($FLOW_STATUS == "EXITO") {
+		echo $flowAPI->build_response(true); // Comercio acepta la transacción
+	} else {
+		echo $flowAPI->build_response(false); // Comercio rechaza la transacción
+	}
+
 });
 
 Route::get('test', function(){
