@@ -28,6 +28,15 @@ Route::get('test', function(){
 	echo Media::image($pathAws);
 });
 
+Route::get('ipn/notificador', function(){
+
+	File::put('post.txt', print_r($_POST, 1));
+	File::put('get.txt', print_r($_GET, 1));
+	File::put('request.txt', print_r($_REQUEST, 1));
+	File::put('input.txt', print_r(Input::all(), 1));
+
+});
+
 Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);
 Route::get('{city}/vip', 			['uses' => 'HomeController@getVip', 		'as' => 'home_vip']);
 Route::get('{city}/premium', 		['uses' => 'HomeController@getPremium', 	'as' => 'home_premium']);
