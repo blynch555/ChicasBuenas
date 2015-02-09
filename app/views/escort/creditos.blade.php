@@ -118,9 +118,11 @@
 
 									{{ Form::open(['action' => 'EscortController@postRecargarCreditos']) }}
 
+										@if(Session::has('recargaFallida'))
 										<div class="alert alert-danger">
 											La recarga fue cancelada o rechazada.
 										</div>
+										@endif
 
 										{{ Form::select('amount', Utils::getCreditPurchaseOptions(), '', ['class'=>'form-control']) }}
 										<br>
