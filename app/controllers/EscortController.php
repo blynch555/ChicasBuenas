@@ -61,7 +61,7 @@ class EscortController extends Controller{
 					Form::open(['url' => Config::get('kpf.url_pago'), 'id'=>'frmPago']).
 					Form::hidden('parameters', $flow_pack).
 					Form::close().
-					HTML::script('js/vendor/jquery/jquery-1.11.2.min.js') .
+					HTML::script('vendor/jquery/jquery-1.11.2.min.js') .
 					'<script>$("#frmPago").submit();</script>';
 			} catch (Exception $e) {
 				return $e;
