@@ -11,16 +11,16 @@ Route::any('kpf/fracaso', function(){
 	$flowAPI = new kpf\flowAPI;
 	try {
 		echo "try<br>";
-		$flowAPI ->read_confirm();
+		$flowAPI->read_confirm();
 	} catch (Exception $e) {
 		echo "catch<br>";
 
-		return $e;
+		/*return $e;
 		echo $flowAPI->build_response(false);
-		return;
+		return;*/
 	}
 
-	$FLOW_STATUS 	= $flowAPI->getStatus();
+	/*$FLOW_STATUS 	= $flowAPI->getStatus();
 	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
 	$MONTO 			= $flowAPI->getAmount();
 	$ORDEN_FLOW 	= $flowAPI->getFlowNumber();
@@ -32,7 +32,7 @@ Route::any('kpf/fracaso', function(){
 	echo "ORDEN_FLOW: $ORDEN_FLOW<br>";
 	echo "PAGADOR: $PAGADOR<br>";
 
-	File::put('fracaso.txt', print_r(Input::all(), 1));
+	File::put('fracaso.txt', print_r(Input::all(), 1));*/
 	return Input::all();
 });
 
