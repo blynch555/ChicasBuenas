@@ -14,6 +14,7 @@ class Transaction extends Eloquent{
     		$credit = EscortCredit::whereTransactionId($this->id)->first();
     		if(!$credit):
     			$credit = new EscortCredit;
+                $credit->transaction_id = $this->id;
     			$credit->escort_id = $this->transactionable_id;
     			$credit->type = 'Gold';
     			$credit->purchase_date = $this->purchase_date;
