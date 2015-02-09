@@ -27,13 +27,13 @@ class EscortController extends Controller{
 		if($amount == 100){
 			$price = 1000 : $price;
 			$details = 'Recarga de 100 creditos';
-		}else if($amount == 550){
+		}elseif($amount == 550){
 			$price = 5000 : $price;
 			$details = 'Recarga de 550 creditos - 50 gratis';
-		}else if($amount == 1250){
+		}elseif($amount == 1250){
 			$price = 10000 : $price;
 			$details = 'Recarga de 1.250 creditos - 250 gratis';
-		}else if($amount == 2750){
+		}elseif($amount == 2750){
 			$price = 20000 : $price;
 			$details = 'Recarga de 2.750 creditos - 750 gratis';
 		}
