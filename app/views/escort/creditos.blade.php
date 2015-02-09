@@ -116,13 +116,7 @@
 									<p class="lead" style="font-size: 24px;">Recargar tus Créditos:</p>
 									<p class="lead">¡Recárgalos ahora! Cuantos más créditos compres, más baratos te saldrán:</p>
 
-									{{ Form::open(['action' => 'EscortController@postRecargarCreditos']) }}
-
-										{{ Form::select('amount', Utils::getCreditPurchaseOptions()) }}
-
-										{{ Form::submit('Recargar ahora', ['class'=>'btn btn-primary']) }}
-
-									{{ Form::close() }}
+									
 
 								</div>
 							</div>
