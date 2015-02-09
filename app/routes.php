@@ -65,6 +65,8 @@ Route::any('kpf/exito', function(){
 	File::put('exito.txt', print_r(Input::all(), 1));
 });
 Route::any('kpf/confirma', function(){
+	File::put('confirma.txt', print_r(Input::all(), 1));
+	
 	$flowAPI = new kpf\flowAPI;
 
 	try {
