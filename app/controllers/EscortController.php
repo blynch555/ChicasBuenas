@@ -16,39 +16,59 @@ class EscortController extends Controller{
 		]);
 	}
 
-	public function postPagar(){
+	public function postRecargarCreditos(){
 		$date = new DateTime();
 		$timestamp = $date->format('YmdHis');
 
-		$orden_compra 	= Input::get('orden');
-		$monto 			= Input::get('monto');
-		$concepto 		= Input::get('concepto');
-		$tipo_comision 	= Config::get('kpf.tasa_default');
+		$amount = Input::get('amount', 0);
+		$price = 0;
+		$details = '';
 
-		$flowAPI = new kpf\flowAPI;
-
-		try {
-			$flow_pack = $flowAPI->new_order($orden_compra, $monto, $concepto, $tipo_comision);
-		} catch (Exception $e) {
-			return $e;
-			header('location: error.php');
+		if($amount == 100){
+			$price = 1000 : $price;
+			$details = 'Recarga de 100 creditos';
+		}else if($amount == 550){
+			$price = 5000 : $price;
+			$details = 'Recarga de 550 creditos - 50 gratis';
+		}else if($amount == 1250){
+			$price = 10000 : $price;
+			$details = 'Recarga de 1.250 creditos - 250 gratis';
+		}else if($amount == 2750){
+			$price = 20000 : $price;
+			$details = 'Recarga de 2.750 creditos - 750 gratis';
 		}
 
-		return '<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	</head>
-	<body>
-	Confirme su orden antes de proceder al pago via Flow<br /><br />
-	Orden N°: '. $orden_compra .'<br />
-	Monto: '. $monto .'<br />
-	Descripción: '.$concepto.'<br />
-	<form method="post" action="'.Config::get('kpf.url_pago').'">
-	<input type="hidden" name="parameters" value="'.$flow_pack.'" />
-	<button type="submit">Pagar en Flow</button>
-	</form>
-	</body>
-	</html>';
+		if($amount > 0 and $price > 0):
+			$transaction = new Transaction;
+			$transaction->request_date = DB::raw('now()');
+			$transaction->description = $details;
+			$transaction->credits = $amount;
+			$transaction->amount = $price;
+			$transaction->status = 'Pendiente';
+			$transaction->save();
+
+			Auth::user()->escort->transactions()->save($transaction);
+
+			$orden_compra 	= $transaction->id;
+			$monto 			= $price;
+			$concepto 		= $details;
+			$tipo_comision 	= Config::get('kpf.tasa_default');
+			$flowAPI = new kpf\flowAPI;
+			try {
+				$flow_pack = $flowAPI->new_order($orden_compra, $monto, $concepto, $tipo_comision);
+
+				return 
+					Form::open(['url' => Config::get('kpf.url_pago'), 'id'=>'frmPago']).
+					Form::hidden('parameters', $flow_pack).
+					Form::close().
+					HTML::script('js/vendor/jquery/jquery-1.11.2.min.js') .
+					'<script>$("#frmPago").submit();</script>';
+			} catch (Exception $e) {
+				return $e;
+			}
+		endif;
+
+		return ['success' => 'false'];
 	}
 
 	public function postGuardarCaracteristicas(){

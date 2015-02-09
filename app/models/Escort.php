@@ -12,6 +12,8 @@ class Escort extends Eloquent{
 		endif;
 	}
 
+	public function transactions(){return $this->morphMany('Transaction', 'transactionable');}
+
 	public function city(){return $this->belongsTo('City');}
 	public function district(){return $this->belongsTo('District');}
 	public function url(){return route('escortView', [Str::slug($this->district->city->name), Str::slug($this->name), $this->id]);}

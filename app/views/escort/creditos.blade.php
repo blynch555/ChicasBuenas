@@ -116,13 +116,11 @@
 									<p class="lead" style="font-size: 24px;">Recargar tus Créditos:</p>
 									<p class="lead">¡Recárgalos ahora! Cuantos más créditos compres, más baratos te saldrán:</p>
 
-									{{ Form::open() }}
+									{{ Form::open(['action' => 'EscortController@postRecargarCreditos']) }}
 
-										{{ Form::select('', Utils::getCreditPurchaseOptions()) }}
+										{{ Form::select('amount', Utils::getCreditPurchaseOptions()) }}
 
-										<a href='http://flow.tuxpan.com/btn.php?token=0keh9vp' target='_blank'>
-										  <img src='http://www.flow.cl/img/boton11.png'>
-										</a>
+										{{ Form::submit('Recargar ahora', ['class'=>'btn btn-primary']) }}
 
 									{{ Form::close() }}
 
