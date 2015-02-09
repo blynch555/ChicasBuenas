@@ -8,6 +8,26 @@ Route::get('/', function(){
 });
 
 Route::any('kpf/fracaso', function(){
+	$flowAPI = new kpf\flowAPI;
+	try {
+		$flowAPI ->read_confirm();
+	} catch (Exception $e) {
+		echo $flowAPI->build_response(false);
+		return;
+	}
+
+	$FLOW_STATUS 	= $flowAPI->getStatus();  //El resultado de la transacción (EXITO o FRACASO)
+	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber(); // N° Orden del Comercio
+	$MONTO 			= $flowAPI->getAmount(); // Monto de la transacción
+	$ORDEN_FLOW 	= $flowAPI->getFlowNumber(); // Si $FLOW_STATUS = "EXITO" el N° de Orden de Flow
+	$PAGADOR 		= $flowAPI->getPayer();
+
+	echo "FLOW_STATUS: $FLOW_STATUS<br>";
+	echo "ORDEN_NUMERO: $ORDEN_NUMERO<br>";
+	echo "MONTO: $MONTO<br>";
+	echo "ORDEN_FLOW: $ORDEN_FLOW<br>";
+	echo "PAGADOR: $PAGADOR<br>";
+
 	File::put('fracaso.txt', print_r(Input::all(), 1));
 	return Input::all();
 });
