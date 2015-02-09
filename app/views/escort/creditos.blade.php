@@ -118,6 +118,10 @@
 
 									{{ Form::open(['action' => 'EscortController@postRecargarCreditos']) }}
 
+										<div class="alert alert-danger">
+											La recarga fue cancelada o rechazada.
+										</div>
+
 										{{ Form::select('amount', Utils::getCreditPurchaseOptions(), '', ['class'=>'form-control']) }}
 										<br>
 										{{ Form::submit('Recargar ahora', ['class'=>'btn btn-primary btn-lg btn-block']) }}

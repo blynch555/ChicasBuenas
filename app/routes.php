@@ -26,6 +26,9 @@ Route::any('kpf/fracaso', function(){
 		$transaction->save();
 	endif;
 
+	return Redirect::action('EscortController@getCreditos', [
+		'recargaFallida' => true
+	]);
 });
 
 Route::any('kpf/exito', function(){
