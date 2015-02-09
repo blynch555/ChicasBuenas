@@ -1081,8 +1081,10 @@ class UploadHandler
                         fopen($uploaded_file, 'r'),
                         FILE_APPEND
                     );
+                    chmod($file_path, 0777);
                 } else {
                     move_uploaded_file($uploaded_file, $file_path);
+                    chmod($file_path, 0777);
                 }
             } else {
                 // Non-multipart uploads (PUT method support)
