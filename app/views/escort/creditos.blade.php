@@ -118,9 +118,9 @@
 
 									{{ Form::open(['action' => 'EscortController@postRecargarCreditos']) }}
 
-										{{ Form::select('amount', Utils::getCreditPurchaseOptions()) }}
-
-										{{ Form::submit('Recargar ahora', ['class'=>'btn btn-primary']) }}
+										{{ Form::select('amount', Utils::getCreditPurchaseOptions(), '', ['class'=>'form-control']) }}
+										<br>
+										{{ Form::submit('Recargar ahora', ['class'=>'btn btn-primary btn-lg btn-block']) }}
 
 									{{ Form::close() }}
 

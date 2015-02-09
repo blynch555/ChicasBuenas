@@ -5,7 +5,7 @@
 	@else
 
 		@if(Auth::user()->profile == 'Escort')
-		<a href="{{ url('cuenta/creditos') }}" class="btn btn-default" style="margin-top: 15px;">
+		<a href="{{ action('EscortController@getCreditos') }}" class="btn btn-default" style="margin-top: 15px;">
 			<i class="ion-card"></i> 200 créditos
 		</a>
 		@endif

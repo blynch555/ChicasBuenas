@@ -23,6 +23,8 @@ class CreateTransactionsTable extends Migration {
 		    $table->string('description');
 		    $table->integer('credits');
 		    $table->integer('amount');
+		    $table->string('email');
+		    $table->string('flow_number');
 		    $table->string('status');
 		});
 	}

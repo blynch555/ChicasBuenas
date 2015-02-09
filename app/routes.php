@@ -7,6 +7,60 @@ Route::get('/', function(){
 	return Redirect::to('santiago/destacadas');
 });
 
+Route::any('kpf/fracaso', function(){
+	File::put('fracaso.txt', print_r(Input::all(), 1));
+});
+
+Route::any('kpf/exito', function(){
+
+	File::put('exito.txt', print_r(Input::all(), 1));
+});
+
+Route::any('kpf/confirma', function(){
+	$flowAPI = new kpf\flowAPI;
+
+	try {
+		$flowAPI ->read_confirm();
+	} catch (Exception $e) {
+		echo $flowAPI ->build_response(false);
+		return;
+	}
+
+	//Recupera Los valores de la Orden
+	$FLOW_STATUS 	= $flowAPI->getStatus();  //El resultado de la transacción (EXITO o FRACASO)
+	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber(); // N° Orden del Comercio
+	$MONTO 			= $flowAPI->getAmount(); // Monto de la transacción
+	$ORDEN_FLOW 	= $flowAPI->getFlowNumber(); // Si $FLOW_STATUS = "EXITO" el N° de Orden de Flow
+	$PAGADOR 		= $flowAPI->getPayer(); // El email del pagador
+
+	$transaction = Transaction::find($ORDEN_NUMERO);
+
+	if($FLOW_STATUS == "EXITO") {
+		if($transaction and $transaction->status == 'Pendiente' and intval($transaction->amount) == intval($MONTO)):
+
+			$transaction->email = $PAGADOR;
+			$transaction->flow_number = $ORDEN_FLOW;
+			$transaction->status = 'Pagado';
+			$transaction->save();
+
+			echo $flowAPI->build_response(true);
+		else:
+			$transaction->status = 'Error';
+			$transaction->save();
+
+			echo $flowAPI->build_response(false);
+		endif;
+	} else {
+		
+		if($transaction):
+			$transaction->status = 'Rechazado';
+			$transaction->save();
+		endif;
+
+		echo $flowAPI->build_response(false); // Comercio rechaza la transacción
+	}
+
+});
 
 Route::get('test', function(){
 
