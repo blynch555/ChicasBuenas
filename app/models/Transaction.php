@@ -21,8 +21,12 @@ class Transaction extends Eloquent{
     			$credit->balance = $this->credits;
     			$credit->save();
 
-    			echo "traspasando transacción id: " . $this->id . "<br>";
+    			echo "OK traspasando transacción id: " . $this->id . "<br>";
+            else:
+                echo "NOK traspasando transacción id: " . $this->id . "<br>";
     		endif;
+        else:
+            echo "NOK STATUS <> Pagada traspasando transacción id: " . $this->id . "<br>";
     	endif;
     }
 }

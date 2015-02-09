@@ -46,6 +46,8 @@ Route::any('kpf/exito', function(){
 	if($transaction):
 		$transaction->email = $PAGADOR;
 		$transaction->save();
+
+		$transaction->traspaseToCredit();
 	endif;
 
 	return Redirect::action('EscortController@getCreditos')
