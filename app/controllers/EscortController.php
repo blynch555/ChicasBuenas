@@ -16,6 +16,41 @@ class EscortController extends Controller{
 		]);
 	}
 
+	public function postPagar(){
+		$date = new DateTime();
+		$timestamp = $date->format('YmdHis');
+
+		$orden_compra 	= Input::get('orden');
+		$monto 			= Input::get('monto');
+		$concepto 		= Input::get('concepto');
+		$tipo_comision 	= Config::get('kpf.tasa_default');
+
+		$flowAPI = new kpf\flowAPI;
+
+		try {
+			$flow_pack = $flowAPI->new_order($orden_compra, $monto, $concepto, $tipo_comision);
+		} catch (Exception $e) {
+			return $e;
+			header('location: error.php');
+		}
+
+		return '<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+	Confirme su orden antes de proceder al pago via Flow<br /><br />
+	Orden N°: '. $orden_compra .'<br />
+	Monto: '. $monto .'<br />
+	Descripción: '.$concepto.'<br />
+	<form method="post" action="'.Config::get('kpf.url_pago').'">
+	<input type="hidden" name="parameters" value="'.$flow_pack.'" />
+	<button type="submit">Pagar en Flow</button>
+	</form>
+	</body>
+	</html>';
+	}
+
 	public function postGuardarCaracteristicas(){
 
 		$escort = Auth::user()->escort;
