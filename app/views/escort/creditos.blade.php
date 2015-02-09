@@ -120,6 +120,10 @@
 
 										{{ Form::select('', Utils::getCreditPurchaseOptions()) }}
 
+										<a href='http://flow.tuxpan.com/btn.php?token=0keh9vp' target='_blank'>
+										  <img src='http://www.flow.cl/img/boton11.png'>
+										</a>
+
 									{{ Form::close() }}
 
 								</div>

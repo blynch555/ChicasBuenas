@@ -7,6 +7,67 @@ Route::get('/', function(){
 	return Redirect::to('santiago/destacadas');
 });
 
+Route::get('pago', function(){
+	return '<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+	<form method="post" action="/pago">
+	Orden N°: <input type="text" name="orden" id="orden" /><br />
+	Monto : <input type="text" name="monto" id="monto" /><br />
+	Descripcion : <input type="text" name="concepto" id="concepto" /><br />
+	<button id="btnAceptar" type="submit">Aceptar</button>
+	</form>
+	</body>
+	</html>';
+});
+
+Route::post('pago', function(){
+	$date = new DateTime();
+	$timestamp = $date->format('YmdHis');
+
+	$orden_compra = Input::get('orden');
+	$monto = Input::get('monto');
+	$concepto = Input::get('concepto');
+	$tipo_comision = Config::get('kpf.tasa_default');
+
+	$flowAPI = new kpf\flowAPI;
+
+	try {
+		$flow_pack = $flowAPI->new_order($orden_compra, $monto, $concepto, $tipo_comision);
+	} catch (Exception $e) {
+		return $e;
+		header('location: error.php');
+	}
+
+	return '<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+Confirme su orden antes de proceder al pago via Flow<br /><br />
+Orden N°: '. $orden_compra .'<br />
+Monto: '. $monto .'<br />
+Descripción: '.$concepto.'<br />
+<form method="post" action="'.Config::get('kpf.url_pago').'">
+<input type="hidden" name="parameters" value="'.$flow_pack.'" />
+<button type="submit">Pagar en Flow</button>
+</form>
+</body>
+</html>';
+});
+
+Route::any('kpf/fracaso', function(){
+	File::put('fracaso.txt', print_r(Input::all(), 1));
+});
+Route::any('kpf/exito', function(){
+	File::put('exito.txt', print_r(Input::all(), 1));
+});
+Route::any('kpf/confirma', function(){
+	File::put('confirma.txt', print_r(Input::all(), 1));
+});
+
 Route::get('test', function(){
 
 	$pathLocal = 'img/banner232x115.png';
