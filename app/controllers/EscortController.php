@@ -20,8 +20,6 @@ class EscortController extends Controller{
 		$date = new DateTime();
 		$timestamp = $date->format('YmdHis');
 
-		return Input::all();
-
 		$amount = Input::get('amount', 0);
 		$price = 0;
 		$details = '';
