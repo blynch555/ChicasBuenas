@@ -106,7 +106,7 @@
 
 								<div class="form-group">
 									{{ Form::label('service_type_id', 'Tipo de Servicio:', ['class'=>'col-sm-3 control-label']) }}
-									<div class="col-sm-3">
+									<div class="col-sm-6">
 										{{ Form::select('service_type_id', ServiceType::lists('name', 'id'), $escort->service_type_id, ['class'=>'form-control']) }}
 									</div>
 								</div>
