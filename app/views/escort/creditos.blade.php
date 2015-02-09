@@ -124,7 +124,7 @@
 										</div>
 										@endif
 
-										{{ Form::select('amount', Utils::getCreditPurchaseOptions(), '', ['class'=>'form-control']) }}
+										{{ Form::select('amount', Utils::getCreditPurchaseOptions(), '', ['class'=>'form-control input-lg']) }}
 										<br>
 										{{ Form::submit('Recargar ahora', ['class'=>'btn btn-primary btn-lg btn-block']) }}
 
