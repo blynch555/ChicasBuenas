@@ -10,17 +10,20 @@ Route::get('/', function(){
 Route::any('kpf/fracaso', function(){
 	$flowAPI = new kpf\flowAPI;
 	try {
+		echo "try<br>";
 		$flowAPI ->read_confirm();
 	} catch (Exception $e) {
+		echo "catch<br>";
+
 		return $e;
 		echo $flowAPI->build_response(false);
 		return;
 	}
 
-	$FLOW_STATUS 	= $flowAPI->getStatus();  //El resultado de la transacción (EXITO o FRACASO)
-	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber(); // N° Orden del Comercio
-	$MONTO 			= $flowAPI->getAmount(); // Monto de la transacción
-	$ORDEN_FLOW 	= $flowAPI->getFlowNumber(); // Si $FLOW_STATUS = "EXITO" el N° de Orden de Flow
+	$FLOW_STATUS 	= $flowAPI->getStatus();
+	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
+	$MONTO 			= $flowAPI->getAmount();
+	$ORDEN_FLOW 	= $flowAPI->getFlowNumber();
 	$PAGADOR 		= $flowAPI->getPayer();
 
 	echo "FLOW_STATUS: $FLOW_STATUS<br>";
