@@ -179,9 +179,18 @@
 							<legend class="text-right">Fotografías</legend>
 
 							<div class="row" id="escortPhotos">
-								<div class="col-sm-3" id="colFileUpload">
-									<input id="fileupload" type="file" name="files[]" multiple style="display: none;">
-									<a href="javascript:;" id="uploadEscortPhoto">{{ HTML::image('img/addphoto.jpg', 'Subir foto', ['class'=>'img-thumbnail']) }}</a>
+								<div class="col-sm-3">
+
+									{{ Form::open(['files' => true, 'action' => 'EscortController@postSubirFotografias']) }}
+
+										@for($i=0;$i < (10 - $escort->photos->count());$i++)
+											{{ Form::file('photo[]', ['style'=>'margin-bottom: 10px;']) }}
+										@endfor
+
+										{{ Form::submit('Subir Fotografías', ['class'=>'btn btn-primary btn-block']) }}
+										
+									{{ Form::close() }}
+
 								</div>
 								@foreach($escort->photos as $photo)
 								<div class="col-sm-3" id="{{ str_replace('.jpeg', '', $photo->filename) }}">

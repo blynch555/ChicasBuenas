@@ -187,82 +187,24 @@ class EscortController extends Controller{
 		return View::make('escort.creditos');
 	}
 
+	public function postSubirFotografias(){
 
-	public function postUploadPhoto(){
-		$error_messages = array(
-	        1 => 'La fotografía es demasiada grande, intente con una más pequeña',
-	        2 => 'La fotografía es demasiada grande, intente con una más pequeña',
-	        3 => 'La fotografía no fue cargada, por favor intente nuevamente',
-	        4 => 'No ha seleccionado una foto a subir',
-	        6 => 'Error interno: Missing a temporary folder',
-	        7 => 'Error interno: Failed to write file to disk',
-	        8 => 'Error interno: A PHP extension stopped the file upload',
-	        'post_max_size' => 'La fotografía es demasiada grande, intente con una más pequeña',
-	        'max_file_size' => 'La fotografía es demasiada grande, intente con una más pequeña',
-	        'min_file_size' => 'La fotografía es demasiada pequeña, intente con una más grande',
-	        'accept_file_types' => 'Solo se permiten imágenes (jpg o png)',
-	        'max_number_of_files' => 'Solo puede subir hasta 10 fotografías simultaneamente',
-	        'max_width' => 'La imagen es demasiada ancha',
-	        'min_width' => 'La imagen es demasiada angosta',
-	        'max_height' => 'La imagen es demasiada alta',
-	        'min_height' => 'La imagen es demasiada baja',
-	        'abort' => 'La carga fue cancelada',
-	        'image_resize' => 'No se logro redimensionar la fotografía'
-	    );
+		$photos = Input::file('photo');
 
+		foreach($photos as $photo):
+			if($photo and $photo->isValid()):
+				$filename = md5(date('YmdHis') . rand(0, 999999));
+				if($photo->move('uploads', $filename)):
 
-		$uh = new UploadHandler([
-			'script_url' => 'uploads/',
-			'upload_dir' => 'uploads/',
-			'upload_url' => asset('uploads') . '/',
-			'accept_file_types' => '/\.(jpe?g|png)$/i',
-		], true, $error_messages);
+					$ephoto = new EscortPhoto;
+					$ephoto->escort_id = Auth::user()->escort->id;
+					$ephoto->filename = $filename;
+					$ephoto->in_aws = 'No';
+					$ephoto->save();
 
-		$file = isset($uh->response['files'][0]) ? $uh->response['files'][0] : null;
-		if($file):
-			
-			$ephoto = new EscortPhoto;
-			$ephoto->escort_id = Auth::user()->escort->id;
-			$ephoto->filename = $file->name;
-			$ephoto->in_aws = 'No';
-			$ephoto->save();
-
-
-			/*$pathLocal = 'uploads/' . $file->name;
-			$pathAws = 'photos/' . $file->name;
-
-			$files = [
-				['origen' => $pathLocal, 'destino' => $pathAws],
-				['origen' => str_replace('uploads/', 'uploads/large/', $pathLocal), 'destino' => str_replace('.jpeg', '_large.jpeg', $pathAws)],
-				['origen' => str_replace('uploads/', 'uploads/medium/', $pathLocal), 'destino' => str_replace('.jpeg', '_medium.jpeg', $pathAws)],
-				['origen' => str_replace('uploads/', 'uploads/small/', $pathLocal), 'destino' => str_replace('.jpeg', '_small.jpeg', $pathAws)],
-				['origen' => str_replace('uploads/', 'uploads/top/', $pathLocal), 'destino' => str_replace('.jpeg', '_top.jpeg', $pathAws)],
-				['origen' => str_replace('uploads/', 'uploads/thumbnail/', $pathLocal), 'destino' => str_replace('.jpeg', '_thumb.jpeg', $pathAws)]
-			];
-
-			foreach($files as $fileToAws):
-				$pathInLocal = $fileToAws['origen'];
-				$pathToAws = $fileToAws['destino'];
-
-				if(File::exists($pathInLocal)):
-					Queue::push(function($job) use ($pathInLocal, $pathToAws){
-					    $s3 = AWS::get('s3');
-						$bucket = 'media.chicasbuenas.cl';
-
-						$result = $s3->putObject(array(
-						    'Bucket'     => $bucket,
-						    'Key'        => $pathToAws,
-						    'SourceFile' => $pathInLocal
-						));
-
-					    $job->delete();
-					});
-
-					File::delete($pathInLocal);
 				endif;
-			endforeach;
-			*/
-		endif;
+			endif;
+		endforeach;
 
 	}
 }
