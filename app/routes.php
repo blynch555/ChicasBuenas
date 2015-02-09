@@ -16,19 +16,16 @@ Route::any('kpf/fracaso', function(){
 		return $e;
 	}
 
-	$FLOW_STATUS 	= $flowAPI->getStatus();
 	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
-	$MONTO 			= $flowAPI->getAmount();
-	$ORDEN_FLOW 	= $flowAPI->getFlowNumber();
 	$PAGADOR 		= $flowAPI->getPayer();
 
-	echo "FLOW_STATUS: $FLOW_STATUS<br>";
-	echo "ORDEN_NUMERO: $ORDEN_NUMERO<br>";
-	echo "MONTO: $MONTO<br>";
-	echo "ORDEN_FLOW: $ORDEN_FLOW<br>";
-	echo "PAGADOR: $PAGADOR<br>";
+	$transaction = Transaction::find($ORDEN_NUMERO);
+	if($transaction):
+		$transaction->email = $PAGADOR;
+		$transaction->status = 'Cancelado';
+		$transaction->save();
+	endif;
 
-	return Input::all();
 });
 
 Route::any('kpf/exito', function(){
