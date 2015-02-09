@@ -12,6 +12,7 @@ Route::any('kpf/fracaso', function(){
 	try {
 		$flowAPI ->read_confirm();
 	} catch (Exception $e) {
+		return $e;
 		echo $flowAPI->build_response(false);
 		return;
 	}
