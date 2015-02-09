@@ -8,7 +8,8 @@ Route::get('/', function(){
 });
 
 Route::any('kpf/fracaso', function(){
-	/*$flowAPI = new kpf\flowAPI;
+	$flowAPI = new kpf\flowAPI;
+	/*
 	try {
 		echo "try<br>";
 		$flowAPI->read_confirm();
@@ -38,7 +39,6 @@ Route::any('kpf/fracaso', function(){
 
 Route::any('kpf/exito', function(){
 
-	File::put('exito.txt', print_r(Input::all(), 1));
 	return Input::all();
 });
 
