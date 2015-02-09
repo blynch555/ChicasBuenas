@@ -120,9 +120,16 @@
 
 										@if(Session::has('recargaFallida'))
 										<div class="alert alert-danger">
-											La recarga fue cancelada o rechazada.
+											<p class="lead"><i class="ion-alert-circled"></i> La recarga fue cancelada o rechazada.</p>
 										</div>
 										@endif
+
+										@if(Session::has('recargaExitosa'))
+										<div class="alert alert-success">
+											<p class="lead"><i class="ion-checkmark-circled"></i> La recarga fue realizada correctamente!</p>
+										</div>
+										@endif
+										
 
 										{{ Form::select('amount', Utils::getCreditPurchaseOptions(), '', ['class'=>'form-control input-lg']) }}
 										<br>

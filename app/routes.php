@@ -31,8 +31,25 @@ Route::any('kpf/fracaso', function(){
 });
 
 Route::any('kpf/exito', function(){
+	$flowAPI = new kpf\flowAPI;
+	
+	try {
+		$flowAPI->read_result();
+	} catch (Exception $e) {
+		return $e;
+	}
 
-	return Input::all();
+	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
+	$PAGADOR 		= $flowAPI->getPayer();
+
+	$transaction = Transaction::find($ORDEN_NUMERO);
+	if($transaction):
+		$transaction->email = $PAGADOR;
+		$transaction->save();
+	endif;
+
+	return Redirect::action('EscortController@getCreditos')
+		->with('recargaExitosa', true);
 });
 
 Route::any('kpf/confirma', function(){
