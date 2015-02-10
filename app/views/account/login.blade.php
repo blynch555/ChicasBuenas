@@ -42,7 +42,7 @@
 				<div class="panel-heading">
 					<p class="lead" style="margin: 0px;">
 						<i class="ion-ios-compose"></i>
-						Registrarme
+						Registrarme con ChicaBuena
 					</p>
 				</div>
 				<div class="panel-body">
