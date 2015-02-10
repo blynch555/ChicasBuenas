@@ -54,7 +54,8 @@
 					</div>
 					@endif
 
-					<div class="form-group @if($errors->has('type')) has-error @endif">
+					{{ Form::hidden('type', 'escort') }} 
+					<!--<div class="form-group @if($errors->has('type')) has-error @endif">
 						{{ Form::label('type', 'Tipo de Cuenta:', ['class'=>'control-label']) }}
 						<div class="checkbox">
 							<label>{{ Form::radio('type', 'user', true) }} Usuario</label>
@@ -63,7 +64,7 @@
 						</div>
 
 						{{ $errors->first('type', '<p class="help-block"><i class="ion-alert-circled"></i> :message</p>') }}
-					</div>
+					</div>-->
 
 					<div class="form-group @if($errors->has('name')) has-error @endif">
 						{{ Form::label('name', 'Nombre:', ['class'=>'control-label']) }}
