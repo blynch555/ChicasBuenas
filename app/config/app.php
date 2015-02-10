@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Aws\Laravel\AwsServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Pdefreitas\VanillaSSO\VanillaSSOServiceProvider',
 
 	),
 

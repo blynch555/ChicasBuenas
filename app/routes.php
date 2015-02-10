@@ -165,3 +165,9 @@ Route::group(['prefix' => 'api', 'before' => 'api'], function(){
 	Route::resource('users', 		'Api\UserController');	
 	Route::resource('escorts', 		'Api\EscortController');	
 });
+
+
+
+Route::group(array('before' => 'auth'), function(){
+    Route::get('/jsonp', 'VanillaSSOController@jsonResponse');
+});
