@@ -10,7 +10,7 @@
 				<div class="well well-sm">
 					<ul class="nav nav-pills nav-stacked" id="navMenu">
 						<li role="presentation" class="active"><a href="#resume"><i class="ion-social-usd"></i> Resumen de Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
-						<li role="presentation"><a href="#buy"><i class="ion-card"></i> Recargar tus Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
+						<li role="presentation"><a href="#buy" id="linkToBuyTab"><i class="ion-card"></i> Recargar tus Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 						<li role="presentation"><a href="#history"><i class="ion-clock"></i> Historial <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 					</ul>
 				</div>
@@ -30,7 +30,7 @@
 									<h2>Crédito Gold <span style="font-size: 24px;" data-toggle="tooltip" data-placement="top" title="El <strong>crédito Gold</strong> es aquel que compras, este no tiene fecha de caducidad y puede ser usado tanta veces como quieras."><i class="ion-information-circled"></i></span></h2>
 									<h1>$ {{ number_format($escort->creditsGoldTotal(), 0, ',', '.') }}</h1>
 									<br>
-									<button type="button" class="btn btn-primary btn-lg btn-block"><i class="ion-card"></i> Recargar Créditos</button>
+									<button type="button" class="btn btn-primary btn-lg btn-block" onclick="$('#linkToBuyTab').trigger('click');"><i class="ion-card"></i> Recargar Créditos</button>
 								</div>
 							</div>
 							<div class="col-sm-4">
