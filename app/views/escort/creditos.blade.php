@@ -9,26 +9,26 @@
 			<div class="col-sm-3">
 				<div class="well well-sm">
 					<ul class="nav nav-pills nav-stacked" id="navMenu">
-						<li role="presentation"><a href="#resume"><i class="ion-social-usd"></i> Resumen de Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
-						<li role="presentation" class="active"><a href="#buy"><i class="ion-card"></i> Recargar tus Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
+						<li role="presentation" class="active"><a href="#resume"><i class="ion-social-usd"></i> Resumen de Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
+						<li role="presentation"><a href="#buy"><i class="ion-card"></i> Recargar tus Créditos <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 						<li role="presentation"><a href="#history"><i class="ion-clock"></i> Historial <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-sm-9">
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane" id="resume">
+					<div role="tabpanel" class="tab-pane active" id="resume">
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="well text-center">
 									<h2>Saldo Total <span style="font-size: 24px;" data-toggle="tooltip" data-placement="top" title="Saldo disponible sumando Crédito Gold con Crédito Silver."><i class="ion-information-circled"></i></span></h2>
-									<h1>$ 1.200</h1>
+									<h1>$ {{ number_format($escort->creditsTotal(), 0, ',', '.') }}</h1>
 								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="well text-center">
 									<h2>Crédito Gold <span style="font-size: 24px;" data-toggle="tooltip" data-placement="top" title="El <strong>crédito Gold</strong> es aquel que compras, este no tiene fecha de caducidad y puede ser usado tanta veces como quieras."><i class="ion-information-circled"></i></span></h2>
-									<h1>$ 300</h1>
+									<h1>$ {{ number_format($escort->creditsGoldTotal(), 0, ',', '.') }}</h1>
 									<br>
 									<button type="button" class="btn btn-primary btn-lg btn-block"><i class="ion-card"></i> Recargar Créditos</button>
 								</div>
@@ -36,7 +36,7 @@
 							<div class="col-sm-4">
 								<div class="well text-center">
 									<h2>Crédito Silver <span style="font-size: 24px;" data-toggle="tooltip" data-placement="top" title="El <strong>crédito Silver</strong> es aquel que obtienes gratis ya sea por el registro, por interacciones en el portal, por evaluaciones positivas, etc, este tiene fecha de caducidad de 3 semanas a contar de la fecha de obtención y puede ser usado solo una vez al día para cada acción (ej. publicaMe!)."><i class="ion-information-circled"></i></span></h2>
-									<h1>$ 900</h1>
+									<h1>$ {{ number_format($escort->creditsSilverTotal(), 0, ',', '.') }}</h1>
 								</div>
 							</div>
 						</div>
@@ -57,53 +57,20 @@
 									</tr>
 								</thead>
 								<tbody>
+									@foreach($escort->histories as $history)
 									<tr>
-										<td class="text-center">02/02/2015</td>
-										<td>Compra PublicaMe!</td>
+										<td class="text-center">{{ date('d/m/Y H:i', strtotime($transaction->purchase_date)) }}</td>
+										<td>{{ $transaction->description }}</td>
 										<td class="text-right"> </td>
-										<td class="text-right">-100</td>
+										<td class="text-right">+ {{ $transaction->credits }}</td>
 										<td class="text-right">1.200</td>
 									</tr>
-									<tr>
-										<td class="text-center">02/02/2015</td>
-										<td>Compra PublicaMe!</td>
-										<td class="text-right">-100</td>
-										<td class="text-right"> </td>
-										<td class="text-right">1.300</td>
-									</tr>
-									<tr>
-										<td class="text-center">01/02/2015</td>
-										<td>Compra PublicaMe!</td>
-										<td class="text-right"> </td>
-										<td class="text-right">-100</td>
-										<td class="text-right">1.300</td>
-									</tr>
-									<tr>
-										<td class="text-center">01/01/2015</td>
-										<td>Compra Créditos!</td>
-										<td class="text-right"> </td>
-										<td class="text-right">+500</td>
-										<td class="text-right">1.400</td>
-									</tr>
-									<tr>
-										<td class="text-center">01/02/2015</td>
-										<td>Compra PublicaMe!</td>
-										<td class="text-right">-100</td>
-										<td class="text-right"> </td>
-										<td class="text-right">900</td>
-									</tr>
-									<tr>
-										<td class="text-center">31/01/2015</td>
-										<td>Recibe Créditos por registro!</td>
-										<td class="text-right">+1.000</td>
-										<td class="text-right"></td>
-										<td class="text-right">1.000</td>
-									</tr>
+									@endforeach
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<div role="tabpanel" class="tab-pane active" id="buy">
+					<div role="tabpanel" class="tab-pane" id="buy">
 						<h2>¡Llega a más clientes con tus créditos!</h2>
 						<p class="lead">
 							Aparece en el centro de atención facilmente con tus créditos ChicasBuenas y

@@ -184,27 +184,57 @@ class EscortController extends Controller{
 	}
 
 	public function getCreditos(){
-		return View::make('escort.creditos');
+		return View::make('escort.creditos', [
+			'user' => Auth::user(),
+			'escort' => Auth::user()->escort
+		]);
 	}
 
 	public function postSubirFotografias(){
 
-		$photos = Input::file('photo');
+		$sizes = [
+			'large' 	=> ['w' => 450, 'h' => 667],
+            'medium' 	=> ['w' => 200, 'h' => 267],
+            'small' 	=> ['w' => 150, 'h' => 200],
+            'top' 		=> ['w' => 100, 'h' => 100],
+            'thumb' 	=> ['w' => 80, 	'h' => 80]
+		];
 
-		foreach($photos as $photo):
-			if($photo and $photo->isValid()):
-				$filename = md5(date('YmdHis') . rand(0, 999999));
-				if($photo->move('uploads', $filename)):
+		$photo = Input::file('photo');
+		if($photo and $photo->isValid()):
+			$filename = md5(date('YmdHis') . rand(0, 999999));
+			if($photo->move('uploads', $filename)):
 
-					$ephoto = new EscortPhoto;
-					$ephoto->escort_id = Auth::user()->escort->id;
-					$ephoto->filename = $filename;
-					$ephoto->in_aws = 'No';
-					$ephoto->save();
+				$filenameOriginal = $filename . '_original.jpeg';
+				$img = Image::make('uploads/' . $filename)->orientate()->save('uploads/' . $filenameOriginal);
+				File::delete('uploads/' . $filename);
 
+				if(Image::make('uploads/' . $filenameOriginal)->width() < Image::make('uploads/' . $filenameOriginal)->height()):
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['large']['w'], 	$sizes['large']['h'])->save('uploads/' . $filename . '_large.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['medium']['w'], 	$sizes['medium']['h'])->save('uploads/' . $filename . '_medium.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['small']['w'], 	$sizes['small']['h'])->save('uploads/' . $filename . '_small.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['top']['w'], 	$sizes['top']['h'])->save('uploads/' . $filename . '_top.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['thumb']['w'], 	$sizes['thumb']['h'])->save('uploads/' . $filename . '_thumb.jpeg');
+				else:
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['large']['h'], 	$sizes['large']['w'])->save('uploads/' . $filename . '_large.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['medium']['h'], 	$sizes['medium']['w'])->save('uploads/' . $filename . '_medium.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['small']['h'], 	$sizes['small']['w'])->save('uploads/' . $filename . '_small.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['top']['h'], 	$sizes['top']['w'])->save('uploads/' . $filename . '_top.jpeg');
+					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['thumb']['h'], 	$sizes['thumb']['w'])->save('uploads/' . $filename . '_thumb.jpeg');
 				endif;
-			endif;
-		endforeach;
 
+				$ephoto = new EscortPhoto;
+				$ephoto->escort_id = Auth::user()->escort->id;
+				$ephoto->filename = $filename . '.jpeg';
+				$ephoto->in_aws = 'No';
+				$ephoto->save();
+
+				return Redirect::action('EscortController@getPerfil')->with('uploadedPhotos', true);
+			else:
+				return Redirect::action('EscortController@getPerfil')->with('uploadedPhotos', false);
+			endif;
+		else:
+			return Redirect::action('EscortController@getPerfil')->with('uploadedPhotos', false);
+		endif;
 	}
 }
