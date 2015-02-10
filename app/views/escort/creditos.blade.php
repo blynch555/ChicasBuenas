@@ -59,11 +59,11 @@
 								<tbody>
 									@foreach($escort->histories as $history)
 									<tr>
-										<td class="text-center">{{ date('d/m/Y H:i', strtotime($transaction->purchase_date)) }}</td>
-										<td>{{ $transaction->description }}</td>
-										<td class="text-right"> </td>
-										<td class="text-right">+ {{ $transaction->credits }}</td>
-										<td class="text-right">1.200</td>
+										<td class="text-center">{{ date('d/m/Y H:i', strtotime($history->created_at)) }}</td>
+										<td>{{ $history->description }}</td>
+										<td class="text-right">{{ $history->credits_silver }}</td>
+										<td class="text-right">{{ $history->credits_gold }}</td>
+										<td class="text-right">{{ $history->credits_total }}</td>
 									</tr>
 									@endforeach
 								</tbody>
