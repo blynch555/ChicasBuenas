@@ -128,4 +128,9 @@
 @section('scripts')
 	{{ HTML::script('vendor/noty/packaged/jquery.noty.packaged.min.js') }}
 	{{ HTML::script('js/escort/creditos.js') }}
+	@if(Session::has('recargaExitosa'))
+	$(function(){
+		$('#linkToBuyTab').trigger('click');
+	});
+	@endif
 @stop
