@@ -1,6 +1,6 @@
 @extends('templates.default')
 @section('content')
-
+	<br>
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
 			

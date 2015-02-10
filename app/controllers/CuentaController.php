@@ -19,7 +19,7 @@ class CuentaController extends Controller{
 		];
 
 		if(Auth::attempt($credentials))
-			return Redirect::intended('/');
+			return Redirect::intended('cuenta');
 
 		return Redirect::back()
 			->withInput()
@@ -70,6 +70,14 @@ class CuentaController extends Controller{
 		$user->profile = $profile;
 		$user->status = 'Validación';
 		$user->save();
+
+		if($profile == 'Escort'):
+			$escort = new Escort;
+			$escort->user_id = $user->id;
+			$escort->name = $user->name;
+			$escort->status = 'Pendiente Certificación';
+			$escort->save();
+		endif;
 
 		$user->sendActivationMail();
 
