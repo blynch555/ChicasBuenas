@@ -1,7 +1,7 @@
 @extends('templates.default')
 @section('content')
 	<br>
-	
+
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-1">
 			<div class="panel panel-primary">
@@ -22,11 +22,11 @@
 
 					<div class="form-group">
 						{{ Form::label('username', 'Nombre de Usuario', ['class'=>'control-label']) }}
-						{{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'mrsatan']) }}
+						{{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'ivonne69']) }}
 					</div>
 					<div class="form-group">
 						{{ Form::label('password', 'Contraseña', ['class'=>'control-label']) }}
-						{{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'mrsatan666']) }}
+						{{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'contraseña']) }}
 					</div>
 					<br>
 					{{ Form::submit('Entrar a mi cuenta &rarr;', ['class'=>'btn btn-primary btn-lg btn-block']) }}
@@ -87,13 +87,13 @@
 					</div>
 					<div class="form-group @if($errors->has('password')) has-error @endif">
 						{{ Form::label('password', 'Contraseña:', ['class'=>'control-label']) }}
-						{{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'ivonne6922']) }}
+						{{ Form::password('password', ['class'=>'form-control', 'placeholder'=>'contraseña']) }}
 
 						{{ $errors->first('password', '<p class="help-block"><i class="ion-alert-circled"></i> :message</p>') }}
 					</div>
 					<div class="form-group">
 						{{ Form::label('password_confirmation', 'Confirmar Contraseña:', ['class'=>'control-label']) }}
-						{{ Form::password('password_confirmation', ['class'=>'form-control', 'placeholder'=>'ivonne6922']) }}
+						{{ Form::password('password_confirmation', ['class'=>'form-control', 'placeholder'=>'contraseña']) }}
 					</div>
 					<br>
 					{{ Form::submit('Crear mi cuenta &rarr;', ['class'=>'btn btn-primary btn-lg btn-block']) }}		
