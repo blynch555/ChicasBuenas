@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Aws\Laravel\AwsServiceProvider',
+		'Intervention\Image\ImageServiceProvider'
 
 	),
 
@@ -192,7 +193,8 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 
 		'AWS' 				=> 'Aws\Laravel\AwsFacade',
-		'Carbon'			=> 'Carbon\Carbon'
+		'Carbon'			=> 'Carbon\Carbon',
+		'Image' 			=> 'Intervention\Image\Facades\Image'
 
 	),
 

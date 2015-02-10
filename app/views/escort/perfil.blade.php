@@ -11,7 +11,7 @@
 					<ul class="nav nav-pills nav-stacked" id="navMenu">
 						<li role="presentation" class="active"><a href="#properties"><i class="ion-ios-list-outline"></i> Información <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 						<li role="presentation"><a href="#contact"><i class="ion-ios-telephone"></i> Datos de Contacto <i class="ion-ios-arrow-forward pull-right"></i></a></li>
-						<li role="presentation"><a href="#photos"><i class="ion-images"></i> Fotografías <i class="ion-ios-arrow-forward pull-right"></i></a></li>
+						<li role="presentation"><a href="#photos" id="linkTabPhotos"><i class="ion-images"></i> Fotografías <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 						<li role="presentation"><a href="#services"><i class="ion-android-checkbox-outline"></i> Servicios <i class="ion-ios-arrow-forward pull-right"></i></a></li>
 					</ul>
 				</div>
@@ -179,23 +179,28 @@
 							<legend class="text-right">Fotografías</legend>
 
 							<div class="row" id="escortPhotos">
-								<div class="col-sm-3">
+								@if($escort->photos->count() < 10)
+								<div class="col-sm-2">
+									{{ Form::open(['files' => true, 'action' => 'EscortController@postSubirFotografias', 'class'=>'form-inline']) }}
+									<div class="photoContainer">
+										<a href="javascript:;" onclick="$('#fileUpload').trigger('click');">
+											{{ HTML::image('img/addphoto.jpg', $escort->name, ['class'=>'img-thumbnail', 'width'=>'100%']) }}
+										</a>
 
-									{{ Form::open(['files' => true, 'action' => 'EscortController@postSubirFotografias']) }}
-
-										@for($i=0;$i < (10 - $escort->photos->count());$i++)
-											{{ Form::file('photo[]', ['style'=>'margin-bottom: 10px;']) }}
-										@endfor
-
-										{{ Form::submit('Subir Fotografías', ['class'=>'btn btn-primary btn-block']) }}
-										
+										{{ Form::file('photo', ['style'=>'margin-bottom: 10px; display: none;', 'accept'=>'image/*', 'id'=>'fileUpload', 'required' => 'required']) }}
+									</div>
+									{{ Form::submit('Subir Fotografía', ['class'=>'btn btn-primary btn-block']) }}
 									{{ Form::close() }}
-
 								</div>
+								@endif
+
 								@foreach($escort->photos as $photo)
-								<div class="col-sm-3" id="{{ str_replace('.jpeg', '', $photo->filename) }}">
-									<a href="{{ $photo->largeUrl() }}" class="escortPhoto">{{ HTML::image($photo->mediumUrl(), $escort->name, ['class'=>'img-thumbnail', 'width'=>'100%']) }}</a>
-									<button type="button" class="btn btn-danger btn-block btnDeletePhoto" data-image-name="{{ $photo->filename }}"><i class="ion-close-circled"></i> Eliminar Fotografía</button>
+								<div class="col-sm-2" id="{{ str_replace('.jpeg', '', $photo->filename) }}">
+									<div class="photoContainer">
+										<a href="{{ $photo->largeUrl() }}" class="escortPhoto">{{ HTML::image($photo->mediumUrl(), $escort->name, ['class'=>'img-thumbnail', 'width'=>'100%']) }}</a>
+									</div>
+									<button type="button" class="btn btn-default btn-block btnSetProfilePhoto" data-image-name="{{ $photo->filename }}">Foto Principal</button>
+									<button type="button" class="btn btn-danger btn-block btnDeletePhoto" data-image-name="{{ $photo->filename }}"><i class="ion-close-circled"></i> Eliminar</button>
 								</div>
 								@endforeach
 							</div>
@@ -231,6 +236,19 @@
 @section('styles')
 	{{ HTML::style('vendor/magnific-popup/dist/magnific-popup.css') }}
 	{{ HTML::style('vendor/select2/css/select2.min.css') }}
+
+	<style>
+		@media (min-width: 768px) {
+			.photoContainer{
+				min-height: 145px;
+			}
+		}
+		@media (min-width: 1200px) {
+			.photoContainer{
+				min-height: 175px;
+			}
+		}
+	</style>
 @stop
 @section('scripts')
 	{{ HTML::script('vendor/magnific-popup/dist/jquery.magnific-popup.min.js') }}
@@ -241,4 +259,26 @@
 	{{ HTML::script('vendor/noty/packaged/jquery.noty.packaged.min.js') }}
 	{{ HTML::script('vendor/select2/js/select2.full.min.js') }}
 	{{ HTML::script('js/escort/perfil.js') }}
+
+	@if(Session::has('uploadedPhotos'))
+	<script>
+	$(function(){
+		$("#linkTabPhotos").trigger('click');
+
+		@if(Session::has('uploadedPhotos', false) === true)
+			var n = noty({
+	            text: 'La Fotografía fue cargada correctamente!',
+	            type: 'success',
+	            timeout: 2000
+	        });
+	    @else
+	    	var n = noty({
+	            text: 'La fotografía no pudo ser cargada',
+	            type: 'error',
+	            timeout: 2000
+	        });
+	    @endif
+	});
+	</script>
+	@endif
 @stop
