@@ -110,7 +110,7 @@
 								<div class="well text-center">
 									<p class="lead" style="font-size: 24px;">Saldo actual:</p>
 									{{ HTML::image('img/money.png') }}
-									<h1><i class="ion-social-usd"></i> 1.200</h1>
+									<h1><i class="ion-social-usd"></i> {{ number_format($escort->creditsTotal(), 0, ',', '.') }}</h1>
 								</div>
 							</div>
 						</div>
