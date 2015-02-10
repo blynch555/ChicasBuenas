@@ -114,7 +114,7 @@
 								<div class="form-group">
 									{{ Form::label('price', 'Precio (x hora):', ['class'=>'col-sm-3 control-label']) }}
 									<div class="col-sm-6">
-										{{ Form::number('price', $escort->price, ['class'=>'form-control input-lg text-right', 'step'=>'10000', 'min'=>10000, 'max'=>'1000000', 'pattern'=>'\d*', 'style'=>'max-width: 150px;']) }}
+										{{ Form::number('price', number_format($escort->price, 0), ['class'=>'form-control input-lg text-right', 'step'=>'10000', 'min'=>10000, 'max'=>'1000000', 'pattern'=>'\d*', 'style'=>'max-width: 150px;']) }}
 										<p class="help-block">
 											<i class="ion-information-circled"></i> Según el precio se define la categoría:<br>
 											&lt; 45 mil = <strong>Gold</strong><br>
