@@ -53,7 +53,7 @@ class EscortController extends Controller{
 			$transaction->redirectToPay();
 		endif;
 
-		return ['success' => 'false'];
+		return ['success' => 'false', 'data' => Input::all()];
 	}
 
 	public function postGuardarCaracteristicas(){
