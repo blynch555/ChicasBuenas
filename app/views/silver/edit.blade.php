@@ -45,7 +45,7 @@
 					@if($silver->status != 'Publicada')
 					<i class="ion-speakerphone"></i> Pagar y publicar
 					@else
-
+					<i class="ion-speakerphone"></i> Publicación en línea
 					@endif
 				</div>
 				<div class="panel-body">
@@ -67,7 +67,16 @@
 						<button type="submit" class="btn btn-primary btn-block btn-lg">Pagar y publicar &rarr;</button>
 						{{ Form::close() }}
 					@else
-
+						<p class="lead">
+							Tu publicación ha sido puesta en línea y ya es vista por los usuarios del
+							portal.
+						</p>
+						<p class="lead">
+							Gracias por usar nuestros servicios!
+						</p>
+						<p class="lead">
+							<a href="{{ action('HomeController@getSilver', [Session::get('city_slug', 'Santiago')]) }}" class="btn btn-primary btn-lg btn-block">Ver mi publicación</a>
+						</p>
 					@endif
 				</div>
 			</div>
