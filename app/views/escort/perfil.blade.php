@@ -43,10 +43,10 @@
 									<div class="col-sm-3">
 										{{ Form::select('hourly', Utils::getSchedules(), $escort->hourly, ['class'=>'form-control']) }}
 									</div>
-									<div class="col-sm-2 col-lg-1 @if($escort->hourly == 'Full Time') hide @endif" id="dvHourlyTimeBegin">
+									<div class="col-sm-2 col-lg-1 @if($escort->hourly == 'Full Time' or $escort->hourly == '') hide @endif" id="dvHourlyTimeBegin">
 										{{ Form::select('hourly_time_begin', Utils::getSchedulesTimes(), $escort->hourly_time_begin, ['class'=>'form-control']) }}
 									</div>
-									<div class="col-sm-2 col-lg-1 @if($escort->hourly == 'Full Time') hide @endif" id="dvHourlyTimeEnd">
+									<div class="col-sm-2 col-lg-1 @if($escort->hourly == 'Full Time' or $escort->hourly == '') hide @endif" id="dvHourlyTimeEnd">
 										{{ Form::select('hourly_time_end', Utils::getSchedulesTimes(), $escort->hourly_time_end, ['class'=>'form-control']) }}
 									</div>
 								</div>
