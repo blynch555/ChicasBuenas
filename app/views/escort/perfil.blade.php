@@ -155,7 +155,7 @@
 								<div class="form-group">
 									{{ Form::label('phone', 'Teléfono:', ['class'=>'col-sm-3 control-label']) }}
 									<div class="col-sm-3">
-										{{ Form::text('phone', $escort->phone, ['class'=>'form-control']) }}
+										{{ Form::text('phone', $escort->phone, ['class'=>'form-control', 'required' => 'required', 'placeholder'=>'ej. 98765432 (no incluir +569)', 'maxlength' => 8]) }}
 									</div>
 								</div>
 
