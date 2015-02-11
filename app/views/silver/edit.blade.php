@@ -6,9 +6,10 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<i class="ion-heart"></i> Publicación Silver
-
 					@if($silver->status != 'Publicada')
 					<button type="button" data-toggle="modal" data-target="#frmEditSilver" class="btn btn-default btn-xs pull-right"><i class="ion-edit"></i> Editar publicación</button>
+					@else
+					<span class="pull-right label label-success">Publicada</span>
 					@endif
 				</div>
 				<div class="panel-body">
