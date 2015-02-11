@@ -23,7 +23,7 @@ class Escort extends Eloquent{
 	public function credits(){return $this->hasMany('EscortCredit')->where('balance', '>', 0);}
 	public function creditsGold(){return $this->hasMany('EscortCredit')->whereType('Gold')->where('balance', '>', 0);}
 	public function creditsSilver(){return $this->hasMany('EscortCredit')->whereType('Silver')->where('balance', '>', 0);}
-	public function histories(){return $this->hasMany('EscortHistory');}
+	public function histories(){return $this->hasMany('EscortHistory')->orderBy('created_at', 'desc');}
 
 	public function creditsTotal(){return $this->credits->sum('balance');}
 	public function creditsGoldTotal(){return $this->creditsGold->sum('balance');}

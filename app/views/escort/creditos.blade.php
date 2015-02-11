@@ -57,7 +57,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($escort->histories()->orderBy('created_at', 'desc')->take(10)->get() as $history)
+									@foreach($escort->histories->take(10)->get() as $history)
 									<tr>
 										<td class="text-center">{{ date('d/m/Y H:i', strtotime($history->created_at)) }}</td>
 										<td>{{ $history->description }}</td>
@@ -114,7 +114,35 @@
 								</div>
 							</div>
 						</div>
-
+					</div>
+					<div role="tabpanel" class="tab-pane" id="history">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<i class="ion-clock"></i> Historial de Movimientos
+							</div>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th class="text-center">Fecha</th>
+										<th>Detalle</th>
+										<th class="text-right">Silver</th>
+										<th class="text-right">Gold</th>
+										<th class="text-right">Saldo</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach($escort->histories as $history)
+									<tr>
+										<td class="text-center">{{ date('d/m/Y H:i', strtotime($history->created_at)) }}</td>
+										<td>{{ $history->description }}</td>
+										<td class="text-right">{{ $history->credits_silver }}</td>
+										<td class="text-right">{{ $history->credits_gold }}</td>
+										<td class="text-right">{{ $history->credits_total }}</td>
+									</tr>
+									@endforeach
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
