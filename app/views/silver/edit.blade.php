@@ -7,7 +7,9 @@
 				<div class="panel-heading">
 					<i class="ion-heart"></i> Publicación Silver
 
+					@if($silver->status != 'Publicada')
 					<button type="button" data-toggle="modal" data-target="#frmEditSilver" class="btn btn-default btn-xs pull-right"><i class="ion-edit"></i> Editar publicación</button>
+					@endif
 				</div>
 				<div class="panel-body">
 					<ul class="media-list">
@@ -39,30 +41,39 @@
 		<div class="col-sm-4">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
+					@if($silver->status != 'Publicada')
 					<i class="ion-speakerphone"></i> Pagar y publicar
+					@else
+
+					@endif
 				</div>
 				<div class="panel-body">
-					<p class="lead">
-						Las publicaciones Silver tienen una vigencia de 2 días desde su compra. El valor 
-						es de $ 1.000.-
-					</p>
+					@if($silver->status != 'Publicada')
+						<p class="lead">
+							Las publicaciones Silver tienen una vigencia de 2 días desde su compra. El valor 
+							es de $ 1.000.-
+						</p>
 
-					<h1 class="text-center">$ 1.000 <small>x 2 días</small></h1>
-					<br>
-					<p class="text-center">
-						{{ HTML::image('img/webpay2.jpg', '', ['style'=>'width: 50%;']) }}
-					</p>
-					<br>
+						<h1 class="text-center">$ 1.000 <small>x 2 días</small></h1>
+						<br>
+						<p class="text-center">
+							{{ HTML::image('img/webpay2.jpg', '', ['style'=>'width: 50%;']) }}
+						</p>
+						<br>
 
-					{{ Form::open(['action'=>'SilverController@postPagar']) }}
-					{{ Form::hidden('hash', $silver->hash) }}
-					<button type="submit" class="btn btn-primary btn-block btn-lg">Pagar y publicar &rarr;</button>
-					{{ Form::close() }}
+						{{ Form::open(['action'=>'SilverController@postPagar']) }}
+						{{ Form::hidden('hash', $silver->hash) }}
+						<button type="submit" class="btn btn-primary btn-block btn-lg">Pagar y publicar &rarr;</button>
+						{{ Form::close() }}
+					@else
+
+					@endif
 				</div>
 			</div>
 		</div>
 	</div>
 
+	@if($silver->status != 'Publicada')
 	<div class="modal fade" id="frmEditSilver">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -103,5 +114,5 @@
 			</div>
 		</div>
 	</div>
-
+	@endif
 @stop

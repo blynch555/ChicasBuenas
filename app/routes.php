@@ -7,18 +7,6 @@ Route::get('/', function(){
 	return Redirect::to( Session::get('city_slug', 'santiago') . '/destacadas');
 });
 
-Route::get('test', function(){
-	$trx = Transaction::find(20);
-
-	echo $trx->transactionable->status."<hr>";
-
-	$trx->publishSiver();
-
-	echo $trx->transactionable->status."<hr>";
-
-
-});
-
 Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);
 Route::get('{city}/vip', 			['uses' => 'HomeController@getVip', 		'as' => 'home_vip']);
 Route::get('{city}/premium', 		['uses' => 'HomeController@getPremium', 	'as' => 'home_premium']);
