@@ -50,7 +50,7 @@ class EscortController extends Controller{
 
 			Auth::user()->escort->transactions()->save($transaction);
 
-			$transaction->redirectToPay();
+			return $transaction->redirectToPay();
 		endif;
 
 		return ['success' => 'false', 'data' => Input::all()];
