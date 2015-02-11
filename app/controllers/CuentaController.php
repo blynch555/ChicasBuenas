@@ -11,6 +11,10 @@ class CuentaController extends Controller{
 		return View::make('account.login');
 	}
 
+	public function getRegistro(){
+		return View::make('account.register');
+	}
+
 	public function postEntrar(){
 		$credentials = [
 			'username' => Input::get('username'),

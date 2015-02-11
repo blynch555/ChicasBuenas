@@ -4,7 +4,8 @@
 		<div class="col-sm-12">
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
-					<i class="ion-android-star"></i> Chicas VIP
+					<i class="ion-android-star"></i> Chicas VIP 
+					<span class="pull-right"><i class="ion-information-circled"></i> Chicas de más de $ 70.000</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

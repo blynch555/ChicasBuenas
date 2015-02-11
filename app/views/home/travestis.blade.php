@@ -5,6 +5,7 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-transgender"></i> Travestis
+					<span class="pull-right"><i class="ion-information-circled"></i> Chicas que no son chicas</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

@@ -16,6 +16,7 @@ class CreateTransactionsTable extends Migration {
 		{
 		    $table->increments('id');
 		    $table->timestamps();
+		    $table->string('type');
 		    $table->integer('transactionable_id');
 		    $table->string('transactionable_type');
 		    $table->datetime('request_date');

@@ -5,6 +5,7 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-android-star-half"></i> Chicas Premium
+					<span class="pull-right"><i class="ion-information-circled"></i> Chicas de entre $ 45.000 y $ 70.000</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

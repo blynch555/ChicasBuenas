@@ -5,6 +5,7 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-happy-outline"></i> Fantasías
+					<span class="pull-right"><i class="ion-information-circled"></i> Servicios especiales como parejas, disfraces, etc.</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

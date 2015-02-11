@@ -4,103 +4,7 @@ Route::get('/', function(){
 	if(App::environment('production'))
 		return View::make('register');
 
-	return Redirect::to('santiago/destacadas');
-});
-
-Route::any('kpf/fracaso', function(){
-	$flowAPI = new kpf\flowAPI;
-	
-	try {
-		$flowAPI->read_result();
-	} catch (Exception $e) {
-		return $e;
-	}
-
-	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
-	$PAGADOR 		= $flowAPI->getPayer();
-
-	$transaction = Transaction::find($ORDEN_NUMERO);
-	if($transaction):
-		$transaction->email = $PAGADOR;
-		$transaction->status = 'Cancelado';
-		$transaction->save();
-	endif;
-
-	return Redirect::action('EscortController@getCreditos')
-		->with('recargaFallida', true);
-});
-
-Route::any('kpf/exito', function(){
-	$flowAPI = new kpf\flowAPI;
-	
-	try {
-		$flowAPI->read_result();
-	} catch (Exception $e) {
-		return $e;
-	}
-
-	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber();
-	$PAGADOR 		= $flowAPI->getPayer();
-
-	$transaction = Transaction::find($ORDEN_NUMERO);
-	if($transaction):
-		$transaction->email = $PAGADOR;
-		$transaction->save();
-
-		$transaction->traspaseToCredit();
-	endif;
-
-	return Redirect::action('EscortController@getCreditos')
-		->with('recargaExitosa', true);
-});
-
-Route::any('kpf/confirma', function(){
-	$flowAPI = new kpf\flowAPI;
-
-	try {
-		$flowAPI ->read_confirm();
-	} catch (Exception $e) {
-		echo $flowAPI->build_response(false);
-		return;
-	}
-
-	//Recupera Los valores de la Orden
-	$FLOW_STATUS 	= $flowAPI->getStatus();  //El resultado de la transacción (EXITO o FRACASO)
-	$ORDEN_NUMERO 	= $flowAPI->getOrderNumber(); // N° Orden del Comercio
-	$MONTO 			= $flowAPI->getAmount(); // Monto de la transacción
-	$ORDEN_FLOW 	= $flowAPI->getFlowNumber(); // Si $FLOW_STATUS = "EXITO" el N° de Orden de Flow
-	$PAGADOR 		= $flowAPI->getPayer(); // El email del pagador
-
-	$transaction = Transaction::find($ORDEN_NUMERO);
-
-	if($FLOW_STATUS == "EXITO") {
-		if($transaction and $transaction->status == 'Pendiente' and intval($transaction->amount) == intval($MONTO)):
-
-			$transaction->email = $PAGADOR;
-			$transaction->flow_number = $ORDEN_FLOW;
-			$transaction->purchase_date = DB::raw('now()');
-			$transaction->status = 'Pagada';
-			$transaction->save();
-
-			$transaction->traspaseToCredit();
-
-			echo $flowAPI->build_response(true);
-		else:
-			$transaction->status = 'Error';
-			$transaction->save();
-
-			echo $flowAPI->build_response(false);
-		endif;
-	} else {
-
-		if($transaction):
-			$transaction->status = 'Rechazado';
-			$transaction->save();
-		endif;
-
-		echo $flowAPI->build_response(false); // Comercio rechaza la transacción
-	}
-
+	return Redirect::to( Session::get('city_slug', 'santiago') . '/destacadas');
 });
 
 Route::get('test', function(){
@@ -122,15 +26,6 @@ Route::get('test', function(){
 	});
 
 	echo Media::image($pathAws);
-});
-
-Route::any('ipn/notificador', function(){
-
-	File::put('post.txt', print_r($_POST, 1));
-	File::put('get.txt', print_r($_GET, 1));
-	File::put('request.txt', print_r($_REQUEST, 1));
-	File::put('input.txt', print_r(Input::all(), 1));
-
 });
 
 Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);
@@ -167,7 +62,11 @@ Route::group(['prefix' => 'api', 'before' => 'api'], function(){
 });
 
 
+// Pagos
+Route::controller('pagos', 		'PagosController');
+Route::any('kpf/fracaso', 		'PagosController@getFracaso');
+Route::any('kpf/exito', 		'PagosController@getExito');
+Route::any('kpf/confirma', 		'PagosController@getConfirmar');
 
-Route::group(array('before' => 'auth'), function(){
-    Route::get('/jsonp', 'VanillaSSOController@jsonResponse');
-});
+
+

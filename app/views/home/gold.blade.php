@@ -5,6 +5,7 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-android-star-outline"></i> Chicas Gold
+					<span class="pull-right"><i class="ion-information-circled"></i> Chicas de menos de $ 45.000</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

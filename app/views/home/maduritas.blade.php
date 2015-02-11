@@ -5,6 +5,7 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-wineglass"></i> Maduritas
+					<span class="pull-right"><i class="ion-information-circled"></i> Chicas mayores a 40 años</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

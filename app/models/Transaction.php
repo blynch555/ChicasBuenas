@@ -8,6 +8,23 @@ class Transaction extends Eloquent{
         return $this->morphTo();
     }
 
+    public function redirectToPay(){
+        $orden_compra   = $this->id;
+        $monto          = $this->amount;
+        $concepto       = $this->description;
+        $tipo_comision  = Config::get('kpf.tasa_default');
+
+        $flowAPI = new kpf\flowAPI;
+        try {
+            $flow_pack = $flowAPI->new_order($orden_compra, $monto, $concepto, $tipo_comision);
+
+            return 
+                Form::open(['url' => Config::get('kpf.url_pago'), 'id'=>'frmPago']).Form::hidden('parameters', $flow_pack).Form::close().
+                HTML::script('vendor/jquery/jquery-1.11.2.min.js') .'<script>$("#frmPago").submit();</script>';
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
 
     public function traspaseToCredit(){
     	if($this->status == 'Pagada'):
@@ -32,5 +49,17 @@ class Transaction extends Eloquent{
                 $history->save();
     		endif;
     	endif;
+    }
+
+    public function publishSiver(){
+        if($this->status == 'Pagada'):
+            $silver = $this->transactionable;
+            if(!$silver and $silver->status != 'Publicada'):
+                $silver->status = 'Publicada';
+                $silver->purchase_date = DB::raw('now');
+                $silver->purchase_email = $this->email;
+                $silver->save();
+            endif;
+        endif;
     }
 }

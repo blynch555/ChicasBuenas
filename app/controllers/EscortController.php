@@ -41,6 +41,7 @@ class EscortController extends Controller{
 		if($amount > 0 and $price > 0):
 			$transaction = new Transaction;
 			$transaction->request_date = DB::raw('now()');
+			$transaction->type = 'Crédito';
 			$transaction->description = $details;
 			$transaction->credits = $amount;
 			$transaction->amount = $price;
@@ -49,23 +50,7 @@ class EscortController extends Controller{
 
 			Auth::user()->escort->transactions()->save($transaction);
 
-			$orden_compra 	= $transaction->id;
-			$monto 			= $price;
-			$concepto 		= $details;
-			$tipo_comision 	= Config::get('kpf.tasa_default');
-			$flowAPI = new kpf\flowAPI;
-			try {
-				$flow_pack = $flowAPI->new_order($orden_compra, $monto, $concepto, $tipo_comision);
-
-				return 
-					Form::open(['url' => Config::get('kpf.url_pago'), 'id'=>'frmPago']).
-					Form::hidden('parameters', $flow_pack).
-					Form::close().
-					HTML::script('vendor/jquery/jquery-1.11.2.min.js') .
-					'<script>$("#frmPago").submit();</script>';
-			} catch (Exception $e) {
-				return $e;
-			}
+			$transaction->redirectToPay();
 		endif;
 
 		return ['success' => 'false'];

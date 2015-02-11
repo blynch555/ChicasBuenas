@@ -5,6 +5,7 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-battery-charging"></i> Masajistas
+					<span class="pull-right"><i class="ion-information-circled"></i> Servicios de masajes sensoriales, eróticos y profesionales</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">

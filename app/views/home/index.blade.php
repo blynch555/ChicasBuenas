@@ -69,8 +69,8 @@
 
 	<div class="row" style="margin-bottom: 15px;">
 		<div class="col-sm-12 text-center">
-			<a href="">
-				{{ HTML::image('img/banner700x115.png', '', ['style'=>'width: 100%;']) }}
+			<a href="{{ action('CuentaController@getRegistro') }}">
+				{{ HTML::image('img/banner700x115.png', 'Registrate', ['style'=>'width: 100%;']) }}
 			</a>
 		</div>
 	</div>
