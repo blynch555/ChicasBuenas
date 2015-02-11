@@ -22,8 +22,11 @@ class CuentaController extends Controller{
 			'status' => 'Activo'
 		];
 
-		if(Auth::attempt($credentials))
+		if(Auth::attempt($credentials)):
+			if(Auth::user()->isEscort())
+				return Redirect::intended('escort/perfil');
 			return Redirect::intended('cuenta');
+		endif;
 
 		return Redirect::back()
 			->withInput()
