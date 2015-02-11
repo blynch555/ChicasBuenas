@@ -139,12 +139,10 @@ class HomeController extends BaseController {
 
 		Session::put('city_slug', $city_slug);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Travesti', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Travesti', 'No')->orderBy(DB::raw('rand()'))->get();
+		$silvers = Silver::whereStatus('Publicada')->orderBy('purchase_date', 'desc')->paginate();
 
 		return View::make('home.silver', [
-			'escorts_f' => $escorts_f,
-			'escorts' => $escorts,
+			'silvers' => $silvers
 		]);
 	}
 

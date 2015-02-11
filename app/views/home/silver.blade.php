@@ -8,44 +8,29 @@
 				</div>
 				<div class="panel-body">
 
-					<ul class="media-list">
+					<ul class="media-list" id="escortPhotos">
 					
-						@foreach($escorts_f as $escort)
+						@foreach($silvers as $silver)
 						<li class="media" style="border-bottom: solid 1px #ff26ff;">
 							<div class="media-left">
 								<p class="lead">
-									{{ HTML::image('http://www.chicaschilenas.cl/images/com_adsmanager/ads/515211a_t.jpg', '', ['class'=>'media-object', 'width' => '100%']) }}
+									@if($silver->filename!='')
+									<a href="{{ $silver->largeUrl() }}" class="escortPhoto" title="{{ $silver->title }}">
+										{{ HTML::image($silver->mediumUrl(), $silver->title, ['class'=>'media-object', 'width' => '100%']) }}
+									</a>
+									@else
+									{{ HTML::image('img/withoutphoto.jpg', '', ['class'=>'media-object', 'width' => '100%']) }}
+									@endif
 
-									<a href="tel:77281112" class="btn btn-primary btn-lg btn-block" style="margin-top: 5px;">
-										<i class="ion-ios-telephone"></i> 77281112
+									<a href="tel:569{{ $silver->phone }}" class="btn btn-primary btn-lg btn-block" style="margin-top: 5px;">
+										<i class="ion-ios-telephone"></i> {{ $silver->phone }}
 									</a>
 								</p>
 							</div>
 							<div class="media-body">
-								<h2 class="media-heading">PRECIOSA LOLITA CONNY 66908017 SERVICIO COMPLETO</h2>
+								<h2 class="media-heading">{{ $silver->title }}</h2>
 								<p class="lead">
-									bebe bien caliente complaciente cariñosa me encanta que me chupen el anito 
-									el chorito con tu lenguita que me hagas chupete me andicho que lo hago bien 
-									rico el oral de garganta profunda te encantara estrechica 100% llamame 77281112 
-									tambien voy hasta tu domicilio amor tu desides y practico trios centro
-								</p>
-							</div>
-						</li>
-						<li class="media" style="border-bottom: solid 1px #ff26ff;">
-							<div class="media-left">
-								<p class="lead">
-									{{ HTML::image('http://www.chicaschilenas.cl/images/com_adsmanager/ads/510378a_t.jpg', '', ['class'=>'media-object', 'width' => '100%']) }}
-
-									<a href="tel:72962908" class="btn btn-primary btn-lg btn-block" style="margin-top: 5px;">
-										<i class="ion-ios-telephone"></i> 72962908
-									</a>
-								</p>
-							</div>
-							<div class="media-body">
-								<h2 class="media-heading">domy flaquita nalgona bien caliente 72962908</h2>
-								<p class="lead">
-									Si te animas te estaré esperando en mi céntrico, cómodo y discreto departamento 
-									a pasos del metro bellas artes<br><br> CUERPESITO DE BARBIE 100%% REAL<br><br>72962908
+									{{ nl2br($silver->details) }}
 								</p>
 							</div>
 						</li>
@@ -54,25 +39,7 @@
 					</ul>
 
 					<div class="text-center">
-						<nav>
-							<ul class="pagination">
-								<li>
-									<a href="#" aria-label="Previous">
-										<span aria-hidden="true">&laquo;</span>
-									</a>
-								</li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li>
-									<a href="#" aria-label="Next">
-										<span aria-hidden="true">&raquo;</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
+						{{ $silvers->links() }}
 					</div>
 				</div>
 			</div>
@@ -120,9 +87,23 @@
 	</div>
 @stop
 @section('styles')
+	{{ HTML::style('vendor/magnific-popup/dist/magnific-popup.css') }}
+
 	<style>
 		.media-heading{
 			color: #d700d7;
 		}
 	</style>
+@stop
+@section('scripts')
+	{{ HTML::script('vendor/magnific-popup/dist/jquery.magnific-popup.min.js') }}
+
+	<script>
+	$(function(){
+		$('#escortPhotos').magnificPopup({
+			delegate: 'a.escortPhoto',
+			type: 'image'
+		});
+	});
+	</script>
 @stop

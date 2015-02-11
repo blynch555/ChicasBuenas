@@ -97,15 +97,15 @@
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li @if(Route::is('home')) class="active" @endif><a href="{{ route('home', Request::segment(1)) }}"><i class="ion-star"></i> Destacadas</a></li>
-						<li @if(Route::is('home_vip')) class="active" @endif><a href="{{ route('home_vip', Request::segment(1)) }}">VIP</a></li>
-						<li @if(Route::is('home_premium')) class="active" @endif><a href="{{ route('home_premium', Request::segment(1)) }}">Premium</a></li>
-						<li @if(Route::is('home_gold')) class="active" @endif><a href="{{ route('home_gold', Request::segment(1)) }}">Gold</a></li>
-						<li @if(Route::is('home_fantasias')) class="active" @endif><a href="{{ route('home_fantasias', Request::segment(1)) }}">Fantasías</a></li>
-						<li @if(Route::is('home_masajistas')) class="active" @endif><a href="{{ route('home_masajistas', Request::segment(1)) }}">Masajistas</a></li>
-						<li @if(Route::is('home_maduritas')) class="active" @endif><a href="{{ route('home_maduritas', Request::segment(1)) }}">Maduritas</a></li>
-						<li @if(Route::is('home_travestis')) class="active" @endif><a href="{{ route('home_travestis', Request::segment(1)) }}">Travestis</a></li>
-						<li @if(Route::is('home_silver')) class="active" @endif><a href="{{ route('home_silver', Request::segment(1)) }}">Silver</a></li>
+						<li @if(Route::is('home')) class="active" @endif><a href="{{ route('home', Session::get('city_slug', 'santiago')) }}"><i class="ion-star"></i> Destacadas</a></li>
+						<li @if(Route::is('home_vip')) class="active" @endif><a href="{{ route('home_vip', Session::get('city_slug', 'santiago')) }}">VIP</a></li>
+						<li @if(Route::is('home_premium')) class="active" @endif><a href="{{ route('home_premium', Session::get('city_slug', 'santiago')) }}">Premium</a></li>
+						<li @if(Route::is('home_gold')) class="active" @endif><a href="{{ route('home_gold', Session::get('city_slug', 'santiago')) }}">Gold</a></li>
+						<li @if(Route::is('home_fantasias')) class="active" @endif><a href="{{ route('home_fantasias', Session::get('city_slug', 'santiago')) }}">Fantasías</a></li>
+						<li @if(Route::is('home_masajistas')) class="active" @endif><a href="{{ route('home_masajistas', Session::get('city_slug', 'santiago')) }}">Masajistas</a></li>
+						<li @if(Route::is('home_maduritas')) class="active" @endif><a href="{{ route('home_maduritas', Session::get('city_slug', 'santiago')) }}">Maduritas</a></li>
+						<li @if(Route::is('home_travestis')) class="active" @endif><a href="{{ route('home_travestis', Session::get('city_slug', 'santiago')) }}">Travestis</a></li>
+						<li @if(Route::is('home_silver')) class="active" @endif><a href="{{ route('home_silver', Session::get('city_slug', 'santiago')) }}">Silver</a></li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">
 						<li class="hidden-lg"><a href="{{ url('buscar') }}"><i class="ion-search"></i></a></li>
