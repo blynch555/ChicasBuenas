@@ -52,8 +52,10 @@ class Transaction extends Eloquent{
     }
 
     public function publishSiver(){
+        echo '$this->status == "Pagada": ' . $this->status."<br>";
         if($this->status == 'Pagada'):
             $silver = $this->transactionable;
+            echo "silver: " . var_export($silver, 1)."<br>";
             if(!$silver and $silver->status != 'Publicada'):
                 $silver->status = 'Publicada';
                 $silver->purchase_date = DB::raw('now');
