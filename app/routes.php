@@ -10,12 +10,11 @@ Route::get('/', function(){
 Route::get('test', function(){
 	$trx = Transaction::find(20);
 
-	echo "<pre>";
-	echo print_r($trx->transactionable, 1);
+	echo $trx->transactionable->status."<hr>";
 
 	$trx->publishSiver();
 
-	echo print_r($trx->transactionable, 1);
+	echo $trx->transactionable->status."<hr>";
 
 
 });
