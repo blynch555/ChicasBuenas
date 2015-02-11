@@ -81,6 +81,22 @@ class CuentaController extends Controller{
 			$escort->name = $user->name;
 			$escort->status = 'Pendiente Certificación';
 			$escort->save();
+
+			$credit = new EscortCredit;
+			$credit->escort_id = $escort->id;
+			$credit->type = 'Silver';
+			$credit->duedate = DB::raw('DATE_ADD(now(), INTERVAL 1 MONTH)');
+			$credit->balance = 3000;
+			$credit->save();
+
+			$history = new EscortHistory;
+            $history->escort_id = $escort->id;
+            $history->credit_id = $credit->id;
+            $history->description = 'Recibe 3.000 créditos GRATIS por registrarse';
+            $history->credits_total = 3000;
+            $history->credits_silver = 3000;
+            $history->save();
+
 		endif;
 
 		$user->sendActivationMail();
