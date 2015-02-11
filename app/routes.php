@@ -8,24 +8,16 @@ Route::get('/', function(){
 });
 
 Route::get('test', function(){
+	$trx = Transaction::find(20);
 
-	$pathLocal = 'img/banner232x115.png';
-	$pathAws = 'photos/banner232x115.png';
+	echo "<pre>";
+	echo print_r($trx->transactionable, 1);
 
-	Queue::push(function($job) use ($pathLocal, $pathAws){
-	    $s3 = AWS::get('s3');
-		$bucket = 'media.chicasbuenas.cl';
+	$trx->publishSiver();
 
-		$result = $s3->putObject(array(
-		    'Bucket'     => $bucket,
-		    'Key'        => $pathAws,
-		    'SourceFile' => $pathLocal
-		));
+	echo print_r($trx->transactionable, 1);
 
-	    $job->delete();
-	});
 
-	echo Media::image($pathAws);
 });
 
 Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);
