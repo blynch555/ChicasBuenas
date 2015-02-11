@@ -57,7 +57,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($escort->histories as $history)
+									@foreach($escort->histories()->orderBy('created_at', 'desc')->take(10)->get() as $history)
 									<tr>
 										<td class="text-center">{{ date('d/m/Y H:i', strtotime($history->created_at)) }}</td>
 										<td>{{ $history->description }}</td>
