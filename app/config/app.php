@@ -124,7 +124,7 @@ return array(
 
 		'Aws\Laravel\AwsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Pdefreitas\VanillaSSO\VanillaSSOServiceProvider',
+		
 
 	),
 

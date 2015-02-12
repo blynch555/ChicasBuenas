@@ -30,7 +30,7 @@
 					<div class="btn-group btn-group-justified" role="group" aria-label="...">
 						<div class="btn-group" role="group">
 							<button type="button" class="btn btnTopMenu btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<i class="ion-ios-location"></i> Santiago
+								<i class="ion-ios-location"></i> {{ Session::get('city_name', 'Santiago') }}
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">

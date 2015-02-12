@@ -64,11 +64,45 @@ $(function(){
     	$("#frmProperties fieldset").attr('disabled', 'disabled');
 
     	$.post(HOME + '/escort/guardar-caracteristicas', data, function(response){
-    		var n = noty({
-    			text: 'La información de tu perfil fue guardada!',
-    			type: 'success',
-    			timeout: 2000
-    		});
+            if(response.success){
+        		var n = noty({
+        			text: 'La información de tu perfil fue guardada!',
+        			type: 'success',
+        			timeout: 2000
+        		});
+
+                var newCategory = "";
+
+                if(response.category != 'VIP' && response.category != 'Premium' && response.category != 'Gold'){
+                    newCategory = response.category;
+                }
+
+                if(newCategory != $("#category").val()){
+                    var n = noty({
+                        text: 'Se ha cambiado su categoría según las reglas del sitio',
+                        type: 'info',
+                        timeout: 2000
+                    });
+                }
+
+                if(response.price != $("#price").val()){
+                    var n = noty({
+                        text: 'Se ha cambiado el precio, el mínimo es de $ 30.000',
+                        type: 'info',
+                        timeout: 2000
+                    });
+
+                    $("#price").val(response.price)
+                }
+
+                $("#category").val(newCategory);
+            }else{
+                var n = noty({
+                    text: 'Se ha producido un error, favor reintentar o actualizar la página!',
+                    type: 'error',
+                    timeout: 2000
+                });
+            }
 
     		$(btn).html('<i class="ion-checkmark-circled"></i> Guardar cambios');
     		$("#frmProperties fieldset").removeAttr('disabled');
@@ -114,7 +148,7 @@ $(function(){
     });
     
 
-    $('select').select2();
+    $('select.select2').select2();
 
     addDeletePhotoEvent();
 });

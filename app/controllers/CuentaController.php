@@ -40,7 +40,9 @@ class CuentaController extends Controller{
 			'name' 		=> 'required',
 			'email' 	=> 'required|email|unique:users',
 			'username' 	=> 'required|unique:users',
-			'password' 	=> 'required|confirmed'
+			'password' 	=> 'required|confirmed',
+			'accept_terms' => 'accepted',
+			'accept_age18' => 'accepted',
 		];
 
 		$messages = [
@@ -53,7 +55,9 @@ class CuentaController extends Controller{
 			'username.required' => 'ingresa un nombre de usuario',
 			'username.unique' 	=> 'este nombre de usuario ya se encuentra registrado',
 			'password.required' => 'ingresa una contraseña',
-			'password.confirmed' => 'debes confirmar tu contraseña'
+			'password.confirmed' => 'debes confirmar tu contraseña',
+			'accept_terms.accepted' => 'debes aceptar los términos y condiciones, políticas de privacidad y las reglas de ChicasBuenas.cl',
+			'accept_age18.accepted' => 'solo se permite el registro de personas mayores a 18 años',
 		];
 
 		$validation = Validator::make(Input::all(), $rules, $messages);
@@ -82,22 +86,22 @@ class CuentaController extends Controller{
 			$escort = new Escort;
 			$escort->user_id = $user->id;
 			$escort->name = $user->name;
-			$escort->status = 'Pendiente Certificación';
+			$escort->status = 'Borrador';
 			$escort->save();
 
 			$credit = new EscortCredit;
 			$credit->escort_id = $escort->id;
 			$credit->type = 'Silver';
 			$credit->duedate = DB::raw('DATE_ADD(now(), INTERVAL 1 MONTH)');
-			$credit->balance = 3000;
+			$credit->balance = 1000;
 			$credit->save();
 
 			$history = new EscortHistory;
             $history->escort_id = $escort->id;
             $history->credit_id = $credit->id;
-            $history->description = 'Recibe 3.000 créditos GRATIS por registrarse';
-            $history->credits_total = 3000;
-            $history->credits_silver = 3000;
+            $history->description = 'Recibe 1.000 créditos GRATIS por registrarse';
+            $history->credits_total = 1000;
+            $history->credits_silver = 1000;
             $history->save();
 
 		endif;

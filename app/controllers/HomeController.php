@@ -6,15 +6,16 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_vip 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'VIP', 'Si')->orderBy('featured_end')->get();
-		$escorts_premium 	= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Premium', 'Si')->orderBy('featured_end')->get();
-		$escorts_gold 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Gold', 'Si')->orderBy('featured_end')->get();
-		$escorts_fantasias 	= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Fantasia', 'Si')->orderBy('featured_end')->get();
-		$escorts_masajistas	= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Masajista', 'Si')->orderBy('featured_end')->get();
-		$escorts_maduritas 	= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Madurita', 'Si')->orderBy('featured_end')->get();
-		$escorts_travestis	= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Travesti', 'Si')->orderBy('featured_end')->get();
+		$escorts_vip 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'VIP', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts_premium 	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Premium', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts_gold 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Gold', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts_fantasias 	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Fantasia', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts_masajistas	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Masajista', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts_maduritas 	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Madurita', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts_travestis	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Travesti', 'Si', 'Publicada')->orderBy('featured_end')->get();
 
 		return View::make('home.index', [
 			'city_slug' => $city_slug,
@@ -32,10 +33,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'VIP', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'VIP', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'VIP', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'VIP', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.vip', [
 			'escorts_f' => $escorts_f,
@@ -47,10 +49,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'VIP', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'VIP', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Premium', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Premium', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.premium', [
 			'escorts_f' => $escorts_f,
@@ -62,10 +65,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Gold', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Gold', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Gold', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Gold', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.gold', [
 			'escorts_f' => $escorts_f,
@@ -77,10 +81,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Fantasia', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Fantasia', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Fantasia', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Fantasia', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.fantasias', [
 			'escorts_f' => $escorts_f,
@@ -92,10 +97,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Masajista', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Masajista', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Masajista', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Masajista', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.masajistas', [
 			'escorts_f' => $escorts_f,
@@ -107,10 +113,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Madurita', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Madurita', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Madurita', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Madurita', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.maduritas', [
 			'escorts_f' => $escorts_f,
@@ -122,10 +129,11 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
-		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Travesti', 'Si')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
-		$escorts 		= Escort::whereCityIdAndCategoryAndFeatured($city->id, 'Travesti', 'No')->orderBy(DB::raw('rand()'))->get();
+		$escorts_f 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Travesti', 'Si', 'Publicada')->orderBy('featured_end')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Travesti', 'No', 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.travestis', [
 			'escorts_f' => $escorts_f,
@@ -137,7 +145,8 @@ class HomeController extends BaseController {
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
 
-		Session::put('city_slug', $city_slug);
+		Session::put('city_slug', $city->slug);
+		Session::put('city_name', $city->name);
 
 		$silvers = Silver::whereStatus('Publicada')->orderBy('purchase_date', 'desc')->paginate();
 

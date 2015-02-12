@@ -11,6 +11,18 @@ class Utils{
 		return $data;
 	}
 
+	public static function getCategoriesList(){
+
+		return [
+			'' => 'Estándar (VIP, Premium o Gold)',
+			'Fantasia' => 'Fantasia',
+			'Masajista' => 'Masajista',
+			'Madurita' => 'Madurita',
+			'Travesti' => 'Travesti'
+		];
+
+	}
+
 	public static function getWeightList(){
 		$data = [];
 		for($i=45; $i<=120; $i++):

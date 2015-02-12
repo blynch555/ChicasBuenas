@@ -4,7 +4,7 @@ class City extends Eloquent{
 	protected $table = 'cities';
 
 	public function url(){
-		return '';
+		return url($this->slug . '/destacadas');
 	}
 
 	public static function getAllCities(){

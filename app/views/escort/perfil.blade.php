@@ -31,6 +31,13 @@
 								</div>
 
 								<div class="form-group">
+									{{ Form::label('category', 'Categoría:', ['class'=>'col-sm-3 control-label']) }}
+									<div class="col-sm-3">
+										{{ Form::select('category', Utils::getCategoriesList(), $escort->category, ['class'=>'form-control']) }}
+									</div>
+								</div>
+
+								<div class="form-group">
 									{{ Form::label('birthday', 'Fecha de Nacimiento:', ['class'=>'col-sm-3 control-label']) }}
 									<div class="col-sm-6">
 										{{ Form::input('date', 'birthday', $escort->birthday, ['class'=>'form-control', 'style'=>'max-width: 150px;']) }}
@@ -112,9 +119,9 @@
 								</div>
 								
 								<div class="form-group">
-									{{ Form::label('price', 'Precio (x hora):', ['class'=>'col-sm-3 control-label']) }}
+									{{ Form::label('price', 'Precio (min $ 30.000):', ['class'=>'col-sm-3 control-label']) }}
 									<div class="col-sm-6">
-										{{ Form::number('price', number_format($escort->price, 0), ['class'=>'form-control input-lg text-right', 'step'=>'10000', 'min'=>10000, 'max'=>'1000000', 'pattern'=>'\d*', 'style'=>'max-width: 150px;']) }}
+										{{ Form::number('price', number_format($escort->price, 0, ',', ''), ['class'=>'form-control input-lg text-right', 'step'=>'10000', 'min'=>30000, 'max'=>'1000000', 'pattern'=>'\d*', 'style'=>'max-width: 150px;']) }}
 										<p class="help-block">
 											<i class="ion-information-circled"></i> Según el precio se define la categoría:<br>
 											&lt; 45 mil = <strong>Gold</strong><br>
@@ -141,7 +148,7 @@
 								<hr>
 
 								<div class="col-sm-6 col-sm-offset-3">
-									<button type="button" id="btnSaveProperties" class="btn btn-primary btn-lg btn-block"><i class="ion-checkmark-circled"></i> Guardar cambios</button>
+									<button type="button" id="btnSaveProperties" class="btn btn-primary btn-lg btn-block"><i class="ion-checkmark-circled"></i> Guardar cambios y publicar</button>
 								</div>
 							</fieldset>
 
@@ -162,7 +169,7 @@
 								<div class="form-group">
 									{{ Form::label('district_id', 'Comuna:', ['class'=>'col-sm-3 control-label']) }}
 									<div class="col-sm-6">
-										{{ Form::select('district_id', District::orderBy('name')->lists('name', 'id'), $escort->district_id, ['class'=>'form-control']) }}
+										{{ Form::select('district_id', District::orderBy('name')->lists('name', 'id'), $escort->district_id, ['class'=>'form-control select2']) }}
 									</div>
 								</div>
 								<hr>
@@ -211,7 +218,10 @@
 							<fieldset>
 								<legend class="text-right">Servicios</legend>
 								<div class="form-group">
-									{{ Form::label('services', 'Apariencia:', ['class'=>'col-sm-3 control-label']) }}
+									<div class="col-sm-3 text-right">
+										{{ Form::label('services', 'Servicios:', ['class'=>'control-label']) }}<br>
+										<a href="#" id="checkAllNoneServices">-todos/ninguno-</a>
+									</div>
 									<div class="col-sm-4">
 										@foreach(Service::orderBy('name')->get() as $service)
 										<div class="checkbox"><label>{{ Form::checkbox('service[]', $service->id, in_array($service->id, $escort->services->lists('id'))) }} {{ $service->name }}</label></div>
@@ -260,25 +270,32 @@
 	{{ HTML::script('vendor/select2/js/select2.full.min.js') }}
 	{{ HTML::script('js/escort/perfil.js') }}
 
-	@if(Session::has('uploadedPhotos'))
 	<script>
 	$(function(){
+		@if(Session::has('uploadedPhotos'))
 		$("#linkTabPhotos").trigger('click');
+		@endif
 
-		@if(Session::has('uploadedPhotos', false) === true)
-			var n = noty({
-	            text: 'La Fotografía fue cargada correctamente!',
-	            type: 'success',
-	            timeout: 2000
-	        });
-	    @else
-	    	var n = noty({
-	            text: 'La fotografía no pudo ser cargada',
-	            type: 'error',
-	            timeout: 2000
-	        });
+		$("#checkAllNoneServices").click(function(e){
+			e.preventDefault();
+			$("[name='service[]']").prop('checked', !$("[name='service[]']").prop('checked'));
+		});
+
+		@if(Session::has('uploadedPhotos'))
+			@if(Session::get('uploadedPhotos', false) === true)
+				var n = noty({
+		            text: 'La Fotografía fue cargada correctamente!',
+		            type: 'success',
+		            timeout: 2000
+		        });
+		    @else
+		    	var n = noty({
+		            text: 'La fotografía no pudo ser cargada',
+		            type: 'error',
+		            timeout: 2000
+		        });
+		    @endif
 	    @endif
 	});
 	</script>
-	@endif
 @stop

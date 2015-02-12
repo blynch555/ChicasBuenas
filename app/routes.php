@@ -5,6 +5,16 @@ Route::get('/', function(){
 		return View::make('register');
 
 	return Redirect::to( Session::get('city_slug', 'santiago') . '/destacadas');
+	return Redirect::to( Session::get('city_name', 'Santiago') . '/destacadas');
+});
+
+Route::get('sms', function(){
+
+	//return $rs = NexmoSmsMessage::sendText('56987144166','56987144166','Matias, te invitamos a publicarte en nuestra sección de travetis, GRATIS!');
+
+
+	SMS::send('+56987144166', 'Te invitamos a ser una ChicaBuena (Escort) y te regalamos 1.500 creditos para publicarte, solo registrate en http://chicasbuenas.cl');
+
 });
 
 Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);

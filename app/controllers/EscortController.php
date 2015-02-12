@@ -62,6 +62,9 @@ class EscortController extends Controller{
 		if($escort):
 
 			$age = Carbon::parse(Input::get('birthday'))->diffInYears(Carbon::now());
+			$price = Input::get('price');
+			$price = is_numeric($price) ? $price : 30000;
+			$price = ($price >= 30000) ? $price : 30000;
 
 			$escort->name = Input::get('name');
 			$escort->birthday = Input::get('birthday');
@@ -80,16 +83,19 @@ class EscortController extends Controller{
 			$escort->at_home = Input::get('at_home', 'No');
 			$escort->at_travel = Input::get('at_travel', 'No');
 			$escort->service_type_id = Input::get('service_type_id');
-			$escort->price = Input::get('price');
+			$escort->price = $price;
 			$escort->nationality_id = Input::get('nationality_id');
+			$escort->status = 'Publicada';
 
-			$category = $escort->category;
-			if($age >= 40):
+			$category = Input::get('category');
+			if(($category == '' and $age >= 40) or $category == 'Madurita'):
 				$category = 'Madurita';
 			else:
-				$category = ($escort->price < 45000) ? 'Gold' : $category;
-				$category = ($escort->price >= 45000 and $escort->price < 70000) ? 'Premium' : $category;
-				$category = ($escort->price >= 70000) ? 'VIP' : $category;
+				if($category == ''):
+					$category = ($escort->price < 45000) ? 'Gold' : $category;
+					$category = ($escort->price >= 45000 and $escort->price < 70000) ? 'Premium' : $category;
+					$category = ($escort->price >= 70000) ? 'VIP' : $category;
+				endif;
 			endif;
 			$escort->category = $category;
 
@@ -97,7 +103,7 @@ class EscortController extends Controller{
 
 			$escort->save();
 
-			return ['success' => true, 'age' => $age];
+			return ['success' => true, 'category' => $category, 'price' => $price];
 		else:
 			return ['success' => false];
 		endif;
