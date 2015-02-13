@@ -8,6 +8,11 @@
 					<i class="ion-android-star"></i> Chicas Destacadas
 				</div>
 				<div class="panel-body">
+				
+					<a href="{{ action('CuentaController@getRegistro') }}">
+						{{ HTML::image('img/banner700x115.png', 'Registrate', ['style'=>'width: 100%;']) }}
+					</a>
+
 					<div class="row">
 						@foreach($escorts as $escort)
 						<div class="col-sm-2 escortListItem escortListItemNormal">
