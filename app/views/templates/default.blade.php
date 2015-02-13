@@ -39,16 +39,17 @@
 								@endforeach
 							</ul>
 						</div>
-						<div class="btn-group" role="group">
+						<!--<div class="btn-group" role="group">
 							<a href="{{ url('tienda') }}" class="btn btnTopMenu btn-default">
 								<i class="ion-bag"></i> Tienda Online
 							</a>
-						</div>
-						<div class="btn-group" role="group">
+						</div>-->
+						<!--<div class="btn-group" role="group">
 							<a href="{{ url('foros') }}" class="btn btnTopMenu btn-default">
 								<i class="ion-chatboxes"></i> Foros
 							</a>
 						</div>
+						-->
 					</div>
 				</div>
 				<div class="col-sm-3 headerUserActions">
