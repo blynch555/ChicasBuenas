@@ -74,7 +74,7 @@
 						</div>
 
 						<div class="form-group">
-							<p class="lead text-center">costo por publicación: $ 1.000.-</p>
+							<p class="lead text-center">costo por publicación: $ 500.-</p>
 						</div>
 
 						{{ Form::submit('Publicar', ['class'=>'btn btn-primary btn-lg btn-block']) }}

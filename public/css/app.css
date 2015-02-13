@@ -101,7 +101,7 @@ header .navbar-inverse .navbar-nav>li>a:hover{
 }
 
 .escortListItem{
-	margin: 0;
+	margin: 5px 0;
 }
 .escortListItem img{
 	width: 100%;
@@ -139,16 +139,6 @@ header .navbar-inverse .navbar-nav>li>a:hover{
 	margin-left: 40%;
 }
 
-.escortListItemNormal .labelPrice{
-	font-weight: normal;
-}
-
-.escortListItemFeatured .iconShowPreviewProfile{
-	font-size: 48px;
-	margin-top: 36%;
-	margin-left: 42%;
-}
-
 #headerListSection{
 	margin: 10px 0;
 	background-color: #D700D7;
@@ -156,7 +146,7 @@ header .navbar-inverse .navbar-nav>li>a:hover{
 #headerListSection img{
 	margin: 5px;
 	width: 100px;
-	height: 100px;
+	height: 150px;
 }
 
 footer{
@@ -210,3 +200,63 @@ footer a:hover{
 	margin-bottom: 0;
 }
 
+
+
+
+#sharebox{
+	z-index: 9999;
+  margin: 10px;
+}
+
+#shareme .box{
+	z-index: 9999;
+  margin:5% 8% 0 8%;
+  width:100%;
+}
+#shareme .box a{
+	z-index: 9999;
+  color:#404040;
+  text-shadow: 0 1px 1px rgba(167,167,167,.4);
+}
+#shareme .box a:hover{
+  text-decoration:none;
+}
+#shareme .count {
+  font-weight:bold;
+  font-size:50px;
+  border-right:2px solid #57b8d1;
+  line-height:40px;
+  padding-right:10px
+}
+#shareme .share {
+	z-index: 9999;
+  margin-left:10px;
+  font-size:20px;
+  width:82px;
+}
+#shareme .buttons {
+	z-index: 9999;
+  position: absolute;
+  width:294px;
+  background-color:#fff;
+  border: 1px solid rgba(0,0,0,.2);
+  padding:10px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+#shareme .button {
+	z-index: 9999;
+  float: left;
+  max-width:50px;
+  margin:0 10px 0 0;
+}
+#shareme .facebook {
+	z-index: 9999;
+  margin:0 4px 0 0;
+}
+
+
+#dvPublicaMe{
+	padding-top: 20px;
+}

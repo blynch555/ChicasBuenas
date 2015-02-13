@@ -192,6 +192,8 @@ class EscortController extends Controller{
 		];
 
 		$photo = Input::file('photo');
+		$escort = Auth::user()->escort;
+		
 		if($photo and $photo->isValid()):
 			$filename = md5(date('YmdHis') . rand(0, 999999));
 			if($photo->move('uploads', $filename)):
@@ -206,12 +208,33 @@ class EscortController extends Controller{
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['small']['w'], 	$sizes['small']['h'])->save('uploads/' . $filename . '_small.jpeg');
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['top']['w'], 	$sizes['top']['h'])->save('uploads/' . $filename . '_top.jpeg');
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['thumb']['w'], 	$sizes['thumb']['h'])->save('uploads/' . $filename . '_thumb.jpeg');
+
+
+					$img = Image::make('uploads/' . $filename . '_small.jpeg');
+					$img->insert('img/thumbTpl.png');
+					$img->text($escort->name, 75, 191, function($font) {
+						$font->file(5);
+					    $font->color('#fff');
+					    $font->align('center');
+					});
+					$img->save('uploads/' . $filename . '_small.jpeg');
+
 				else:
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['large']['h'], 	$sizes['large']['w'])->save('uploads/' . $filename . '_large.jpeg');
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['medium']['h'], 	$sizes['medium']['w'])->save('uploads/' . $filename . '_medium.jpeg');
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['small']['h'], 	$sizes['small']['w'])->save('uploads/' . $filename . '_small.jpeg');
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['top']['h'], 	$sizes['top']['w'])->save('uploads/' . $filename . '_top.jpeg');
 					$img = Image::make('uploads/' . $filenameOriginal)->resize($sizes['thumb']['h'], 	$sizes['thumb']['w'])->save('uploads/' . $filename . '_thumb.jpeg');
+
+					$img = Image::make('uploads/' . $filename . '_small.jpeg');
+					$img->fit(150, 200);
+					$img->insert('img/thumbTpl.png');
+					$img->text($escort->name, 75, 191, function($font) {
+						$font->file(5);
+					    $font->color('#fff');
+					    $font->align('center');
+					});
+					$img->save('uploads/' . $filename . '_small.jpeg');
 				endif;
 
 				$ephoto = new EscortPhoto;

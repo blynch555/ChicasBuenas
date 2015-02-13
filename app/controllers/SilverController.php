@@ -97,7 +97,7 @@ class SilverController extends Controller{
 			$transaction->request_date = DB::raw('now()');
 			$transaction->type = 'Silver';
 			$transaction->description = 'Publicacion Silver';
-			$transaction->amount = 1000;
+			$transaction->amount = 500;
 			$transaction->status = 'Pendiente';
 			$transaction->save();
 

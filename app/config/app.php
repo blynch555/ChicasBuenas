@@ -124,6 +124,7 @@ return array(
 
 		'Aws\Laravel\AwsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Fbf\LaravelComments\LaravelCommentsServiceProvider',
 		
 
 	),

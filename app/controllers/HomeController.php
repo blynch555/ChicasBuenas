@@ -9,23 +9,11 @@ class HomeController extends BaseController {
 		Session::put('city_slug', $city->slug);
 		Session::put('city_name', $city->name);
 
-		$escorts_vip 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'VIP', 'Si', 'Publicada')->orderBy('featured_end')->get();
-		$escorts_premium 	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Premium', 'Si', 'Publicada')->orderBy('featured_end')->get();
-		$escorts_gold 		= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Gold', 'Si', 'Publicada')->orderBy('featured_end')->get();
-		$escorts_fantasias 	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Fantasia', 'Si', 'Publicada')->orderBy('featured_end')->get();
-		$escorts_masajistas	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Masajista', 'Si', 'Publicada')->orderBy('featured_end')->get();
-		$escorts_maduritas 	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Madurita', 'Si', 'Publicada')->orderBy('featured_end')->get();
-		$escorts_travestis	= Escort::whereCityIdAndCategoryAndFeaturedAndStatus($city->id, 'Travesti', 'Si', 'Publicada')->orderBy('featured_end')->get();
+		$escorts 		= Escort::whereCityIdAndFeaturedAndStatus($city->id, 'Si', 'Publicada')->orderBy('featured_end')->get();
 
 		return View::make('home.index', [
 			'city_slug' => $city_slug,
-			'escorts_vip' => $escorts_vip,
-			'escorts_premium' => $escorts_premium,
-			'escorts_gold' => $escorts_gold,
-			'escorts_fantasias' => $escorts_fantasias,
-			'escorts_masajistas' => $escorts_masajistas,
-			'escorts_maduritas' => $escorts_maduritas,
-			'escorts_travestis' => $escorts_travestis,
+			'escorts' => $escorts
 		]);
 	}
 

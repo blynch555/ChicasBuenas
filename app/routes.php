@@ -8,6 +8,22 @@ Route::get('/', function(){
 	return Redirect::to( Session::get('city_name', 'Santiago') . '/destacadas');
 });
 
+Route::get('image', function(){
+
+
+
+	$img = Image::make('uploads/79c009f9eb707339fa15dfe9093d7f16_small.jpeg');
+	$img->fit(150, 200);
+	$img->insert('img/thumbTpl.png');
+	$img->text('M. Fernanda', 75, 191, function($font) {
+		$font->file(5);
+	    $font->color('#fff');
+	    $font->align('center');
+	});
+
+	return $img->response();
+});
+
 Route::get('sms', function(){
 
 	//return $rs = NexmoSmsMessage::sendText('56987144166','56987144166','Matias, te invitamos a publicarte en nuestra sección de travetis, GRATIS!');
@@ -27,7 +43,7 @@ Route::get('{city}/maduritas', 		['uses' => 'HomeController@getMaduritas', 	'as'
 Route::get('{city}/travestis', 		['uses' => 'HomeController@getTravestis', 	'as' => 'home_travestis']);
 Route::get('{city}/listado-silver', ['uses' => 'HomeController@getSilver', 		'as' => 'home_silver']);
 
-Route::get('{city}/chica/{slug},{id}', ['uses' => 'ChicaController@getView', 'as' => 'escortView']);
+Route::get('{city}/chicas/{slug},{id}', ['uses' => 'ChicaController@getView', 'as' => 'escortView']);
 
 
 Route::controller('cuenta', 		'CuentaController');
@@ -35,6 +51,7 @@ Route::controller('escort', 		'EscortController');
 Route::controller('agencia', 		'AgenciaController');
 Route::controller('usuario', 		'UsuarioController');
 Route::controller('silver', 		'SilverController');
+
 
 
 
@@ -56,6 +73,12 @@ Route::controller('pagos', 		'PagosController');
 Route::any('kpf/fracaso', 		'PagosController@getFracaso');
 Route::any('kpf/exito', 		'PagosController@getExito');
 Route::any('kpf/confirma', 		'PagosController@getConfirmar');
+
+View::composer('templates.default', function($view){
+	$view->publicaMe = Escort::take(36)->get();
+});
+
+
 
 
 

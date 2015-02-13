@@ -52,10 +52,10 @@
 					@if($silver->status != 'Publicada')
 						<p class="lead">
 							Las publicaciones Silver tienen una vigencia de 2 días desde su compra. El valor 
-							es de $ 1.000.-
+							es de $ 500.-
 						</p>
 
-						<h1 class="text-center">$ 1.000 <small>x 2 días</small></h1>
+						<h1 class="text-center">$ 500 <small>x 2 días</small></h1>
 						<br>
 						<p class="text-center">
 							{{ HTML::image('img/webpay2.jpg', '', ['style'=>'width: 50%;']) }}

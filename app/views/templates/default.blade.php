@@ -72,13 +72,13 @@
 				@endif
 				<div class="@if(Auth::check() and Auth::user()->isEscort()) col-sm-11 @else col-sm-12 @endif">
 					<div id="headerListSection">
-						@for($i=0;$i<20;$i++)
+						@foreach($publicaMe as $pEscort)
 						<div>
-							<a href="{{ url('chicas/milena,123') }}"  data-escort-id="{{ $i }}" class="img-rounded linkShowEscortProfile">
-								{{ HTML::image('img/photo_top.png') }}
+							<a href="{{ $pEscort->url() }}"  data-escort-id="{{ $pEscort->id }}" class="img-rounded linkShowEscortProfile">
+								{{ HTML::image($pEscort->photoUrl(), $pEscort->name) }}
 							</a>
 						</div>
-						@endfor
+						@endforeach
 					</div>
 				</div>
 			</section>
@@ -129,6 +129,7 @@
 	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
 	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
 	{{ HTML::script('vendor/slick/slick.min.js') }}
+	{{ HTML::script('vendor/sharrre/jquery.sharrre.min.js'); }}
 	{{ HTML::script('js/app.js') }}
 
 	@yield('scripts')

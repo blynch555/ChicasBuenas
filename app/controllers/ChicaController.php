@@ -2,7 +2,12 @@
 class ChicaController extends Controller{
 	
 	public function getView($city, $slug, $id){
-		return Escort::find($id);
+		$escort = Escort::find($id);
+		if(!$escort) return App::abort(404);
+
+		return View::make('chicas.profile', [
+			'escort' => $escort
+		]);
 	}
 
 }

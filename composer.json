@@ -10,7 +10,8 @@
 		"aws/aws-sdk-php-laravel": "1.*",
 		"intervention/image": "dev-master",
 		"pdefreitas/vanillasso": "dev-master",
-		"prawnsalad/nexmo": "dev-master"
+		"prawnsalad/nexmo": "dev-master",
+		"fbf/laravel-comments": "dev-master"
 	},
 	
 	"autoload": {
