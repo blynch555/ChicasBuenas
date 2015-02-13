@@ -1,7 +1,7 @@
 <?php
 return [
 	'lang' => ['code' => 'es','name' => 'Español'],
-	'title' => 'ChicasBuenas.cl - El éxtasis del pecado - Acompañantes y Escorts en Chile'
+	'title' => 'ChicasBuenas.cl - El éxtasis del pecado - Acompañantes y Escorts en Chile',
 	'meta' => [
 		'title'			=> 'ChicasBuenas.cl - El éxtasis del pecado - Acompañantes y Escorts en Chile',
 		'description' 	=> 'ChicasBuenas.cl el Portal interactivo de servicios escorts y de acompañantes mas completo de Chile  | Welcome to Santiago of Chile the best escorts are here! ChicasBuenas.cl is a wide directory of Independent Escorts (call girls) in Santiago of Chile. Containing one of the largest selection of ladies escorts chilean and foreign in this city.',
