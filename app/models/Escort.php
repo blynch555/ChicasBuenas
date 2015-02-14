@@ -21,6 +21,63 @@ class Escort extends Eloquent{
 		endif;
 	}
 
+	public function discountCredit($amount, $details){
+
+		if($this->creditsTotal() < $amount)
+			return false;
+
+		$balance = $amount;
+		$silverTotal = 0;
+		$goldTotal = 0;
+
+		foreach($this->creditsSilver()->orderBy('duedate', 'desc')->get() as $credit):
+			if($credit->balance < $balance):
+				$silverTotal += $credit->balance;
+
+				$balance -= $credit->balance;
+				$credit->balance = 0;
+				$credit->save();
+			else:
+				$silverTotal += $balance;
+
+				$credit->balance = $credit->balance - $balance;
+				$credit->save();
+				$balance = 0;
+				break;
+			endif;
+		endforeach;
+
+		if($balance > 0):
+			foreach($this->creditsGold()->orderBy('purchase_date')->get() as $credit):
+				if($credit->balance < $balance):
+					$goldTotal += $credit->balance;
+
+					$balance -= $credit->balance;
+					$credit->balance = 0;
+					$credit->save();
+				else:
+					$goldTotal += $balance;
+
+					$credit->balance = $credit->balance - $balance;
+					$credit->save();
+					$balance = 0;
+					break;
+				endif;
+			endforeach;
+		endif;
+
+
+		$history = new EscortHistory;
+        $history->escort_id = $this->id;
+        $history->description = $details;
+        $history->credits_total = -1 * $amount;
+        $history->credits_silver = -1 * $silverTotal;
+        $history->credits_gold = -1 * $goldTotal;
+        $history->save();
+
+        return true;
+	}
+
 	public function thumbUrl(){
 		return gettype($this->thumb())=='string' ? $this->photo() : $this->photo->thumbUrl();
 	}

@@ -16,6 +16,23 @@ class EscortController extends Controller{
 		]);
 	}
 
+	public function postPublicaMe(){
+		if(Auth::user()->escort->discountCredit(100, 'Compra servicio PublicaMe')):
+			$publicame = new Publicame;
+			$publicame->escort_id = Auth::user()->escort->id;
+			$publicame->photo_id = Input::get('publicame_photo_id');
+			$publicame->city_id = Auth::user()->escort->city_id;
+			$publicame->purchase_date = DB::raw('NOW()');
+			$publicame->save();
+
+			return Redirect::back()
+				->with('publicaMe', 'ok');
+		else:
+			return Redirect::back()
+				->with('publicaMe', 'nok');
+		endif;
+	}
+
 	public function postRecargarCreditos(){
 		$date = new DateTime();
 		$timestamp = $date->format('YmdHis');

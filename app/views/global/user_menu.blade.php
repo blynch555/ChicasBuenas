@@ -6,7 +6,7 @@
 
 		@if(Auth::user()->profile == 'Escort')
 		<a href="{{ action('EscortController@getCreditos') }}" class="btn btn-default" style="margin-top: 15px;">
-			<i class="ion-card"></i> 200 créditos
+			<i class="ion-card"></i> {{ number_format(Auth::user()->escort->creditsTotal(), 0, ',', '.') }} créditos
 		</a>
 		@endif
 

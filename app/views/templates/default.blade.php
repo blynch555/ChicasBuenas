@@ -129,7 +129,62 @@
 
 	<script>
 		var HOME = '{{ url('/') }}';
+
+		@if(Session::has('publicaMe'))
+			@if(Session::get('publicaMe') == 'ok')
+				alert('Tu foto ha sido publicada en la sección PublicaMe!');
+			@else
+				alert('Tu foto no ha sido posible publicarla, valida que tienes saldo suficiente!');
+			@endif
+		@endif
 	</script>
+
+	@if(Auth::check() and Auth::user()->isEscort())
+	<div class="modal fade" id="dlgPublicaMe">
+		{{Form::open(['action'=>'EscortController@postPublicaMe', 'id'=>'frmPublicaMe'])}}
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title lead">¡Haz que te vean cientos de personas!!</h4>
+				</div>
+				<div class="modal-body">
+					<p class="lead">Elige tu mejor foto y la mostraremos a los cientos de visitantes que recibimos día a día.</p>
+
+					<div class="row">
+						<?php $i=0; $photoId = ''; ?>
+						@foreach(Auth::user()->escort->photos as $photo)
+						<div class="col-sm-2">
+							<a href="#" class="thumbnail publicameSelectPhoto {{ ($i==0) ? 'active' : ''; }}" data-photo-id="{{ $photo->id }}">
+								{{ HTML::image($photo->largeUrl()); }}
+							</a>
+						</div>
+						<?php if($i==0){ $photoId = $photo->id; }?>
+						<?php $i++;?>
+						@endforeach
+					</div>
+
+					<p class="lead">Tu saldo es de: $ {{ number_format(Auth::user()->escort->creditsTotal(), 0, ',', '.') }} créditos</p>
+					@if(Auth::user()->escort->creditsTotal() < 100)
+					<div class="alert alert-danger">
+						<p class="lead">No tienes saldo suficiente para publicar</p>
+						{{ HTML::linkAction('EscortController@getCreditos', 'Recargar Ahora', null, ['class'=>'btn btn-primary']); }}
+					</div>
+					@endif
+
+					<small>Coste del servicio – 100 créditos que se descontarán de tu cuenta.</small>
+				</div>
+				<div class="modal-footer">
+					{{ Form::hidden('publicame_photo_id', $photoId, ['id'=>'publicame_photo_id']); }}
+
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+					<button type="button" id="btnPublicaMe" class="btn btn-primary" @if(Auth::user()->escort->creditsTotal() < 100) disabled="disabled" @endif>PublicaMe Ya!</button>
+				</div>
+			</div>
+		</div>
+		{{ Form::close() }}
+	</div>
+	@endif
 
 	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
 	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
