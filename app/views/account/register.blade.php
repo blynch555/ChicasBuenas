@@ -34,7 +34,7 @@
 
 					<div class="form-group @if($errors->has('name')) has-error @endif">
 						{{ Form::label('name', 'Nombre:', ['class'=>'control-label']) }}
-						{{ Form::text('name', '', ['class'=>'form-control', 'placeholder'=>'Ivonne', 'required'=>'required']) }}
+						{{ Form::text('name', '', ['class'=>'form-control', 'placeholder'=>'Ivonne', 'required'=>'required', 'autofocus'=>'yes']) }}
 						
 						{{ $errors->first('name', '<p class="help-block"><i class="ion-alert-circled"></i> :message</p>') }}
 					</div>

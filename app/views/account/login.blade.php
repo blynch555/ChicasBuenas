@@ -22,7 +22,7 @@
 
 					<div class="form-group">
 						{{ Form::label('username', 'Nombre de Usuario', ['class'=>'control-label']) }}
-						{{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'ivonne69']) }}
+						{{ Form::text('username', '', ['class'=>'form-control', 'placeholder'=>'ivonne69', 'autofocus'=>'yes']) }}
 					</div>
 					<div class="form-group">
 						{{ Form::label('password', 'Contraseña', ['class'=>'control-label']) }}
