@@ -71,21 +71,28 @@
 					</div>
 				</div>
 				@endif
+
+				@if($publicaMe->count() > 0)
 				<div class="@if(Auth::check() and Auth::user()->isEscort()) col-sm-11 @else col-sm-12 @endif">
 					@if($publicaMe->count() > 0)
 					<div id="headerListSection">
-						@foreach($publicaMe as $pEscort)
+						@foreach($publicaMe as $publicame)
 						<div>
-							<a href="{{ $pEscort->url() }}"  data-escort-id="{{ $pEscort->id }}" class="img-rounded linkShowEscortProfile">
-								{{ HTML::image($pEscort->photoUrl(), $pEscort->name) }}
+							<a href="{{ $publicame->escort->url() }}"  data-escort-id="{{ $publicame->escort->id }}" class="img-rounded linkShowEscortProfile">
+								{{ HTML::image($publicame->photo->smallUrl(), $publicame->escort->name) }}
 							</a>
 						</div>
 						@endforeach
 					</div>
 					@else
-						<a href="{{ url('publicame') }}">{{ HTML::image('img/bannerPublicaMe.png', 'PublicaMe!', ['style'=>'margin-top: 34px;']); }}</a>
+						<a href="javascript:;" id="linkPublicaMeBanner">{{ HTML::image('img/bannerPublicaMe.png', 'PublicaMe!', ['style'=>'margin-top: 34px;']); }}</a>
 					@endif
 				</div>
+				@elseif(Auth::check() and Auth::user()->isEscort())
+				<div class="col-sm-11">
+					<a href="javascript:;" id="linkPublicaMeBanner">{{ HTML::image('img/bannerPublicaMe.png', 'PublicaMe!', ['style'=>'margin-top: 34px;']); }}</a>
+				</div>
+				@endif
 			</section>
 
 			<nav class="navbar navbar-inverse">
@@ -129,14 +136,6 @@
 
 	<script>
 		var HOME = '{{ url('/') }}';
-
-		@if(Session::has('publicaMe'))
-			@if(Session::get('publicaMe') == 'ok')
-				alert('Tu foto ha sido publicada en la sección PublicaMe!');
-			@else
-				alert('Tu foto no ha sido posible publicarla, valida que tienes saldo suficiente!');
-			@endif
-		@endif
 	</script>
 
 	@if(Auth::check() and Auth::user()->isEscort())
@@ -193,5 +192,17 @@
 	{{ HTML::script('js/app.js') }}
 
 	@yield('scripts')
+
+	<script>
+		@if(Session::has('publicaMe'))
+			$(function(){
+			@if(Session::get('publicaMe') == 'ok')
+				alert('Tu foto ha sido publicada en la sección PublicaMe!');
+			@else
+				alert('Tu foto no ha sido posible publicarla, valida que tienes saldo suficiente!');
+			@endif
+			});
+		@endif
+	</script>
 </body>
 </html>

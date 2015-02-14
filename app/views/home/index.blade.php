@@ -9,9 +9,11 @@
 				</div>
 				<div class="panel-body">
 				
+					@if(Auth::guest())
 					<a href="{{ action('CuentaController@getRegistro') }}">
 						{{ HTML::image('img/banner700x115.png', 'Registrate', ['style'=>'width: 100%;']) }}
 					</a>
+					@endif
 
 					<div class="row">
 						@foreach($escorts as $escort)
@@ -29,9 +31,11 @@
 			</div>
 		</div>
 		<div class="col-sm-3 text-center">
+			@if(Auth::guest())
 			<a href="{{ action('CuentaController@getRegistro') }}">
 				{{ HTML::image('img/banner280x200.png', 'Registrate', ['style'=>'width: 100%;']) }}
 			</a>
+			@endif
 			
 			<div style="margin-top: 10px;">
 				<a class="twitter-timeline" href="https://twitter.com/chicasbuenascl" data-widget-id="547284619255898112">Tweets por el @chicasbuenascl.</a>

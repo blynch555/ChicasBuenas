@@ -25,7 +25,7 @@ $(function(){
 		html: true
 	});
 
-	$("#linkPublicaMe").click(function(e){
+	$("#linkPublicaMe, #linkPublicaMeBanner").click(function(e){
 		e.preventDefault();
 
 		publicaMe();

@@ -7,7 +7,7 @@ class HomeController extends BaseController {
 		$contact = DirectoryContact::find($id);
 		if($contact and $contact->contacted!='Si')
 			$contact->sendInvitation();
-		
+
 		if($id == 500)
 			return 'OK';
 

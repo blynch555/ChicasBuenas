@@ -55,7 +55,7 @@ View::composer('templates.default', function($view){
 	$city = City::whereSlug($city_slug)->first();
 	if(!$city) $city = City::first();
 
-	$view->publicaMe = Escort::whereCityIdAndStatus($city->id, 'Publicada')->take(36)->get();
+	$view->publicaMe = Publicame::whereCityId($city->id)->orderBy('purchase_date', 'desc')->take(36)->get();
 });
 
 
