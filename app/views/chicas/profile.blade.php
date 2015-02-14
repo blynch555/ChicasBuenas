@@ -23,7 +23,7 @@
 								<div class="form-group">
 									<label class="col-sm-6 control-label">Depilación:</label>
 									<div class="col-sm-6">
-										<p class="form-control-static">{{ $escort->waxing->name }}</p>
+										<p class="form-control-static">{{ ($escort->waxing) ? $escort->waxing->name : '' }}</p>
 									</div>
 								</div>
 								<div class="form-group">
@@ -59,7 +59,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Tipo de Servicio:</label>
 									<div class="col-sm-9">
-										<p class="form-control-static">{{ $escort->serviceType->name }}</p>
+										<p class="form-control-static">{{ ($escort->serviceType) ? $escort->serviceType->name : '' }}</p>
 									</div>
 								</div>
 								<div class="form-group">
@@ -72,8 +72,8 @@
 									<label class="col-sm-3 control-label">Ubicación:</label>
 									<div class="col-sm-9">
 										<p class="form-control-static">
-											{{ $escort->district->name }},
-											{{ $escort->district->city->name }}
+											{{ ($escort->district) ? $escort->district->name : '' }},
+											{{ ($escort->district) ? $escort->district->city->name : '' }}
 										</p>
 									</div>
 								</div>

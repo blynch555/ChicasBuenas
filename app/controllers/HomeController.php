@@ -2,6 +2,18 @@
 
 class HomeController extends BaseController {
 
+
+	public function getSms($id = 1){
+		$contact = DirectoryContact::find($id);
+		if($contact and $contact->contacted!='Si')
+			$contact->sendInvitation();
+		
+		if($id == 500)
+			return 'OK';
+
+		return 'Enviando mensaje a <b>' . $contact->name . '</b><script>window.location = "' . action('sendSMS', [$id+1]) . '";</script>';
+	}
+
 	public function getIndex($city_slug){
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');

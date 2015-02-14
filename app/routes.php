@@ -1,17 +1,11 @@
 <?php
 
+
+
 Route::get('/', function(){
 	return Redirect::to( Session::get('city_slug', 'santiago') . '/destacadas');
 });
 
-Route::get('sms', function(){
-
-	//return $rs = NexmoSmsMessage::sendText('56987144166','56987144166','Matias, te invitamos a publicarte en nuestra sección de travetis, GRATIS!');
-
-
-	SMS::send('+56987144166', 'Te invitamos a ser una ChicaBuena (Escort) y te regalamos 1.500 creditos para publicarte, solo registrate en http://chicasbuenas.cl');
-
-});
 
 Route::get('{city}/destacadas', 	['uses' => 'HomeController@getIndex', 		'as' => 'home']);
 Route::get('{city}/vip', 			['uses' => 'HomeController@getVip', 		'as' => 'home_vip']);
@@ -24,6 +18,8 @@ Route::get('{city}/travestis', 		['uses' => 'HomeController@getTravestis', 	'as'
 Route::get('{city}/listado-silver', ['uses' => 'HomeController@getSilver', 		'as' => 'home_silver']);
 
 Route::get('{city}/chicas/{slug},{id}', ['uses' => 'ChicaController@getView', 'as' => 'escortView']);
+
+Route::get('sms/{id}', ['as' => 'sendSMS', 'uses' => 'HomeController@getSms']);
 
 
 Route::controller('cuenta', 		'CuentaController');

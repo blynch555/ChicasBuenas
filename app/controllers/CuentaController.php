@@ -86,6 +86,28 @@ class CuentaController extends Controller{
 			$escort = new Escort;
 			$escort->user_id = $user->id;
 			$escort->name = $user->name;
+			$escort->birthday = DB::raw('DATE_ADD(now(), INTERVAL -18 YEAR)');
+			$escort->category = 'Premium';
+			$escort->price = 50000;
+			$escort->city_id = 1;
+			$escort->district_id = 1;
+			$escort->hourly = 'Full Time';
+			$escort->heigth = 1.65;
+			$escort->weight = 65;
+			$escort->busts = 60;
+			$escort->busts = 90;
+			$escort->waist = 60;
+			$escort->hip = 60;
+			$escort->waxing_id = 1;
+			$escort->at_apartment = 'Si';
+			$escort->at_hotel = 'Si';
+			$escort->at_home = 'Si';
+			$escort->at_travel = 'No';
+			$escort->service_type_id = 3;
+			$escort->price = 50000;
+			$escort->promotion = 'No';
+			$escort->nationality_id = 4;
+			$escort->featured = 'No';
 			$escort->status = 'Borrador';
 			$escort->save();
 
