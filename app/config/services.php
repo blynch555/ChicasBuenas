@@ -29,7 +29,7 @@ return array(
 	),
 
 	'nexmo' => array(
-		'number' => '56448903138',
+		'number' => '12069396610',
 		'key' => '6c366a10',
 		'secret' => 'd12a270a'
 	)
