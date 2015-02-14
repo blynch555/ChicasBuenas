@@ -83,7 +83,7 @@
 						@endforeach
 					</div>
 					@else
-						{{ HTML::image('img/bannerPublicaMe.png'); }}
+						<a href="{{ url('publicame') }}">{{ HTML::image('img/bannerPublicaMe.png', 'PublicaMe!', ['style'=>'margin-top: 34px;']); }}</a>
 					@endif
 				</div>
 			</section>
