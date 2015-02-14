@@ -72,6 +72,7 @@
 				</div>
 				@endif
 				<div class="@if(Auth::check() and Auth::user()->isEscort()) col-sm-11 @else col-sm-12 @endif">
+					@if($publicaMe->count() > 0)
 					<div id="headerListSection">
 						@foreach($publicaMe as $pEscort)
 						<div>
@@ -81,6 +82,9 @@
 						</div>
 						@endforeach
 					</div>
+					@else
+						{{ HTML::image('img/bannerPublicaMe.png'); }}
+					@endif
 				</div>
 			</section>
 
