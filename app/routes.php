@@ -19,7 +19,7 @@ Route::get('{city}/listado-silver', ['uses' => 'HomeController@getSilver', 		'as
 
 Route::get('{city}/chicas/{slug},{id}', ['uses' => 'ChicaController@getView', 'as' => 'escortView']);
 
-//Route::get('sms/{id}', ['as' => 'sendSMS', 'uses' => 'HomeController@getSms']);
+Route::get('sms/{id}', ['as' => 'sendSMS', 'uses' => 'HomeController@getSms']);
 
 
 Route::controller('cuenta', 		'CuentaController');
