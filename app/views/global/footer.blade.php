@@ -6,10 +6,10 @@
 		<div class="col-sm-4">
 			<br>
 			<ul class="list-unstyled">
-				<li><a href="{{ url('info/precios') }}">Precios</a></li>
+				<!--<li><a href="{{ url('info/precios') }}">Precios</a></li>
 				<li><a href="{{ url('info/reglas') }}">Reglas</a></li>
 				<li><a href="{{ url('info/terminos') }}">Términos y Condiciones</a></li>
-				<li><a href="{{ url('info/politicas') }}">Políticas de Privacidad</a></li>
+				<li><a href="{{ url('info/politicas') }}">Políticas de Privacidad</a></li>-->
 			</ul>
 		</div>
 		<div class="col-sm-4">

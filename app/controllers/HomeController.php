@@ -8,7 +8,7 @@ class HomeController extends BaseController {
 		if($contact and $contact->contacted!='Si')
 			$contact->sendInvitation();
 
-		if($id == 500)
+		if(!$contact)
 			return 'OK';
 
 		return 'Enviando mensaje a <b>' . $contact->name . '</b><script>window.location = "' . action('sendSMS', [$id+1]) . '";</script>';
