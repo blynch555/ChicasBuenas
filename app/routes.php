@@ -51,7 +51,11 @@ Route::any('kpf/exito', 		'PagosController@getExito');
 Route::any('kpf/confirma', 		'PagosController@getConfirmar');
 
 View::composer('templates.default', function($view){
-	$view->publicaMe = Escort::take(36)->get();
+	$city_slug = Session::get('city_slug', 'santiago');
+	$city = City::whereSlug($city_slug)->first();
+	if(!$city) $city = City::first();
+
+	$view->publicaMe = Escort::whereCityIdAndStatus($city->id, 'Publicada')->take(36)->get();
 });
 
 
