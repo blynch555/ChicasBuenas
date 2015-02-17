@@ -34,6 +34,7 @@ $(function(){
 	});
 
 	$('#shareme').sharrre({
+		urlCurl: HOME + '/vendor/sharrre/sharrre.php',
 		share: {
 			googlePlus: true,
 			facebook: true,

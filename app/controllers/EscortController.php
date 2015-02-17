@@ -229,7 +229,7 @@ class EscortController extends Controller{
 
 					$img = Image::make('uploads/' . $filename . '_small.jpeg');
 					$img->insert('img/thumbTpl.png');
-					$img->text($escort->name, 75, 191, function($font) {
+					$img->text( strtoupper(Str::slug($escort->name)), 75, 191, function($font) {
 						$font->file(5);
 					    $font->color('#fff');
 					    $font->align('center');
@@ -246,7 +246,7 @@ class EscortController extends Controller{
 					$img = Image::make('uploads/' . $filename . '_small.jpeg');
 					$img->fit(150, 200);
 					$img->insert('img/thumbTpl.png');
-					$img->text($escort->name, 75, 191, function($font) {
+					$img->text( strtoupper(Str::slug($escort->name)), 75, 191, function($font) {
 						$font->file(5);
 					    $font->color('#fff');
 					    $font->align('center');
