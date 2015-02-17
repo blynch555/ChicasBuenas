@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>@yield('title', trans('site.title'))</title>
 
-	<link rel="icon" type="image/png" href="{{ asset('img/fb_logo.png') }}" />
+	<link rel="icon" type="image/png" href="{{ asset('img/icon.png') }}" />
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
