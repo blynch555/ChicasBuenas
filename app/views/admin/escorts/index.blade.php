@@ -15,7 +15,7 @@
 							<th>Categoría</th>
 							<th>Ciudad</th>
 							<th>Fecha de Registro</th>
-							<th>Última Actualización</th>
+							<th>Estado</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
@@ -27,7 +27,7 @@
 							<td>{{ $escort->category }}</td>
 							<td>{{ ($escort->district) ? $escort->district->city->name : '' }}</td>
 							<td>{{ $escort->created_at->format('d/m/Y H:i') }}</td>
-							<td>{{ $escort->updated_at->format('d/m/Y H:i') }}</td>
+							<td>{{ $escort->status</td>
 							<td>
 								<button class="btn btn-default btn-xs"><i class="ion-edit"></i></button>
 								<button class="btn btn-danger btn-xs btnDelete" data-escort-id="{{ $escort->id }}"><i class="ion-trash-a"></i></button>
