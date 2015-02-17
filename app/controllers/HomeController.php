@@ -21,7 +21,8 @@ class HomeController extends BaseController {
 		Session::put('city_slug', $city->slug);
 		Session::put('city_name', $city->name);
 
-		$escorts 		= Escort::whereCityIdAndFeaturedAndStatus($city->id, 'Si', 'Publicada')->orderBy(DB::raw('rand()'))->get();
+		//$escorts 		= Escort::whereCityIdAndFeaturedAndStatus($city->id, 'Si', 'Publicada')->orderBy(DB::raw('rand()'))->get();
+		$escorts 		= Escort::whereCityIdAndStatus($city->id, 'Publicada')->orderBy(DB::raw('rand()'))->get();
 
 		return View::make('home.index', [
 			'city_slug' => $city_slug,
