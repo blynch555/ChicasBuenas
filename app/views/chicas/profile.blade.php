@@ -116,13 +116,7 @@
 									</p>
 								</blockquote>
 								<hr>
-								<div id="sharebox">
-									<div id="shareme" 
-										data-url="{{ URL::current() }}" 
-										data-text="{{ $escort->name }} en ChicasBuenas.cl" 
-										data-title="compartir">
-									</div>
-								</div>
+								<div id="socialShare"></div>
 								<hr>
 
 								<div class="form-group">

@@ -33,7 +33,7 @@ $(function(){
 		tLoading: 'Cargando...'
 	});
 
-	new Share(".share-button", {
+	new Share("#socialShare", {
 		networks: {
 			facebook: {app_id: "430700113754492"},
 			pinterest: {enabled: false},
