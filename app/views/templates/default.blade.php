@@ -2,11 +2,11 @@
 <html lang="{{ trans('site.lang.code') }}">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ trans('site.title') }}</title>
+	<title>@yield('title', trans('site.title'))</title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="{{ trans('site.meta.description') }}">
+	<meta name="description" content="@yield('description', trans('site.meta.description'))">
 	<meta name="keywords" content="{{ trans('site.meta.keywords') }}">
 
 	<meta property="fb:app_id" content="430700113754492">
