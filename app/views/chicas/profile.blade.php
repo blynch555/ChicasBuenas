@@ -158,3 +158,8 @@
 	{{ HTML::script('vendor/magnific-popup/dist/jquery.magnific-popup.min.js') }}
 	{{ HTML::script('js/chicas/profile.js') }}
 @stop
+
+@section('title') {{ $escort->name }} en ChicasBuenas.cl @stop
+@section('description') {{ $escort->description }} @stop
+@section('image') {{ $escort->thumb() }} @stop
+
