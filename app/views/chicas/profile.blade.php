@@ -38,12 +38,6 @@
 										<p class="form-control-static">{{ $escort->measures() }} cm</p>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Tipo de Servicio:</label>
-									<div class="col-sm-9">
-										<p class="form-control-static">{{ ($escort->serviceType) ? $escort->serviceType->name : '' }}</p>
-									</div>
-								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
@@ -58,16 +52,22 @@
 										<p class="form-control-static">{{ $escort->weight }} kg</p>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-6 control-label">Categoría:</label>
-									<div class="col-sm-6">
-										<p class="form-control-static">{{ $escort->category }}</p>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
+								<div class="form-group">
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Categoría:</label>
+										<div class="col-sm-9">
+											<p class="form-control-static">{{ $escort->category }}</p>
+										</div>
+									</div>
+									<label class="col-sm-3 control-label">Tipo de Servicio:</label>
+									<div class="col-sm-9">
+										<p class="form-control-static">{{ ($escort->serviceType) ? $escort->serviceType->name : '' }}</p>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Atiende:</label>
 									<div class="col-sm-9">
