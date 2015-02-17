@@ -16,6 +16,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function photo(){
 		if($this->isEscort()) return $this->escort->thumb();
+
+		return asset('img/avatar.jpg');
 	}
 
 
