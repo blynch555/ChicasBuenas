@@ -10,7 +10,7 @@ class HomeController extends Controller{
 	}
 
 	public function getUsers(){
-		$users = User::orderBy('name')->get();
+		$users = User::all();
 
 		return View::make('admin.users.index', [
 			'users' => $users
@@ -18,7 +18,7 @@ class HomeController extends Controller{
 	}
 
 	public function getEscorts(){
-		$escorts = Escort::orderBy('name')->get();
+		$escorts = Escort::all();
 
 		return View::make('admin.escorts.index', [
 			'escorts' => $escorts
