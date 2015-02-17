@@ -15,7 +15,7 @@
 								<span class="iconShowPreviewProfile"><i class="ion-search"></i></span>
 							</a>
 							<a href="{{ $escort->url() }}" class="linkShowEscortProfile" data-escort-id="{{ $escort->id }}">
-								{{ HTML::image('img/photo.png') }}
+								{{ HTML::image($escort->thumbUrl()) }}
 							</a>
 						</div>
 						@endforeach
@@ -28,7 +28,7 @@
 								<span class="iconShowPreviewProfile"><i class="ion-search"></i></span>
 							</a>
 							<a href="{{ $escort->url() }}" class="linkShowEscortProfile" data-escort-id="{{ $escort->id }}">
-								{{ HTML::image('img/photo.png') }}
+								{{ HTML::image($escort->thumbUrl()) }}
 							</a>
 						</div>
 						@endforeach
