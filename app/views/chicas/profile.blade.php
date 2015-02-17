@@ -61,7 +61,7 @@
 								<div class="form-group">
 									<label class="col-sm-6 control-label">Categoría:</label>
 									<div class="col-sm-6">
-										<p class="form-control-static">{{ $escort->category }} kg</p>
+										<p class="form-control-static">{{ $escort->category }}</p>
 									</div>
 								</div>
 							</div>
