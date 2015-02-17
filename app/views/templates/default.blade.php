@@ -193,7 +193,7 @@
 	{{ HTML::script('vendor/jquery/jquery-1.11.2.min.js') }}
 	{{ HTML::script('vendor/bootstrap/js/bootstrap.min.js') }}
 	{{ HTML::script('vendor/slick/slick.min.js') }}
-	{{ HTML::script('vendor/sharrre/jquery.sharrre.min.js'); }}
+	{{ HTML::script('vendor/share/share.min.js'); }}
 	{{ HTML::script('js/app.js') }}
 
 	@yield('scripts')

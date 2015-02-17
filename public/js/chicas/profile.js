@@ -33,24 +33,18 @@ $(function(){
 		tLoading: 'Cargando...'
 	});
 
-	$('#shareme').sharrre({
-		urlCurl: HOME + '/vendor/sharrre/sharrre.php',
-		share: {
-			googlePlus: true,
-			facebook: true,
-			twitter: true
+	new Share(".share-button", {
+		networks: {
+			facebook: {app_id: "430700113754492"},
+			pinterest: {enabled: false},
+			email: {enabled: false},
 		},
-		enableTracking: true,
-		buttons: {
-			googlePlus: {size: 'tall', annotation:'bubble'},
-			facebook: {layout: 'box_count'},
-			twitter: {count: 'vertical'}
-		},
-		hover: function(api, options){
-			$(api.element).find('.buttons').show();
-		},
-		hide: function(api, options){
-			$(api.element).find('.buttons').hide();
+		title: escort.name + ' ya esta en ChicasBuenas.cl',
+		description: escort.description,
+		image: escort.photo_url,
+		ui: {
+			button_text: 'Compartir'
 		}
 	});
+
 });

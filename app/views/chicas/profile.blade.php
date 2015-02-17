@@ -154,6 +154,13 @@
 	</style>
 @stop
 @section('scripts')
+	<script>
+	var escort = {
+		name: '{{ $escort->name }}',
+		description: '{{ $escort->description }}',
+		photo_url: '{{ $escort->thumb() }}'
+	};
+	</script>
 	{{ HTML::script('vendor/magnific-popup/dist/jquery.magnific-popup.min.js') }}
 	{{ HTML::script('js/chicas/profile.js') }}
 @stop
