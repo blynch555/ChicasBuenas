@@ -21,7 +21,7 @@
 					</thead>
 					<tbody>
 						@foreach($escorts as $escort)
-						<tr id="tr_escort_{{ $escort->id }}">
+						<tr id="tr_escort_{{ $escort->id }}" class="@if($escort->status=='Publicada') success @else warning @endif">
 							<td>{{ $escort->id }}</td>
 							<td>{{ $escort->name }}</td>
 							<td>{{ $escort->category }}</td>
