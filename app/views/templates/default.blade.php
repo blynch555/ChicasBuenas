@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ trans('site.lang.code') }}">
 <head>
 	<meta charset="UTF-8">
@@ -8,6 +8,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="{{ trans('site.meta.description') }}">
 	<meta name="keywords" content="{{ trans('site.meta.keywords') }}">
+
+	<meta property="fb:app_id" content="430700113754492">
+	<meta content="@chicasbuenascl" name="twitter:site" />
+	<meta content="summary" name="twitter:card" />
+	<meta content="@yield('title', trans('site.title'))" name="twitter:title" />
+	<meta content="@yield('description', trans('site.meta.description'))" name="twitter:description" />
+	<meta content="@yield('image', asset('img/fb_logo.png'))" name="twitter:image:src" />
+    <meta content="ChicasBuenas.cl" property="og:site_name" />
+    <meta content="object" property="og:type" />
+    <meta content="@yield('image', asset('img/fb_logo.png'))" property="og:image" />
+    <meta content="@yield('title', trans('site.title'))" property="og:title" />
+    <meta content="{{ URL::current() }}" property="og:url" />
+    <meta content="@yield('description', trans('site.meta.description'))" property="og:description" />
 	
 	{{ HTML::style('vendor/bootstrap/css/bootstrap.min.css') }}
 	{{ HTML::style('vendor/bootstrap/css/bootstrap-theme.min.css') }}
