@@ -11,7 +11,7 @@
 					<ul class="media-list" id="escortPhotos">
 					
 						@foreach($silvers as $silver)
-						<li class="media" style="border-bottom: solid 1px #ff26ff;">
+						<li class="media" style="border-bottom: solid 1px #ff26ff;" id="silver_{{ $silver->id }}">
 							<div class="media-left">
 								<p class="lead">
 									@if($silver->filename!='')
@@ -37,10 +37,9 @@
 						@endforeach
 						
 					</ul>
-
-					<div class="text-center">
-						{{ $silvers->links() }}
-					</div>
+				</div>
+				<div class="panel-footer">
+					{{ $silvers->links() }}
 				</div>
 			</div>
 		</div>
