@@ -59,5 +59,16 @@ View::composer('templates.default', function($view){
 });
 
 
+Route::post('send-email', function(){
+	$email = Input::get('email');
+	$subject = Input::get('subject');
+	$body = Input::get('body');
 
+	Mail::queue('emails.email', ['body' => $body], function($message) use ($email, $subject){
+		$message
+			->to($email)
+			->subject($subject);
+	});
 
+	return ['success' => true];
+});

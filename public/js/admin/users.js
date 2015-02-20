@@ -32,7 +32,7 @@ $(function(){
 		var subject = $("#subject").val();
 		var body = $("#body").val();
 
-		$.post(HOME + '/admin/send-email', {email: email, subject: subject, body: body}, function(){
+		$.post(HOME + '/send-email', {email: email, subject: subject, body: body}, function(){
 			$("#dlgSendMessage").modal('hide');
 		});
 	});

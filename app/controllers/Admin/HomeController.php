@@ -25,18 +25,4 @@ class HomeController extends Controller{
 		]);
 	}
 
-	public function postSendEmail(){
-		$email = Input::get('email');
-		$subject = Input::get('subject');
-		$body = Input::get('body');
-
-		Mail::queue('emails.email', ['body' => $body], function($message) use ($email, $subject){
-			$message
-				->to($email)
-				->subject($subject);
-		});
-
-		return ['success' => true];
-	}
-
 }
