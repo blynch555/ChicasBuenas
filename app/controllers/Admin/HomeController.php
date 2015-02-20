@@ -25,7 +25,7 @@ class HomeController extends Controller{
 		]);
 	}
 
-	public function getSendEmail(){
+	public function getSendMessage(){
 		echo "??";
 		return Input::all();
 
