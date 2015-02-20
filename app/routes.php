@@ -60,15 +60,19 @@ View::composer('templates.default', function($view){
 
 
 Route::post('send-email', function(){
-	$email = Input::get('email');
-	$subject = Input::get('subject');
-	$body = Input::get('body');
+	if(Auth::check() and Auth::user()->isAdmin()):
+		$email = Input::get('email');
+		$subject = Input::get('subject');
+		$body = Input::get('body');
 
-	Mail::queue('emails.email', ['body' => $body], function($message) use ($email, $subject){
-		$message
-			->to($email)
-			->subject($subject);
-	});
+		Mail::queue('emails.email', ['body' => $body], function($message) use ($email, $subject){
+			$message
+				->to($email)
+				->subject($subject);
+		});
 
-	return ['success' => true];
+		return ['success' => true];
+	else:
+		return ['success' => false];
+	endif;
 });
