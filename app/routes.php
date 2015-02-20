@@ -76,3 +76,18 @@ Route::post('send-email', function(){
 		return ['success' => false];
 	endif;
 });
+
+Route::post('publish', function(){
+	if(Auth::check() and Auth::user()->isAdmin()):
+
+		$escort = Escort::find(Input::get('id'));
+		if($escort):
+			$escort->status = 'Publicada';
+			$escort->save();
+		endif;
+
+		return ['success' => true];
+	else:
+		return ['success' => false];
+	endif;
+});
