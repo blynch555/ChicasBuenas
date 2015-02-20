@@ -12,7 +12,7 @@ class HomeController extends BaseController {
 		if(!$contact)
 			return 'OK';
 
-		return 'Enviando mensaje a <b>' . $contact->name . '</b><script>window.location = "' . action('sendSMS', [$id+1]) . '";</script>';
+		return '<h1>' . $contact->id . '</h1>Enviando mensaje a <b>' . $contact->name . '</b><script>window.location = "' . action('sendSMS', [$id+1]) . '";</script>';
 	}
 
 	public function getIndex($city_slug){
