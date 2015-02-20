@@ -38,4 +38,15 @@ $(function(){
 			$("#email, #subject, #body").val('');
 		});
 	});
+
+	$(".btnPublish").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr('data-escort-id');
+		
+		if(confirm("¿Esta seguro de publicar este perfil?")){
+			$.post(HOME + '/publish', {id: id}, function(){
+				location.reload();
+			});
+		}
+	});
 });
