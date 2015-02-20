@@ -30,6 +30,7 @@
 							<td>{{ $escort->status }}</td>
 							<td>
 								<button class="btn btn-default btn-xs btnSendEmail" data-email="{{ $escort->user->email }}"><i class="ion-ios-email-outline"></i></button>
+								<a href="{{ $escort->url() }}" target="_blank" class="btn btn-default btn-xs"><i class="ion-eye"></i></a>
 								<button class="btn btn-default btn-xs"><i class="ion-edit"></i></button>
 								<button class="btn btn-danger btn-xs btnDelete" data-escort-id="{{ $escort->id }}"><i class="ion-trash-a"></i></button>
 							</td>
