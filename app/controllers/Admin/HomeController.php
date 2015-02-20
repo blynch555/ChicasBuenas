@@ -26,6 +26,8 @@ class HomeController extends Controller{
 	}
 
 	public function postSendEmail(){
+		return Input::all();
+		
 		$email = Input::get('email');
 		$subject = Input::get('subject');
 		$body = Input::get('body');
