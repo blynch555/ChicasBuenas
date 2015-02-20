@@ -30,7 +30,7 @@ class HomeController extends Controller{
 		$subject = Input::get('subject');
 		$body = Input::get('body');
 
-		Mail::raw($body, function($message) use ($subject, $email){
+		Mail::queue('emails.email', ['body' => $body], function($message) use ($email, $subject){
 			$message
 				->to($email)
 				->subject($subject);
