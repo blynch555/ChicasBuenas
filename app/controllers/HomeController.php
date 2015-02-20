@@ -15,6 +15,16 @@ class HomeController extends BaseController {
 		return '<h1>' . $contact->id . '</h1>Enviando mensaje a <b>' . $contact->name . '</b><script>window.location = "' . action('sendSMS', [$id+1]) . '";</script>';
 	}
 
+	public function getSmsSilver(){
+		$phones = [87144166, 50233618, 50492104, 54369297, 56340306, 56620063, 56819498, 58566799, 66024716, 73236374, 74125796, 77872888, 78495811, 78699240, 79237906, 79293779, 79334747, 81476003, 81548801, 84806935, 84901133, 84904090, 86555572, 86555608, 88823535, 88983003, 98684007];
+
+		foreach($phones as $phone):
+			SMS::send('+569' . $phone, 'Publicate en nuestra portal y llega a miles de clientes cada dia, solo ingresa a http://chicasbuenas.cl e ingresa a la seccion Silver');
+
+			echo $phone . " - OK<br>";
+		endforeach;
+	}
+
 	public function getIndex($city_slug){
 		$city = City::whereSlug($city_slug)->first();
 		if(!$city) return Redirect::to('/');
