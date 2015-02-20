@@ -26,6 +26,8 @@ class HomeController extends Controller{
 	}
 
 	public function getSendMessage(){
+		return Input::all();
+		
 		$escorts = Escort::all();
 
 		return View::make('admin.escorts.index', [
