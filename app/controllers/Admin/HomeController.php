@@ -26,6 +26,7 @@ class HomeController extends Controller{
 	}
 
 	public function getSendEmail(){
+		echo "??";
 		return Input::all();
 
 		$email = Input::get('email');
