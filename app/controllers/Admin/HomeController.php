@@ -26,8 +26,12 @@ class HomeController extends Controller{
 	}
 
 	public function getSendMessage(){
-		echo "??";
-		return Input::all();
+		$escorts = Escort::all();
+
+		return View::make('admin.escorts.index', [
+			'escorts' => $escorts
+		]);
+		/*return Input::all();
 
 		$email = Input::get('email');
 		$subject = Input::get('subject');
@@ -37,7 +41,7 @@ class HomeController extends Controller{
 			$message
 				->to($email)
 				->subject($subject);
-		});
+		});*/
 	}
 
 }
