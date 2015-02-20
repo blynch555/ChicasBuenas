@@ -1,4 +1,4 @@
-<p>{{ $body }}</p>
+<p>{{ nl2br($body) }}</p>
 <br>
 Equipo ChicasBuenas.cl<br>
 <a href="http://www.chicasbuenas.cl">www.chicasbuenas.cl</a> |
