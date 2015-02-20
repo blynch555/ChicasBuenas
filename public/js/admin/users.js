@@ -34,6 +34,8 @@ $(function(){
 
 		$.post(HOME + '/send-email', {email: email, subject: subject, body: body}, function(){
 			$("#dlgSendMessage").modal('hide');
+
+			$("#email, #subject, #body").val('');
 		});
 	});
 });
