@@ -125,4 +125,7 @@ class Escort extends Eloquent{
 	public function birthday(){return date('d/m/Y', strtotime($this->birthday));}
 
 	public function measures(){return $this->busts . '-' . $this->waist . '-' . $this->hip;}
+
+
+	public function user(){return $this->belongsTo('User');}
 }
