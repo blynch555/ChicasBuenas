@@ -4,8 +4,9 @@ class HomeController extends BaseController {
 
 
 	public function getSms($id = 1){
+		/* and $contact->contacted!='Si'*/
 		$contact = DirectoryContact::find($id);
-		if($contact and $contact->contacted!='Si')
+		if($contact)
 			$contact->sendInvitation();
 
 		if(!$contact)
