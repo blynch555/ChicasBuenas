@@ -25,4 +25,16 @@ class HomeController extends Controller{
 		]);
 	}
 
+	public function postSendEmail(){
+		$email = Input::get('email');
+		$subject = Input::get('subject');
+		$body = Input::get('body');
+
+		Mail::raw($body, function($message) use ($subject, $email){
+			$message
+				->to($email)
+				->subject($subject);
+		});
+	}
+
 }
