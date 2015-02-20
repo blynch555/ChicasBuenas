@@ -19,8 +19,8 @@ Route::get('{city}/listado-silver', ['uses' => 'HomeController@getSilver', 		'as
 
 Route::get('{city}/chicas/{slug},{id}', ['uses' => 'ChicaController@getView', 'as' => 'escortView']);
 
-Route::get('sms/{id}', ['as' => 'sendSMS', 'uses' => 'HomeController@getSms']);
-Route::get('sms-silver', ['as' => 'sendSMSilver', 'uses' => 'HomeController@getSmsSilver']);
+Route::get('sms/{id}', ['as' => 'sendSMS', 'uses' => 'HomeController@getSms', 'before' => 'admin']);
+Route::get('sms-silver', ['as' => 'sendSMSilver', 'uses' => 'HomeController@getSmsSilver', 'before' => 'admin']);
 
 
 Route::controller('cuenta', 		'CuentaController');
