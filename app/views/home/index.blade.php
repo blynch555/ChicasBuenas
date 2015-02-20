@@ -1,6 +1,8 @@
 @extends('templates.default')
+@section('headers')
+<h2 class="sr-only">Escorts Destacadas en {{ Session::get('city_name') }}</h2>
+@stop
 @section('content')
-
 	<div class="row">
 		<div class="col-sm-9">
 			<div class="panel panel-primary panelEscorts">
@@ -36,7 +38,7 @@
 			<a href="{{ action('CuentaController@getRegistro') }}">
 				{{ HTML::image('img/banner280x200.png', 'Registrate', ['style'=>'width: 100%;']) }}
 			</a>
-			
+
 		</div>
 	</div>
 

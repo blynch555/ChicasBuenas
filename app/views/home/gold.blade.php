@@ -1,4 +1,7 @@
 @extends('templates.default')
+@section('headers')
+<h2 class="sr-only">Escorts Gold en {{ Session::get('city_name') }}</h2>
+@stop
 @section('content')
 	<div class="row">
 		<div class="col-sm-12">

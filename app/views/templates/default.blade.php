@@ -41,6 +41,10 @@
 <body>
 	<div class="container wraper">
 
+		<h1 class="sr-only">Escorts en {{ Session::get('city_name') }}</h1>
+		@yield('headers')
+		<p class="sr-only">{{ trans('site.meta.keywords') }}</p>
+
 		<header>
 			<div class="row">
 				<div class="col-sm-3 headerLogo">
