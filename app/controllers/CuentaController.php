@@ -18,8 +18,7 @@ class CuentaController extends Controller{
 	public function postEntrar(){
 		$credentials = [
 			'username' => Input::get('username'),
-			'password' => Input::get('password'),
-			'status' => 'Activo'
+			'password' => Input::get('password')
 		];
 
 		if(Auth::attempt($credentials)):
@@ -79,7 +78,7 @@ class CuentaController extends Controller{
 		$user->password = Hash::make(Input::get('password'));
 		$user->validation = md5(date('YmdHis'));
 		$user->profile = $profile;
-		$user->status = 'Validación';
+		$user->status = 'Activo';
 		$user->save();
 
 		if($profile == 'Escort'):
@@ -128,9 +127,14 @@ class CuentaController extends Controller{
 
 		endif;
 
-		$user->sendActivationMail();
+		Auth::loginUsingId($user->id);
+		//$user->sendActivationMail();
 
-		return Redirect::action('CuentaController@getRegistrado');
+		if(Auth::user()->isEscort())
+			return Redirect::intended('escort/perfil');
+		return Redirect::intended('cuenta');
+
+		//return Redirect::action('CuentaController@getRegistrado');
 	}
 
 	public function postActualizar(){
