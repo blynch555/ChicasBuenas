@@ -28,16 +28,15 @@
 			</div>
 		</div>
 		<div class="col-sm-3 text-center">
-			@if(Auth::guest())
-			<a href="{{ action('CuentaController@getRegistro') }}">
-				{{ HTML::image('img/banner280x200.png', 'Registrate', ['style'=>'width: 100%;']) }}
-			</a>
-			@endif
-			
 			<div style="margin-top: 10px;">
 				<a class="twitter-timeline" href="https://twitter.com/chicasbuenascl" data-widget-id="547284619255898112">Tweets por el @chicasbuenascl.</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
+
+			<a href="{{ action('CuentaController@getRegistro') }}">
+				{{ HTML::image('img/banner280x200.png', 'Registrate', ['style'=>'width: 100%;']) }}
+			</a>
+			
 		</div>
 	</div>
 
