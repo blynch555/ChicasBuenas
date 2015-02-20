@@ -25,8 +25,8 @@ class HomeController extends Controller{
 		]);
 	}
 
-	public function getSendMessage(){
-		/*$email = Input::get('email');
+	public function postSendEmail(){
+		$email = Input::get('email');
 		$subject = Input::get('subject');
 		$body = Input::get('body');
 
@@ -34,7 +34,7 @@ class HomeController extends Controller{
 			$message
 				->to($email)
 				->subject($subject);
-		});*/
+		});
 
 		return ['success' => true];
 	}
