@@ -41,6 +41,7 @@ $(function(){
 		},
 		title: escort.name + ' ya esta en ChicasBuenas.cl',
 		description: escort.description,
+		url: escort.url,
 		image: escort.photo_url,
 		ui: {
 			button_text: 'Compartir'

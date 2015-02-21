@@ -152,7 +152,8 @@
 	var escort = {
 		name: '{{ str_replace("'", '"', $escort->name) }}',
 		description: '{{ Str::slug($escort->description, ' ') }}',
-		photo_url: '{{ $escort->thumb() }}'
+		photo_url: '{{ $escort->thumb() }}',
+		url: '{{ $escort->shortUrl() }}'
 	};
 	</script>
 	{{ HTML::script('vendor/magnific-popup/dist/jquery.magnific-popup.min.js') }}

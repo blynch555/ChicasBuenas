@@ -92,3 +92,12 @@ Route::post('publish', function(){
 		return ['success' => false];
 	endif;
 });
+
+
+Route::get('to/{id}', function(id){
+	$escort = Escort::find($id);
+	if($escort)
+		return Redirect::to($escort->url());
+
+	return Redirect::to('/');
+});
