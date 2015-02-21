@@ -94,10 +94,3 @@ Route::post('publish', function(){
 });
 
 
-Route::get('to/{id}', function(id){
-	$escort = Escort::find($id);
-	if($escort)
-		return Redirect::to($escort->url());
-
-	return Redirect::to('/');
-});
