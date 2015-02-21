@@ -22,7 +22,13 @@ Route::get('{city}/chicas/{slug},{id}', ['uses' => 'ChicaController@getView', 'a
 Route::get('sms/{id}', ['as' => 'sendSMS', 'uses' => 'HomeController@getSms', 'before' => 'admin']);
 Route::get('sms-silver', ['as' => 'sendSMSilver', 'uses' => 'HomeController@getSmsSilver', 'before' => 'admin']);
 
+Route::get('to/{id}', function($id){
+	$escort = Escort::find($id);
+	if($escort)
+		return Redirect::to($escort->url());
 
+	return Redirect::to('/');
+});
 
 Route::controller('cuenta', 		'CuentaController');
 Route::controller('escort', 		'EscortController');
