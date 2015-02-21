@@ -151,7 +151,7 @@
 	<script>
 	var escort = {
 		name: '{{ str_replace("'", '"', $escort->name) }}',
-		description: '{{ Str::limit(Str::slug($escort->description, ' '), 110) }}...',
+		description: '{{ Str::limit(Str::slug($escort->description, ' '), 108) }}...',
 		photo_url: '{{ $escort->thumb() }}',
 		url: '{{ $escort->shortUrl() }}'
 	};
