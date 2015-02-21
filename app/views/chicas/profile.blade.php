@@ -151,7 +151,6 @@
 	<script>
 	var escort = {
 		name: '{{ str_replace("'", '"', $escort->name) }}',
-		description: '{{ str_replace("'", '', str_replace("\n", ' ', $escort->description)) }}',
 		photo_url: '{{ $escort->thumb() }}'
 	};
 	</script>
