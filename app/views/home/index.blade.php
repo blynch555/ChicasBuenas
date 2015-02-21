@@ -23,9 +23,11 @@
 						@endforeach
 					</div>
 
+					@if(Auth::guest())
 					<a href="{{ action('CuentaController@getRegistro') }}">
 						{{ HTML::image('img/banner700x115.png', 'Registrate', ['style'=>'width: 100%;']) }}
 					</a>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -35,9 +37,11 @@
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
 
+			@if(Auth::guest())
 			<a href="{{ action('CuentaController@getRegistro') }}">
 				{{ HTML::image('img/banner280x200.png', 'Registrate', ['style'=>'width: 100%;']) }}
 			</a>
+			@endif
 
 		</div>
 	</div>
