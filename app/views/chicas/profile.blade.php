@@ -150,8 +150,8 @@
 @section('scripts')
 	<script>
 	var escort = {
-		name: '{{ $escort->name }}',
-		description: '{{ $escort->description }}',
+		name: '{{ str_replace("'", '"', $escort->name) }}',
+		description: '{{ str_replace("'", '"', $escort->description) }}',
 		photo_url: '{{ $escort->thumb() }}'
 	};
 	</script>
