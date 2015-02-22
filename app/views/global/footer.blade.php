@@ -20,5 +20,5 @@
 			</p>
 		</div>
 	</div>
-	<p style="color: #ddd; font-size: 10px; text-align: justify; margin-top: 10px;">{{ str_replace(",", ", ", trans('site.meta.keywords')) }}</p>
+	<p class="hidden-xs" style="color: #ddd; font-size: 10px; text-align: justify; margin-top: 10px;">{{ str_replace(",", ", ", trans('site.meta.keywords')) }}</p>
 </footer>
