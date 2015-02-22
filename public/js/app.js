@@ -15,6 +15,7 @@ $(function(){
 			{
 				breakpoint: 810,
 				settings: {
+					autoplay: true,
 					slidesToShow: 3,
 					slidesToScroll: 1
 				}
