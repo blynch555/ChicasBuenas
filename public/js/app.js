@@ -3,6 +3,7 @@ $(function(){
 		slidesToShow: 4,
 		slidesToScroll: 2,
 		autoplay: false,
+		mobileFirst: true,
 		responsive: [
 			{
 				breakpoint: 1101,
