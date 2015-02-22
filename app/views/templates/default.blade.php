@@ -132,6 +132,23 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+
+					<div class="navbar-brand visible-xs">
+
+						<ul class="dropdown-menu" role="menu">
+							<li class="dropdown">
+								<a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+									<i class="ion-ios-location"></i> {{ Session::get('city_name', 'Santiago') }} <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									@foreach(City::getAllCities() as $city)
+									<li role="presentation" class="dropdown-header"><a href="{{ $city->url() }}">{{ $city->name }}</a></li>
+									@endforeach
+								</ul>
+							</li>
+						</ul>
+
+					</div>
 				</div>
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -145,17 +162,6 @@
 						<li @if(Route::is('home_maduritas')) class="active" @endif><a href="{{ route('home_maduritas', Session::get('city_slug', 'santiago')) }}">Maduritas</a></li>
 						<li @if(Route::is('home_travestis')) class="active" @endif><a href="{{ route('home_travestis', Session::get('city_slug', 'santiago')) }}">Travestis</a></li>
 						<li @if(Route::is('home_silver')) class="active" @endif><a href="{{ route('home_silver', Session::get('city_slug', 'santiago')) }}">Silver</a></li>
-
-						<li class="dropdown visible-xs">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								<i class="ion-ios-location"></i> {{ Session::get('city_name', 'Santiago') }} <span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								@foreach(City::getAllCities() as $city)
-								<li><a href="{{ $city->url() }}">{{ $city->name }}</a></li>
-								@endforeach
-							</ul>
-						</li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">
 						<li class="hidden-lg"><a href="{{ url('buscar') }}"><i class="ion-search"></i></a></li>
