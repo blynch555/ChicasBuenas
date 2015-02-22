@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 hidden-xs">
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-speakerphone"></i> Publícate ahora
