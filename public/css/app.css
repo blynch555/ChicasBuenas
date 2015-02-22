@@ -277,6 +277,11 @@ footer a:hover{
 	font-size: 20px;
 }
 
-.mobileLocationDropdown .dropdown-header a{
+.mobileLocationDropdown .dropdown-header{
 	padding: 5px 0;
+}
+
+.mobileLocationDropdown .dropdown-header a{
+	padding: 5px 20px;
+	font-size: 15px;
 }
