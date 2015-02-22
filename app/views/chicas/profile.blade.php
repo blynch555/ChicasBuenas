@@ -104,9 +104,14 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label lead">Teléfono:</label>
 									<div class="col-sm-9">
-										<a href="tel:569{{ $escort->phone }}" class="btn btn-primary btn-lg">
+										<a href="tel:569{{ $escort->phone }}" class="btn btn-primary btn-lg hidden-xs">
 											<i class="ion-ios-telephone"></i> {{ $escort->phone }}
 										</a>
+
+										<a href="tel:569{{ $escort->phone }}" class="btn btn-primary btn-block btn-lg visible-xs">
+											<i class="ion-ios-telephone"></i> {{ $escort->phone }}
+										</a>
+
 									</div>
 								</div>
 
