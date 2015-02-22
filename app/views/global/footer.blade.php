@@ -14,7 +14,11 @@
 		</div>
 		<div class="col-sm-4">
 			<br><br><br>
-			<p class="lead">
+			<p class="lead hidden-xs">
+				Sitio web para mayores de 18 años<br>
+				&copy; 2015 - <strong><a href="{{ Config::get('site.full_url') }}">ChicasBuenas.cl</a></strong>
+			</p>
+			<p class="lead visible-xs text-center">
 				Sitio web para mayores de 18 años<br>
 				&copy; 2015 - <strong><a href="{{ Config::get('site.full_url') }}">ChicasBuenas.cl</a></strong>
 			</p>
