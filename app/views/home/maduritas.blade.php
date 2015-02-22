@@ -8,12 +8,12 @@
 			<div class="panel panel-primary panelEscorts">
 				<div class="panel-heading">
 					<i class="ion-wineglass"></i> Maduritas
-					<span class="pull-right"><i class="ion-information-circled"></i> Chicas mayores a 40 años</span>
+					<span class="pull-right hidden-xs"><i class="ion-information-circled"></i> Chicas mayores a 40 años</span>
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						@foreach($escorts_f as $escort)
-						<div class="col-sm-2 escortListItem escortListItemNormal">
+						<div class="col-xs-4 col-sm-2 escortListItem escortListItemNormal">
 							<a href="{{ $escort->url() }}" class="icons linkShowEscortProfile" data-escort-id="{{ $escort->id }}">
 								<span class="iconShowPreviewProfile"><i class="ion-search"></i></span>
 							</a>
