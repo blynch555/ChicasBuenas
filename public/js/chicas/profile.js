@@ -1,6 +1,15 @@
 $(function(){
 	$(".escortPhotos").slick({
-		slidesToShow: 1
+		slidesToShow: 1,
+		mobileFirst: true,
+		responsive: [
+			{
+				breakpoint: 810,
+				settings: {
+					autoplay: true
+				}
+			}
+		]
 	});
 
 	$('.escortPhotos').magnificPopup({
