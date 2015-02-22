@@ -40,6 +40,30 @@
 						@endforeach
 						
 					</ul>
+
+					@foreach($silvers as $silver)
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							{{ $silver->title }}
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-3">
+									@if($silver->filename!='')
+									<a href="{{ $silver->largeUrl() }}" class="escortPhoto" title="{{ $silver->title }}">
+										{{ HTML::image($silver->mediumUrl(), $silver->title, ['class'=>'media-object', 'width' => '100%']) }}
+									</a>
+									@else
+									{{ HTML::image('img/withoutphoto.jpg', '', ['class'=>'media-object', 'width' => '100%']) }}
+									@endif
+								</div>
+								<div class="col-xs-9">
+									{{ nl2br($silver->details) }}
+								</div>
+							</div>
+						</div>
+					</div>
+					@endforeach
 				</div>
 				<div class="panel-footer">
 					{{ $silvers->links() }}
