@@ -263,7 +263,7 @@ footer a:hover{
 
 
 
-.mobileLocationDropdown .dropdown-menu{
+.mobileLocationDropdown>.dropdown-menu{
 	display: block;
 	top: 10px;
 	background: transparent;
