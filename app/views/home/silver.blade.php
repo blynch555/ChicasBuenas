@@ -44,7 +44,7 @@
 					@foreach($silvers as $silver)
 					<div class="panel panel-primary">
 						<div class="panel-heading" style="font-size: 12px;">
-							{{ $silver->title }}
+							<i class="ion-heart"></i> {{ $silver->title }}
 						</div>
 						<div class="panel-body">
 							<div class="row">
