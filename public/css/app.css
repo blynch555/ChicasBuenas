@@ -260,3 +260,18 @@ footer a:hover{
 #dvPublicaMe{
 	padding-top: 20px;
 }
+
+
+
+.mobileLocationDropdown .dropdown-menu{
+	display: block;
+	top: 10px;
+	background: transparent;
+	color: #fff;
+	box-shadow: none;
+	border: none;
+}
+
+.mobileLocationDropdown a{
+	color: #fff;
+}

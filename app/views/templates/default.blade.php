@@ -135,7 +135,7 @@
 
 					<div class="navbar-brand visible-xs">
 
-						<ul class="dropdown-menu" role="menu">
+						<ul class="dropdown-menu" role="menu" style="display: block;top: 10px;background: transparent;color: #fff;box-shadow: none;border: none;">
 							<li class="dropdown">
 								<a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 									<i class="ion-ios-location"></i> {{ Session::get('city_name', 'Santiago') }} <span class="caret"></span>
