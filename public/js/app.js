@@ -1,6 +1,6 @@
 $(function(){
 	$('#headerListSection').slick({
-		slidesToShow: 10,
+		slidesToShow: 4,
 		slidesToScroll: 2,
 		autoplay: false,
 		responsive: [
