@@ -46,7 +46,7 @@
 		<p class="sr-only">{{ trans('site.meta.keywords') }}</p>
 
 		<header>
-			<div class="visible-xs text-center">
+			<div class="visible-xs text-center headerLogo">
 				<a href="{{ url('/') }}"><h1>ChicasBuenas.cl</h1></a>
 			</div>
 			<div class="row hidden-xs">
