@@ -56,14 +56,17 @@
 									@else
 									{{ HTML::image('img/withoutphoto.jpg', '', ['class'=>'media-object', 'width' => '100%']) }}
 									@endif
-
-									<a href="tel:569{{ $silver->phone }}" class="btn btn-primary btn-lg btn-block" style="margin-top: 5px;">
-										<i class="ion-ios-telephone"></i> {{ $silver->phone }}
-									</a>
 								</div>
 								<div class="col-xs-9">
 									{{ nl2br($silver->details) }}
 								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<a href="tel:569{{ $silver->phone }}" class="btn btn-primary btn-lg btn-block" style="margin-top: 5px;">
+									<i class="ion-ios-telephone"></i> {{ $silver->phone }}
+								</a>
 							</div>
 						</div>
 					</div>
