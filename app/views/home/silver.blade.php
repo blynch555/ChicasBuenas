@@ -43,7 +43,7 @@
 
 					@foreach($silvers as $silver)
 					<div class="panel panel-primary">
-						<div class="panel-heading">
+						<div class="panel-heading" style="font-size: 12px;">
 							{{ $silver->title }}
 						</div>
 						<div class="panel-body">
@@ -56,6 +56,10 @@
 									@else
 									{{ HTML::image('img/withoutphoto.jpg', '', ['class'=>'media-object', 'width' => '100%']) }}
 									@endif
+
+									<a href="tel:569{{ $silver->phone }}" class="btn btn-primary btn-lg btn-block" style="margin-top: 5px;">
+										<i class="ion-ios-telephone"></i> {{ $silver->phone }}
+									</a>
 								</div>
 								<div class="col-xs-9">
 									{{ nl2br($silver->details) }}
