@@ -1,6 +1,6 @@
 $(function(){
 	$('#headerListSection').slick({
-		slidesToShow: 4,
+		slidesToShow: 10,
 		slidesToScroll: 2,
 		autoplay: false,
 		mobileFirst: true,
@@ -15,8 +15,8 @@ $(function(){
 			{
 				breakpoint: 810,
 				settings: {
-					slidesToShow: 7,
-					slidesToScroll: 3
+					slidesToShow: 4,
+					slidesToScroll: 1
 				}
 			}
 		]
