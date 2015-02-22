@@ -108,7 +108,7 @@
 											<i class="ion-ios-telephone"></i> {{ $escort->phone }}
 										</a>
 
-										<a href="tel:569{{ $escort->phone }}" class="btn btn-primary btn-block btn-lg visible-xs">
+										<a href="tel:569{{ $escort->phone }}" class="btn btn-primary btn-block btn-lg visible-xs" style="margin-bottom: 10px;">
 											<i class="ion-ios-telephone"></i> {{ $escort->phone }}
 										</a>
 
