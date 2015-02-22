@@ -6,15 +6,9 @@ $(function(){
 		mobileFirst: true,
 		responsive: [
 			{
-				breakpoint: 1101,
-				settings: {
-					slidesToShow: 9,
-					slidesToScroll: 3
-				}
-			},
-			{
 				breakpoint: 810,
 				settings: {
+					arrows: false,
 					autoplay: true,
 					slidesToShow: 3,
 					slidesToScroll: 1

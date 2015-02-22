@@ -6,6 +6,7 @@ $(function(){
 			{
 				breakpoint: 810,
 				settings: {
+					arrows: false,
 					autoplay: true
 				}
 			}
