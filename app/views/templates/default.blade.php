@@ -163,10 +163,10 @@
 						<li @if(Route::is('home_travestis')) class="active" @endif><a href="{{ route('home_travestis', Session::get('city_slug', 'santiago')) }}">Travestis</a></li>
 						<li @if(Route::is('home_silver')) class="active" @endif><a href="{{ route('home_silver', Session::get('city_slug', 'santiago')) }}">Silver</a></li>
 					</ul>
-					<ul class="nav navbar-nav pull-right">
+					<!--<ul class="nav navbar-nav pull-right">
 						<li class="hidden-lg"><a href="{{ url('buscar') }}"><i class="ion-search"></i></a></li>
 						<li class="visible-lg"><a href="{{ url('buscar') }}"><i class="ion-search"></i> Buscar</a></li>
-					</ul>
+					</ul>-->
 				</div>
 			</nav>		
 		</header>
