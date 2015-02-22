@@ -12,7 +12,7 @@
 				<div class="panel-body">
 					<div class="row">
 						@foreach($escorts as $escort)
-						<div class="col-sm-2 escortListItem escortListItemNormal">
+						<div class="col-xs-4 col-sm-2 escortListItem escortListItemNormal">
 							<a href="{{ $escort->url() }}" class="icons linkShowEscortProfile" data-escort-id="{{ $escort->id }}">
 								<span class="iconShowPreviewProfile"><i class="ion-search"></i></span>
 							</a>
