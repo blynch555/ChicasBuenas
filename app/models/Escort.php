@@ -8,7 +8,7 @@ class Escort extends Eloquent{
 		if($photo):
 			return $photo->smallUrl();
 		else:
-			return asset('img/avatar.jpg');
+			return asset('img/small.jpg');
 		endif;
 	}
 
