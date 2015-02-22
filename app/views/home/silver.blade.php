@@ -11,7 +11,7 @@
 				</div>
 				<div class="panel-body">
 
-					<ul class="media-list" id="escortPhotos">
+					<ul class="media-list hidden-xs" id="escortPhotos">
 					
 						@foreach($silvers as $silver)
 						<li class="media" style="border-bottom: solid 1px #ff26ff;" id="silver_{{ $silver->id }}">
